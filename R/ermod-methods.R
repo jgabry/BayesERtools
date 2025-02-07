@@ -320,7 +320,7 @@ posterior::as_draws_rvars
 #'
 #' @param x An object of class `ermod`
 #' @param ... Arguments passed to individual methods (if applicable).
-#' @return A draws object from the [posterior] package.
+#' @return A draws object from the `posterior` package.
 #' @name as_draws
 NULL
 

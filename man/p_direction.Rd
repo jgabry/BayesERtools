@@ -24,7 +24,8 @@ p_direction(x, ...)
 \item{null}{The null hypothesis value. Default is 0.}
 
 \item{as_p}{If \code{TRUE}, the p-direction (pd) values are converted to a
-frequentist p-value using \code{\link[=pd_to_p]{pd_to_p()}}. Only works when \code{as_num = TRUE}.}
+frequentist p-value using \code{\link[bayestestR:pd_to_p]{bayestestR::pd_to_p()}}. Only works when
+\code{as_num = TRUE}.}
 
 \item{as_num}{If \code{TRUE}, the output is converted to a numeric value.}
 

@@ -45,7 +45,7 @@ as_draws_rvars(x, ...)
 \item{...}{Arguments passed to individual methods (if applicable).}
 }
 \value{
-A draws object from the \link{posterior} package.
+A draws object from the \code{posterior} package.
 }
 \description{
 See \code{\link[posterior:draws]{posterior::as_draws()}} for details.

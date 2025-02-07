@@ -22,7 +22,8 @@ bayestestR::p_direction
 #' @param null The null hypothesis value. Default is 0.
 #' @param as_num If `TRUE`, the output is converted to a numeric value.
 #' @param as_p If `TRUE`, the p-direction (pd) values are converted to a
-#' frequentist p-value using [`pd_to_p()`]. Only works when `as_num = TRUE`.
+#' frequentist p-value using [bayestestR::pd_to_p()]. Only works when
+#' `as_num = TRUE`.
 #' @param direction What type of p-value is requested or provided with
 #' as_p = TRUE. Can be `"two-sided"` (default, two tailed) or `"one-sided"`
 #' (one tailed).

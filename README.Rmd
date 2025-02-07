@@ -25,23 +25,23 @@ library(gt)
 [![Codecov test coverage](https://codecov.io/gh/Genentech/BayesERtools/graph/badge.svg)](https://app.codecov.io/gh/Genentech/BayesERtools)
 <!-- badges: end -->
 
-BayesERtools provides a suite of tools that facilitate
+`BayesERtools` provides a suite of tools that facilitate
 exposure-response analysis using Bayesian methods. 
 
-- Tutorial: https://genentech.github.io/BayesERbook/
-- Documentation: https://genentech.github.io/BayesERtools/
-- GitHub repo: https://github.com/genentech/BayesERtools/
+- Tutorial (`BayesERbook`): https://genentech.github.io/BayesERbook/
+- Package documentation: https://genentech.github.io/BayesERtools/
+- GitHub repo of the package: https://github.com/genentech/BayesERtools/
 
 ## Installation
 
-You can install the BayesERtools with:
+You can install the `BayesERtools` with:
 
 ``` r
 # install.packages('BayesERtools') # Once on CRAN
 devtools::install_github("genentech/BayesERtools") # development version
 ```
 
-You also need latest version of rstanemax (>= 0.1.7) to use Emax model.
+You also need latest version of `rstanemax` (>= 0.1.7) to use E~max~ model.
 
 ``` r
 install.packages('rstanemax')

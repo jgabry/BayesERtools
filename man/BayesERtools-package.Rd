@@ -13,13 +13,18 @@ Suite of tools that facilitate exposure-response analysis using Bayesian methods
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://code.roche.com/gred_mns/packages/BayesERtools}
-  \item \url{https://docs.roche.com/BayesERtools}
+  \item \url{https://genentech.github.io/BayesERtools/}
+  \item \url{https://genentech.github.io/BayesERbook/}
 }
 
 }
 \author{
-\strong{Maintainer}: Kenta Yoshida \email{yoshida.kenta@gene.com} (\href{https://orcid.org/0000-0003-4967-3831}{ORCID})
+\strong{Maintainer}: Kenta Yoshida \email{yoshida.kenta.6@gmail.com} (\href{https://orcid.org/0000-0003-4967-3831}{ORCID})
+
+Authors:
+\itemize{
+  \item François Mercier \email{francois.mercier@roche.com} (\href{https://orcid.org/0000-0002-5685-1408}{ORCID})
+}
 
 Other contributors:
 \itemize{
