@@ -19,7 +19,7 @@
 #' holdout predictions for each fold.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(

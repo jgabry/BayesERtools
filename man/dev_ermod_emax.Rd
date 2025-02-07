@@ -79,7 +79,7 @@ You can also specify covariates to be included in the model; note that only
 categorical covariates are allowed.
 }
 \examples{
-\dontrun{
+\donttest{
 data_er_cont <- rstanemax::exposure.response.sample
 
 ermod_emax <-
@@ -91,6 +91,8 @@ ermod_emax <-
 
 plot_er(ermod_emax, show_orig_data = TRUE)
 
+data_er_cont_cov <- rstanemax::exposure.response.sample.with.cov
+
 ermod_emax_w_cov <-
   dev_ermod_emax(
     data = data_er_cont_cov,
@@ -100,7 +102,7 @@ ermod_emax_w_cov <-
   )
 }
 
-\dontrun{
+\donttest{
 data_er_bin <- rstanemax::exposure.response.sample.binary
 
 ermod_bin_emax <-

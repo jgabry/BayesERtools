@@ -53,7 +53,7 @@ In case of \code{output_type = "median_qi"}, it returns \code{ersim_med_qi} obje
 Simulate from ER model
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(

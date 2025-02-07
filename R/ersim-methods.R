@@ -2,6 +2,8 @@
 #' @name ersim_method
 #' @param x An object of the classes `ersim_*` or `ersim_med_qi_*`
 #' @param ... Additional arguments passed to functions
+#'
+#' @return No return value, called for print or plot side effects
 NULL
 
 #' @export

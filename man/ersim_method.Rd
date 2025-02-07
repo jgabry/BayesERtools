@@ -20,6 +20,9 @@ other data, consider adding geom_point() to the plot manually.}
 
 \item{...}{Additional arguments passed to functions}
 }
+\value{
+No return value, called for print or plot side effects
+}
 \description{
 S3 methods for the classes \verb{ersim_*} and \verb{ersim_med_qi_*}
 }

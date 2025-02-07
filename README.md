@@ -29,7 +29,7 @@ You also need latest version of `rstanemax` (\>= 0.1.7) to use
 E<sub>max</sub> model.
 
 ``` r
-install.packages('rstanemax')
+install.packages('rstanemax', repos = c(ppm = 'https://packagemanager.posit.co/cran/latest'))
 ```
 
 ## Supported model types

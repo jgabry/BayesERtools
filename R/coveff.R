@@ -18,7 +18,6 @@
 #' quantile interval of the covariate effects.
 #'
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -29,7 +28,6 @@
 #' )
 #'
 #' sim_coveff(ermod_bin)
-#' }
 #'
 sim_coveff <- function(
     ermod, data = NULL, spec_coveff = NULL,
@@ -118,8 +116,8 @@ sim_coveff <- function(
 #' or their subclasses
 #' @param ... currently not used
 #'
+#' @return A ggplot object
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -130,7 +128,6 @@ sim_coveff <- function(
 #' )
 #'
 #' plot_coveff(ermod_bin)
-#' }
 #'
 plot_coveff <- function(x, ...) UseMethod("plot_coveff")
 
@@ -216,6 +213,26 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' applied to the odds ratio and 95% CI columns; value_label column was
 #' already generated in an earlier step in [build_spec_coveff()] or
 #' [sim_coveff()].
+#' @return A data frame with the formatted covariate effect simulation results
+#' with the following columns:
+#' - `var_label`: the label of the covariate
+#' - `value_label`: the label of the covariate value
+#' - `value_annot`: the annotation of the covariate value
+#' - `Odds ratio`: the odds ratio of the covariate effect
+#' - `95% CI`: the 95% credible interval of the covariate effect
+#'
+#' @examples
+#' data(d_sim_binom_cov_hgly2)
+#'
+#' ermod_bin <- dev_ermod_bin(
+#'   data = d_sim_binom_cov_hgly2,
+#'   var_resp = "AEFLAG",
+#'   var_exposure = "AUCss_1000",
+#'   var_cov = "BHBA1C_5",
+#' )
+#'
+#' print_coveff(sim_coveff(ermod_bin))
+#'
 print_coveff <- function(
     coveffsim, n_sigfig = 3, use_seps = TRUE, drop_trailing_dec_mark = TRUE) {
   coveffsim_non_ref <-

@@ -24,6 +24,17 @@ See \code{\link[gt:vec_fmt_number]{gt::vec_fmt_number()}} for details.}
 (".") in value_label of continuous variables. See \code{\link[gt:vec_fmt_number]{gt::vec_fmt_number()}}
 for details.}
 }
+\value{
+A data frame with the formatted covariate effect simulation results
+with the following columns:
+\itemize{
+\item \code{var_label}: the label of the covariate
+\item \code{value_label}: the label of the covariate value
+\item \code{value_annot}: the annotation of the covariate value
+\item \verb{Odds ratio}: the odds ratio of the covariate effect
+\item \verb{95\% CI}: the 95\% credible interval of the covariate effect
+}
+}
 \description{
 Format the covariate effect simulation results for printing
 }
@@ -32,4 +43,17 @@ Note that \code{n_sigfig}, \code{use_seps}, and \code{drop_trailing_dec_mark} ar
 applied to the odds ratio and 95\% CI columns; value_label column was
 already generated in an earlier step in \code{\link[=build_spec_coveff]{build_spec_coveff()}} or
 \code{\link[=sim_coveff]{sim_coveff()}}.
+}
+\examples{
+data(d_sim_binom_cov_hgly2)
+
+ermod_bin <- dev_ermod_bin(
+  data = d_sim_binom_cov_hgly2,
+  var_resp = "AEFLAG",
+  var_exposure = "AUCss_1000",
+  var_cov = "BHBA1C_5",
+)
+
+print_coveff(sim_coveff(ermod_bin))
+
 }

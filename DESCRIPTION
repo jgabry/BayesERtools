@@ -11,8 +11,13 @@ Authors@R:
       )
 Maintainer: Kenta Yoshida <yoshida.kenta.6@gmail.com>
 Description: Suite of tools that facilitate
-    exposure-response analysis using Bayesian methods. 
-License: Apache License 2.0 | file LICENSE
+    exposure-response analysis using Bayesian methods. The package
+    provides a streamlined workflow for fitting types of models that are
+    commonly used in exposure-response analysis - linear and Emax for continuous
+    endpoints, logistic linear and logistic Emax for binary endpoints, as well
+    as performing simulation and visualization. Learn more about the workflow
+    at <https://genentech.github.io/BayesERbook/>.
+License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
 Depends: 

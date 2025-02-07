@@ -27,7 +27,7 @@
 #' @return An object of class `ermod_emax`.or `ermod_bin_emax`.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data_er_cont <- rstanemax::exposure.response.sample
 #'
 #' ermod_emax <-
@@ -38,6 +38,8 @@
 #'   )
 #'
 #' plot_er(ermod_emax, show_orig_data = TRUE)
+#'
+#' data_er_cont_cov <- rstanemax::exposure.response.sample.with.cov
 #'
 #' ermod_emax_w_cov <-
 #'   dev_ermod_emax(
@@ -121,7 +123,7 @@ dev_ermod_emax <- function(
 #' @return An object of class `ermod_emax_exp_sel` or `ermod_bin_emax_exp_sel`.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data_er_cont <- rstanemax::exposure.response.sample
 #' noise <- 1 + 0.5 * stats::rnorm(length(data_er_cont$exposure))
 #' data_er_cont$exposure2 <- data_er_cont$exposure * noise
@@ -179,7 +181,7 @@ dev_ermod_emax_exp_sel <- function(
 #' @export
 #' @rdname dev_ermod_emax
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data_er_bin <- rstanemax::exposure.response.sample.binary
 #'
 #' ermod_bin_emax <-
@@ -266,7 +268,7 @@ dev_ermod_bin_emax <- function(
 #' @rdname dev_ermod_emax_exp_sel
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data_er_bin <- rstanemax::exposure.response.sample.binary
 #'
 #' noise <- 1 + 0.5 * stats::rnorm(length(data_er_bin$conc))

@@ -72,7 +72,7 @@ This functions is used to develop an Emax model with binary and continuous
 endpoint, using various exposure metrics and selecting the best one.
 }
 \examples{
-\dontrun{
+\donttest{
 data_er_cont <- rstanemax::exposure.response.sample
 noise <- 1 + 0.5 * stats::rnorm(length(data_er_cont$exposure))
 data_er_cont$exposure2 <- data_er_cont$exposure * noise
@@ -89,7 +89,7 @@ ermod_emax_exp_sel <-
 ermod_emax_exp_sel
 }
 
-\dontrun{
+\donttest{
 data_er_bin <- rstanemax::exposure.response.sample.binary
 
 noise <- 1 + 0.5 * stats::rnorm(length(data_er_bin$conc))

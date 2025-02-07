@@ -77,7 +77,7 @@ and continuous endpoints.
 \code{projpred} package is used for variable selection.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 er_binary_cov_model <- dev_ermod_bin_cov_sel(
@@ -93,7 +93,7 @@ er_binary_cov_model <- dev_ermod_bin_cov_sel(
 er_binary_cov_model
 }
 
-\dontrun{
+\donttest{
 data(d_sim_lin)
 
 ermod_lin_cov_sel <- dev_ermod_lin_cov_sel(

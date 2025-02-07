@@ -33,7 +33,7 @@
 #' from `ersim` object (generated with `output_type = "draws"`).
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -216,7 +216,6 @@ sim_er <- function(
 #' from `ersim` object (generated with `output_type = "draws"`).
 #'
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -235,7 +234,6 @@ sim_er <- function(
 #' )
 #'
 #' ersim_new_exp_med_qi
-#' }
 #'
 sim_er_new_exp <- function(
     ermod,
@@ -364,7 +362,6 @@ sim_er_curve <- function(
 #' from `ersim_marg` object (generated with `output_type = "draws"`).
 #'
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -384,7 +381,6 @@ sim_er_curve <- function(
 #' )
 #'
 #' ersim_new_exp_marg_med_qi
-#' }
 #'
 sim_er_new_exp_marg <- function(
     ermod,

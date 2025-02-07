@@ -20,6 +20,9 @@ loo(x, ...)
 
 \item{...}{Additional arguments passed to \code{loo::loo()}}
 }
+\value{
+An object of class \code{loo}
+}
 \description{
 See \code{\link[loo:loo]{loo::loo()}} for details.
 }

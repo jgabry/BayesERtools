@@ -44,7 +44,7 @@ This function evaluates the performance of an exposure-response model
 using various metrics.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 d_split <- rsample::initial_split(d_sim_binom_cov_hgly2)
 d_train <- rsample::training(d_split)
@@ -68,4 +68,5 @@ print(metrics_training)
 print(metrics_test)
 print(metrics_kfold)
 }
+
 }

@@ -41,3 +41,6 @@
 
 ^\.lintr$
 
+^CRAN-SUBMISSION$
+
+^LICENSE$

@@ -11,7 +11,7 @@
 #' for details.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -234,8 +234,11 @@ add_ordinal_suffix <- function(x) {
 #' @param show_ref_value Whether to show the reference value in the plot and
 #' table. Setting this results in the `show_ref_value` column in the
 #' specification data frame.
+#' @return See [build_spec_coveff()] for the structure of the return object.
+#' [build_spec_coveff_one_variable()] returns a data frame corresponding to
+#' the specification for a single variable, which can be used as an input to
+#' [replace_spec_coveff()].
 #' @examples
-#' \dontrun{
 #' set.seed(1234)
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -254,7 +257,6 @@ add_ordinal_suffix <- function(x) {
 #' )
 #' spec_coveff_new <- replace_spec_coveff(spec_coveff, spec_new_bgluc)
 #' plot_coveff(ermod_bin, spec_coveff = spec_coveff_new)
-#' }
 #'
 build_spec_coveff_one_variable <- function(
     var_name, values_vec,

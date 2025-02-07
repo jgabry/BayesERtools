@@ -39,11 +39,13 @@ This translate to the width of the error bars in the forest plot.}
 covariates in the forest plot. Default is 0.9 (i.e. visualize effect of
 covariate effect at their 5th and 95th percentile values).}
 }
+\value{
+A ggplot object
+}
 \description{
 Visualize the covariate effects for ER model
 }
 \examples{
-\dontrun{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(
@@ -54,6 +56,5 @@ ermod_bin <- dev_ermod_bin(
 )
 
 plot_coveff(ermod_bin)
-}
 
 }

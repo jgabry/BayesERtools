@@ -85,7 +85,6 @@ that use a range of exposure values to simulate the expected responses.
 Particularly useful for plotting the exposure-response curve.
 }
 \examples{
-\dontrun{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(
@@ -104,7 +103,6 @@ ersim_new_exp_med_qi <- sim_er_new_exp(
 )
 
 ersim_new_exp_med_qi
-}
 
 }
 \seealso{

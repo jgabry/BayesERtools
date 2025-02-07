@@ -22,7 +22,7 @@
 #' RMSE, depending on the model type.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #' d_split <- rsample::initial_split(d_sim_binom_cov_hgly2)
 #' d_train <- rsample::training(d_split)
@@ -46,6 +46,7 @@
 #' print(metrics_test)
 #' print(metrics_kfold)
 #' }
+#'
 eval_ermod <- function(
     ermod, eval_type = c("training", "kfold", "test"),
     newdata = NULL, summary_method = c("median", "mean"),

@@ -7,6 +7,10 @@
 #' @param object An object of class \code{ermod_*}
 #' @param digits Number of digits to print
 #' @param ... Additional arguments passed to functions
+#' @return
+#' - `print()` and `plot()`: No return value, called for side effects
+#' - `coef()`: Coefficients of the model
+#' - `summary()`: Summary of the model
 NULL
 
 
@@ -76,6 +80,7 @@ summary.ermod <- function(object, ...) {
 #' @name ermod_exp_sel_method
 #' @inheritParams ermod_method
 #' @param x An object of class `ermod_bin_exp_sel`
+#' @return No return value, called for print or plot side effects
 print.ermod_exp_sel <- function(x, digits = 2, ...) {
   mod_type_name <- get_mod_type_name(x)
 
@@ -122,6 +127,7 @@ plot.ermod_exp_sel <- function(x, ...) {
 #' @name ermod_cov_sel_method
 #' @inheritParams ermod_method
 #' @param x An object of class `ermod_bin_cov_sel`
+#' @return No return value, called for print or plot side effects
 print.ermod_cov_sel <- function(x, digits = 2, ...) {
   mod_type_name <- get_mod_type_name(x)
 
@@ -244,6 +250,8 @@ extract_coef_exp_ci <- function(x, ci_width = 0.95) {
 #' @param x An object of class `ermod`
 #' @param ... Additional arguments passed to `loo::loo()`
 #' @importFrom loo loo
+#'
+#' @return An object of class `loo`
 #' @export
 loo::loo
 

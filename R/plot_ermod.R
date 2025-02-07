@@ -53,13 +53,13 @@
 #' draws.
 #' @param ... currently not used
 #'
+#' @return A ggplot object
 #' @details
 #' Plotting with `ermod` is done with some default values. If they are not
 #' suitable, you can always perform the simulation manually and use
 #' `plot_er()` on the simulated data.
 #'
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -68,15 +68,13 @@
 #'   var_exposure = "AUCss_1000"
 #' )
 #'
-#' ersim_med_qi <- sim_er(
+#' ersim_med_qi <- sim_er_curve(
 #'   ermod_bin,
-#'   n_draws_sim = 200,
 #'   output_type = "median_qi"
 #' )
 #'
 #' plot_er(ersim_med_qi, show_orig_data = TRUE) +
 #'   xgxr::xgx_scale_x_log10()
-#' }
 #'
 plot_er <- function(x, ...) {
   UseMethod("plot_er")
@@ -590,8 +588,8 @@ plot_er.ermod <- function(
 #' )
 #' }
 #'
+#' @return A ggplot object
 #' @examples
-#' \dontrun{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -601,7 +599,6 @@ plot_er.ermod <- function(
 #' )
 #'
 #' plot_er_gof(ermod_bin, var_group = "Dose_mg", show_coef_exp = TRUE)
-#' }
 #'
 plot_er_gof <- function(
     x, add_boxplot = !is.null(var_group), boxplot_height = 0.15,

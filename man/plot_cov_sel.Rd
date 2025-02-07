@@ -13,6 +13,9 @@ plot_var_ranking(x)
 \arguments{
 \item{x}{An object of class \code{ermod_bin_cov_sel}}
 }
+\value{
+No return value, called for plotting side effect.
+}
 \description{
 Plot variable selection performance
 }
@@ -24,7 +27,7 @@ evaluated during variable selection.
 evaluated during variable selection.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 er_binary_cov_model_kfold <- dev_ermod_bin_cov_sel(

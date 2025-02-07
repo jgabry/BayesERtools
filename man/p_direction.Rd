@@ -33,6 +33,9 @@ frequentist p-value using \code{\link[bayestestR:pd_to_p]{bayestestR::pd_to_p()}
 as_p = TRUE. Can be \code{"two-sided"} (default, two tailed) or \code{"one-sided"}
 (one tailed).}
 }
+\value{
+See \code{\link[bayestestR:p_direction]{bayestestR::p_direction()}} for details.
+}
 \description{
 Compute the \strong{Probability of Direction} (\emph{\strong{pd}}). Although differently
 expressed, this index is fairly similar (\emph{i.e.}, is strongly correlated) to
@@ -47,7 +50,6 @@ For the class \verb{ermod_bin_*}, it only calculates the \strong{pd} for
 the exposure variable.
 }
 \examples{
-\dontrun{
 df_er_dr2 <-
   d_sim_binom_cov |>
   dplyr::filter(
@@ -64,6 +66,5 @@ ermod_bin <- dev_ermod_bin(
 )
 
 p_direction(ermod_bin, as_num = TRUE, as_p = TRUE)
-}
 
 }

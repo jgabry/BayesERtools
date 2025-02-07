@@ -8,8 +8,9 @@
 #' [plot_submod_performance()] plots the performance of submodels
 #' evaluated during variable selection.
 #'
+#' @return No return value, called for plotting side effect.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' er_binary_cov_model_kfold <- dev_ermod_bin_cov_sel(
@@ -61,8 +62,9 @@ plot_var_ranking <- function(x) {
 #' @param n_draws_sim Number of draws to simulate response for each exposure
 #' value. Default is NULL (use all draws in the model object)
 #'
+#' @return No return value, called for plotting side effect.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin_exp_sel <-

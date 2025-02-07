@@ -57,6 +57,12 @@ If you set replace_ref_value to TRUE,
 the reference calculation for the forest plot is also done with the one
 in spec_new.}
 }
+\value{
+See \code{\link[=build_spec_coveff]{build_spec_coveff()}} for the structure of the return object.
+\code{\link[=build_spec_coveff_one_variable]{build_spec_coveff_one_variable()}} returns a data frame corresponding to
+the specification for a single variable, which can be used as an input to
+\code{\link[=replace_spec_coveff]{replace_spec_coveff()}}.
+}
 \description{
 \itemize{
 \item \code{\link[=build_spec_coveff_one_variable]{build_spec_coveff_one_variable()}} is a helper function to create a new
@@ -69,7 +75,6 @@ together.
 }
 }
 \examples{
-\dontrun{
 set.seed(1234)
 data(d_sim_binom_cov_hgly2)
 
@@ -88,6 +93,5 @@ spec_new_bgluc <- build_spec_coveff_one_variable(
 )
 spec_coveff_new <- replace_spec_coveff(spec_coveff, spec_new_bgluc)
 plot_coveff(ermod_bin, spec_coveff = spec_coveff_new)
-}
 
 }

@@ -47,7 +47,7 @@ and continuous endpoint, using various exposure metrics and
 selecting the best one.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin_exp_sel <-
@@ -60,7 +60,6 @@ ermod_bin_exp_sel <-
 ermod_bin_exp_sel
 }
 
-\dontrun{
 data(d_sim_lin)
 
 ermod_lin_exp_sel <- dev_ermod_lin_exp_sel(
@@ -70,6 +69,5 @@ ermod_lin_exp_sel <- dev_ermod_lin_exp_sel(
 )
 
 ermod_lin_exp_sel
-}
 
 }

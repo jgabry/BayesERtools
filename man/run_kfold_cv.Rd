@@ -25,7 +25,7 @@ This function performs k-fold cross-validation using the appropriate model
 development function based on the class of the \code{ermod} object.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(

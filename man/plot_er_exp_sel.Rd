@@ -12,11 +12,14 @@ plot_er_exp_sel(x, n_draws_sim = NULL)
 \item{n_draws_sim}{Number of draws to simulate response for each exposure
 value. Default is NULL (use all draws in the model object)}
 }
+\value{
+No return value, called for plotting side effect.
+}
 \description{
 Plot ER curve for each exposure metric and compare them.
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin_exp_sel <-

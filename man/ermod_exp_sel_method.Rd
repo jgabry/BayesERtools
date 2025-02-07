@@ -17,6 +17,9 @@
 
 \item{...}{Additional arguments passed to functions}
 }
+\value{
+No return value, called for print or plot side effects
+}
 \description{
 S3 methods for the classes \code{ermod_exp_sel}
 }

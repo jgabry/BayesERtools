@@ -12,3 +12,15 @@
 Maintainer: 'Kenta Yoshida <yoshida.kenta.6@gmail.com>'
 
 New submission
+
+Possibly misspelled words in DESCRIPTION:
+  Emax (16:62, 17:45)
+
+## Note
+
+Fixed the issues raised by the CRAN team in the previous submission:
+
+- Expanded DESCRIPTION
+- Removed LICENSE file
+- Added return value to the function documentation
+- Removed or replaced \dontrun{}

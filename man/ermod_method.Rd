@@ -30,6 +30,13 @@ other data, consider adding geom_point() to the plot manually.}
 
 \item{object}{An object of class \code{ermod_*}}
 }
+\value{
+\itemize{
+\item \code{print()} and \code{plot()}: No return value, called for side effects
+\item \code{coef()}: Coefficients of the model
+\item \code{summary()}: Summary of the model
+}
+}
 \description{
 S3 methods for the classes \code{ermod_*}
 }

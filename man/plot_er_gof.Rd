@@ -66,6 +66,9 @@ draws. Default is \code{0.95}.}
 \item{show_caption}{Logical, whether to show the caption note for the
 plot. Default is \code{TRUE}.}
 }
+\value{
+A ggplot object
+}
 \description{
 This is a wrapper function for \code{\link[=plot_er]{plot_er()}} with default options for
 goodness-of-fit (GOF) plots for ER models.
@@ -96,7 +99,6 @@ plot_er(
 }
 }
 \examples{
-\dontrun{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(
@@ -106,6 +108,5 @@ ermod_bin <- dev_ermod_bin(
 )
 
 plot_er_gof(ermod_bin, var_group = "Dose_mg", show_coef_exp = TRUE)
-}
 
 }

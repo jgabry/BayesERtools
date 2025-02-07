@@ -68,7 +68,7 @@ variable (FALSE).
 Build specifications for covariate effect simulation/visualization
 }
 \examples{
-\dontrun{
+\donttest{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(

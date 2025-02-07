@@ -134,6 +134,9 @@ data for model development.}
 \item{num_exposures}{Only relevant as with \code{exposure_range}.
 Number of exposure values to simulate.}
 }
+\value{
+A ggplot object
+}
 \description{
 Plot ER model simulations
 }
@@ -143,7 +146,6 @@ suitable, you can always perform the simulation manually and use
 \code{plot_er()} on the simulated data.
 }
 \examples{
-\dontrun{
 data(d_sim_binom_cov_hgly2)
 
 ermod_bin <- dev_ermod_bin(
@@ -152,14 +154,12 @@ ermod_bin <- dev_ermod_bin(
   var_exposure = "AUCss_1000"
 )
 
-ersim_med_qi <- sim_er(
+ersim_med_qi <- sim_er_curve(
   ermod_bin,
-  n_draws_sim = 200,
   output_type = "median_qi"
 )
 
 plot_er(ersim_med_qi, show_orig_data = TRUE) +
   xgxr::xgx_scale_x_log10()
-}
 
 }
