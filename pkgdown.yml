@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   basic_workflow_bin: basic_workflow_bin.html
   overview_of_the_package: overview_of_the_package.html
-last_built: 2025-02-07T05:43Z
+last_built: 2025-02-07T06:35Z
 urls:
-  reference: https://github.com/genentech/BayesERtools/reference
-  article: https://github.com/genentech/BayesERtools/articles
+  reference: https://genentech.github.io/BayesERtools/reference
+  article: https://genentech.github.io/BayesERtools/articles
