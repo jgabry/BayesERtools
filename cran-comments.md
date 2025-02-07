@@ -18,6 +18,8 @@ Possibly misspelled words in DESCRIPTION:
 
 ## Note
 
+Thank you for the review. CRAN cookbook was very helpful.
+
 Fixed the issues raised by the CRAN team in the previous submission:
 
 - Expanded DESCRIPTION
