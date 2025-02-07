@@ -146,8 +146,7 @@ from <code>ersim</code> object (generated with <code>output_type = "draws"</code
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_bin</span> <span class="op">&lt;-</span> <span class="fu"><a href="dev_ermod_bin.html">dev_ermod_bin</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">d_sim_binom_cov_hgly2</span>,</span></span>
@@ -165,7 +164,22 @@ from <code>ersim</code> object (generated with <code>output_type = "draws"</code
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ersim_new_exp_med_qi</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 147 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AUCss_1000 BHBA1C_5  .row .epred .epred.lower .epred.upper .linpred</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>        2          4     1 0.023<span style="text-decoration: underline;">0</span>       0.011<span style="text-decoration: underline;">0</span>       0.049<span style="text-decoration: underline;">0</span>   -<span style="color: #BB0000;">3.75</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>        2          5     2 0.040<span style="text-decoration: underline;">5</span>       0.022<span style="text-decoration: underline;">5</span>       0.074<span style="text-decoration: underline;">8</span>   -<span style="color: #BB0000;">3.17</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>        2          6     3 0.071<span style="text-decoration: underline;">4</span>       0.045<span style="text-decoration: underline;">1</span>       0.113    -<span style="color: #BB0000;">2.57</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>        2          7     4 0.121        0.087<span style="text-decoration: underline;">4</span>       0.166    -<span style="color: #BB0000;">1.99</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>        2          8     5 0.197        0.158        0.247    -<span style="color: #BB0000;">1.41</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>        2          9     6 0.307        0.253        0.361    -<span style="color: #BB0000;">0.814</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>        2         10     7 0.445        0.362        0.523    -<span style="color: #BB0000;">0.222</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>        2.2        4     8 0.025<span style="text-decoration: underline;">2</span>       0.012<span style="text-decoration: underline;">1</span>       0.052<span style="text-decoration: underline;">8</span>   -<span style="color: #BB0000;">3.66</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        2.2        5     9 0.044<span style="text-decoration: underline;">2</span>       0.025<span style="text-decoration: underline;">1</span>       0.080<span style="text-decoration: underline;">3</span>   -<span style="color: #BB0000;">3.07</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        2.2        6    10 0.077<span style="text-decoration: underline;">4</span>       0.049<span style="text-decoration: underline;">3</span>       0.121    -<span style="color: #BB0000;">2.48</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 137 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: .linpred.lower &lt;dbl&gt;, .linpred.upper &lt;dbl&gt;, .width &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .point &lt;chr&gt;, .interval &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

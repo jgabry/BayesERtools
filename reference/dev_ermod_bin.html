@@ -109,8 +109,7 @@ You can also specify covariates to be included in the model.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_bin</span> <span class="op">&lt;-</span> <span class="fu">dev_ermod_bin</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="va">d_sim_binom_cov_hgly2</span>,</span></span>
@@ -120,9 +119,26 @@ You can also specify covariates to be included in the model.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_bin</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Binary ER model</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er()` to visualize ER curve</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Developed model</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> stan_glm</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  family:       binomial [logit]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  formula:      AEFLAG ~ AUCss_1000 + BHBA1C_5</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  observations: 500</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  predictors:   3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>             Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> (Intercept) -6.94   0.77 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> AUCss_1000   0.45   0.08 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> BHBA1C_5     0.58   0.08 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For help interpreting the printed output see ?print.stanreg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For info on the priors used see ?prior_summary.stanreg</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_lin</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_lin</span> <span class="op">&lt;-</span> <span class="fu">dev_ermod_lin</span><span class="op">(</span></span></span>
@@ -133,7 +149,29 @@ You can also specify covariates to be included in the model.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_lin</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Linear ER model</span> <span style="color: #00BBBB;">─────────────────────────────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er()` to visualize ER curve</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Developed model</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> stan_glm</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  family:       gaussian [identity]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  formula:      response ~ AUCss + SEX + BAGE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  observations: 101</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  predictors:   4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>             Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> (Intercept)  8.49   5.57 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> AUCss        0.46   0.03 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> SEXM        -4.10   2.12 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> BAGE         0.50   0.10 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Auxiliary parameter(s):</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>       Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sigma 10.49   0.75 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For help interpreting the printed output see ?print.stanreg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For info on the priors used see ?prior_summary.stanreg</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

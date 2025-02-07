@@ -137,7 +137,7 @@ See details in <code><a href="https://yoshidk6.github.io/rstanemax/reference/sta
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">data_er_cont</span> <span class="op">&lt;-</span> <span class="fu">rstanemax</span><span class="fu">::</span><span class="va"><a href="https://yoshidk6.github.io/rstanemax/reference/exposure.response.sample.html" class="external-link">exposure.response.sample</a></span></span></span>
 <span class="r-in"><span><span class="va">noise</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">data_er_cont</span><span class="op">$</span><span class="va">exposure</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_er_cont</span><span class="op">$</span><span class="va">exposure2</span> <span class="op">&lt;-</span> <span class="va">data_er_cont</span><span class="op">$</span><span class="va">exposure</span> <span class="op">*</span> <span class="va">noise</span></span></span>
@@ -150,11 +150,39 @@ See details in <code><a href="https://yoshidk6.github.io/rstanemax/reference/sta
 <span class="r-in"><span>    var_resp <span class="op">=</span> <span class="st">"response"</span>,</span></span>
 <span class="r-in"><span>    var_exp_candidates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"exposure"</span>, <span class="st">"exposure2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The exposure metric selected was: exposure</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_emax_exp_sel</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Emax model &amp; exposure metric selection</span> <span style="color: #00BBBB;">──────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er_exp_sel()` for ER curve of all exposure metrics</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er()` with `show_orig_data = TRUE` for ER curve of the selected exposure metric</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Exposure metrics comparison</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>           elpd_diff se_diff</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> exposure   0.00      0.00  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> exposure2 -9.46      3.30  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Selected model</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ---- Emax model fit with rstanemax ----</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>        mean se_mean    sd  2.5%   25%   50%   75%  97.5%   n_eff Rhat</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> emax  92.01    0.12  6.07 80.13 88.01 92.02 96.20 103.86 2418.78    1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> e0     5.72    0.10  4.72 -3.63  2.54  5.74  8.88  14.96 2085.81    1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ec50  75.96    0.49 20.45 45.07 61.24 73.36 87.46 124.72 1769.73    1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> gamma  1.00     NaN  0.00  1.00  1.00  1.00  1.00   1.00     NaN  NaN</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sigma 16.63    0.03  1.56 13.92 15.50 16.51 17.58  19.96 2735.09    1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Use `extract_stanfit()` function to extract raw stanfit object</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Use `extract_param()` function to extract posterior draws of key parameters</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Use `plot()` function to visualize model fit</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Use `posterior_predict()` or `posterior_predict_quantile()` function to get</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   raw predictions or make predictions on new data</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * Use `extract_obs_mod_frame()` function to extract raw data </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   in a processed format (useful for plotting)</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">data_er_bin</span> <span class="op">&lt;-</span> <span class="fu">rstanemax</span><span class="fu">::</span><span class="va"><a href="https://yoshidk6.github.io/rstanemax/reference/exposure.response.sample.binary.html" class="external-link">exposure.response.sample.binary</a></span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">noise</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">data_er_bin</span><span class="op">$</span><span class="va">conc</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -167,7 +195,8 @@ See details in <code><a href="https://yoshidk6.github.io/rstanemax/reference/sta
 <span class="r-in"><span>    var_resp <span class="op">=</span> <span class="st">"y"</span>,</span></span>
 <span class="r-in"><span>    var_exp_candidates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"conc"</span>, <span class="st">"conc2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The exposure metric selected was: conc</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

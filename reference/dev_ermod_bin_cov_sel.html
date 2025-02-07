@@ -146,7 +146,7 @@ of this package.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">er_binary_cov_model</span> <span class="op">&lt;-</span> <span class="fu">dev_ermod_bin_cov_sel</span><span class="op">(</span></span></span>
@@ -158,11 +158,42 @@ of this package.</p></dd>
 <span class="r-in"><span>    <span class="st">"BHBA1C_5"</span>, <span class="st">"RACE"</span>, <span class="st">"VISC"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 1: Full reference model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 2: Variable selection</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The variables selected were: AUCss_1000, BHBA1C_5, BGLUC</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 3: Final model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Cov mod dev complete</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">er_binary_cov_model</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Binary ER model &amp; covariate selection</span> <span style="color: #00BBBB;">───────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_submod_performance()` to see variable selection performance</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er()` with `marginal = TRUE` to visualize marginal ER curve</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Selected model</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> stan_glm</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  family:       binomial [logit]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  formula:      AEFLAG ~ AUCss_1000 + BHBA1C_5 + BGLUC</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  observations: 500</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  predictors:   4</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>             Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> (Intercept) -10.95   1.18</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> AUCss_1000    0.50   0.09</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> BHBA1C_5      0.50   0.09</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> BGLUC         0.74   0.14</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For help interpreting the printed output see ?print.stanreg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For info on the priors used see ?prior_summary.stanreg</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_lin</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_lin_cov_sel</span> <span class="op">&lt;-</span> <span class="fu">dev_ermod_lin_cov_sel</span><span class="op">(</span></span></span>
@@ -171,9 +202,42 @@ of this package.</p></dd>
 <span class="r-in"><span>  var_exposure <span class="op">=</span> <span class="st">"AUCss"</span>,</span></span>
 <span class="r-in"><span>  var_cov_candidates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BAGE"</span>, <span class="st">"SEX"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 1: Full reference model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 2: Variable selection</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The variables selected were: AUCss, BAGE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 3: Final model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Cov mod dev complete</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_lin_cov_sel</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Linear ER model &amp; covariate selection</span> <span style="color: #00BBBB;">───────────────────────────────────────</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_submod_performance()` to see variable selection performance</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `plot_er()` with `marginal = TRUE` to visualize marginal ER curve</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Selected model</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> stan_glm</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  family:       gaussian [identity]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  formula:      response ~ AUCss + BAGE</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  observations: 101</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  predictors:   3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>             Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> (Intercept) 6.74   5.62  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> AUCss       0.46   0.04  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> BAGE        0.50   0.11  </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Auxiliary parameter(s):</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>       Median MAD_SD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> sigma 10.66   0.79 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ------</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For help interpreting the printed output see ?print.stanreg</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> * For info on the priors used see ?prior_summary.stanreg</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

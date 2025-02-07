@@ -56,6 +56,10 @@
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>No return value, called for plotting side effect.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>plot_submod_performance()</code> plots the performance of submodels
 evaluated during variable selection.</p>
@@ -65,7 +69,7 @@ evaluated during variable selection.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">er_binary_cov_model_kfold</span> <span class="op">&lt;-</span> <span class="fu"><a href="dev_ermod_bin_cov_sel.html">dev_ermod_bin_cov_sel</a></span><span class="op">(</span></span></span>
@@ -80,10 +84,26 @@ evaluated during variable selection.</p>
 <span class="r-in"><span>  k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># Choose 3 to make the example go fast</span></span></span>
 <span class="r-in"><span>  validate_search <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 1: Full reference model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 2: Variable selection</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fitting model 1 out of 3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fitting model 2 out of 3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Fitting model 3 out of 3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The variables selected were: AUCss_1000, BHBA1C_5, BGLUC</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Step 3: Final model fit</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── <span style="font-weight: bold;">Cov mod dev complete</span> ──</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">plot_submod_performance</span><span class="op">(</span><span class="va">er_binary_cov_model_kfold</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_cov_sel-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">plot_var_ranking</span><span class="op">(</span><span class="va">er_binary_cov_model_kfold</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-plt img"><img src="plot_cov_sel-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

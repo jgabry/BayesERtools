@@ -113,7 +113,7 @@ from <code>ersim</code> object (generated with <code>output_type = "draws"</code
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">d_sim_binom_cov_hgly2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ermod_bin</span> <span class="op">&lt;-</span> <span class="fu"><a href="dev_ermod_bin.html">dev_ermod_bin</a></span><span class="op">(</span></span></span>
@@ -136,8 +136,46 @@ from <code>ersim</code> object (generated with <code>output_type = "draws"</code
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">ersim</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 250,000 × 24</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Groups:   ID, AETYPE, AEFLAG, Dose_mg, AUCss, Cmaxss, Cminss, BAGE, BWT,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BGLUC, BHBA1C, RACE, VISC, AUCss_1000, BAGE_10, BWT_10, BHBA1C_5, .row</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   [500]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       ID AETYPE AEFLAG Dose_mg AUCss Cmaxss Cminss  BAGE   BWT BGLUC BHBA1C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 249,990 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more variables: RACE &lt;chr&gt;, VISC &lt;fct&gt;, AUCss_1000 &lt;dbl&gt;, BAGE_10 &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BWT_10 &lt;dbl&gt;, BHBA1C_5 &lt;dbl&gt;, .row &lt;int&gt;, .chain &lt;int&gt;, .iteration &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .draw &lt;int&gt;, .epred &lt;dbl&gt;, .linpred &lt;dbl&gt;, .prediction &lt;int&gt;</span></span>
 <span class="r-in"><span><span class="va">ersim_med_qi</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 500 × 27</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       ID AETYPE AEFLAG Dose_mg AUCss Cmaxss Cminss  BAGE   BWT BGLUC BHBA1C</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 hgly2       0     200  866.   64.3   10.1  84.4  74.1  4.65   31.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 hgly2       0     200 <span style="text-decoration: underline;">1</span>707.  166.    27.3  59.1  88.2  7.24   41.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 hgly2       0     200  746.   68.2   15.8  64.3  88.0  5.73   47.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 hgly2       0     200 <span style="text-decoration: underline;">1</span>984.  287.    37.2  65.5 114.   5.26   23.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5 hgly2       0     200 <span style="text-decoration: underline;">2</span>045.  275.    53.1  67.5  64.6  4.49   43.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 hgly2       0     200  632.   47.3   12.0  67.0  73.0  6.41   43.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 hgly2       0     200 <span style="text-decoration: underline;">2</span>274.  136.    33.6  73.7  63.6  7.22   35.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 hgly2       0     200 <span style="text-decoration: underline;">1</span>347.  130.    21.7  59.9  99.7  5.34   36.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 hgly2       0     200 <span style="text-decoration: underline;">1</span>101.   60.7   11.2  65.8  82.3  5.47   36.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 hgly2       0     200 <span style="text-decoration: underline;">1</span>822.  179.    49.3  65.5  62.3  5.70   33.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 490 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: RACE &lt;chr&gt;, VISC &lt;fct&gt;, AUCss_1000 &lt;dbl&gt;, BAGE_10 &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   BWT_10 &lt;dbl&gt;, BHBA1C_5 &lt;dbl&gt;, .row &lt;int&gt;, .epred &lt;dbl&gt;, .epred.lower &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .epred.upper &lt;dbl&gt;, .linpred &lt;dbl&gt;, .linpred.lower &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .linpred.upper &lt;dbl&gt;, .width &lt;dbl&gt;, .point &lt;chr&gt;, .interval &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
