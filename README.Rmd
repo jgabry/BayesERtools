@@ -21,6 +21,8 @@ library(gt)
 # BayesERtools <a href="https://genentech.github.io/BayesERtools/"><img src="man/figures/logo.png" align="right" height="138" alt="BayesERtools website" /></a>
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/Genentech/BayesERtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Genentech/BayesERtools/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/Genentech/BayesERtools/graph/badge.svg)](https://app.codecov.io/gh/Genentech/BayesERtools)
 <!-- badges: end -->
 
 BayesERtools provides a suite of tools that facilitate
