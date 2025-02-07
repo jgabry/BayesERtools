@@ -41,9 +41,9 @@ Sample simulated data for exposure-response with binary endpoint.
 }
 \details{
 This simulated dataset is very loosely inspired by ER analysis of
-ipatasertib by Kotani et al. (2022) at:
+ipatasertib by Kotani (2022) at:
 
-https:://doi.org/10.1007/s00280-022-04488-2
+https://doi.org/10.1007/s00280-022-04488-2
 
 You can find the data generating code in the package source code,
 under \code{data-raw/d_sim_binom_cov.R}.

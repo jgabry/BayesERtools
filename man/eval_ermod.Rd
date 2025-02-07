@@ -36,7 +36,7 @@ simulation draws. Default is \code{median}.}
 \item{seed_kfold}{Random seed for k-fold cross-validation.}
 }
 \value{
-A tibble with calculated performance metrics, such as AUCROC or
+A tibble with calculated performance metrics, such as AUROC or
 RMSE, depending on the model type.
 }
 \description{

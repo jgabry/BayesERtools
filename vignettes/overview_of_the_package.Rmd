@@ -20,7 +20,7 @@ This vignette provides an overview of `BayesERtools`.
 
 Analysis can be performed in the following simple steps.
 
-![Figure: Overall anlaysis workflow](img/fig_overview_1.png){width=70%}
+![Figure: Overall analysis workflow](img/fig_overview_1.png){width=70%}
 <br />
 
 Supported model types are as follows:
@@ -115,7 +115,7 @@ Simulated ER curve can be visualized with the following functions:
 ![Figure: plot_er_*() functions](img/fig_overview_plot_er.png){width=100%}
 <br />
 
-## Acknowledgements
+## Acknowledgement
 
 Figure created in https://www.biorender.com
 

@@ -18,7 +18,7 @@
 #' @param k The number of folds for cross-validation. Default is 5.
 #' @param seed_kfold Random seed for k-fold cross-validation.
 #'
-#' @return A tibble with calculated performance metrics, such as AUCROC or
+#' @return A tibble with calculated performance metrics, such as AUROC or
 #' RMSE, depending on the model type.
 #'
 #' @examples
