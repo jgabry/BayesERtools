@@ -1,0 +1,202 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "75%"
+)
+
+library(dplyr)
+library(tidyr)
+library(gt)
+```
+
+
+# BayesERtools <a href="https://genentech.github.io/BayesERtools/"><img src="man/figures/logo.png" align="right" height="138" alt="BayesERtools website" /></a>
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+BayesERtools provides a suite of tools that facilitate
+exposure-response analysis using Bayesian methods. 
+
+- Tutorial: https://genentech.github.io/BayesERbook/
+- Documentation: https://genentech.github.io/BayesERtools/
+- GitHub repo: https://github.com/genentech/BayesERtools/
+
+## Installation
+
+You can install the BayesERtools with:
+
+``` r
+# install.packages('BayesERtools') # Once on CRAN
+devtools::install_github("genentech/BayesERtools") # development version
+```
+
+You also need latest version of rstanemax (>= 0.1.7) to use Emax model.
+
+``` r
+install.packages('rstanemax')
+```
+
+## Supported model types
+
+```{r, echo = FALSE}
+set.seed(1234) # Needed to stablize div id
+# Need to do this to remove CSS from the outputs for it
+# to work in GitLab-flavored md
+remove_css <- function(x) {
+  x <- gsub("<style>.*</style>", "", x)
+  htmltools::HTML(x)
+}
+
+# Define the initial transposed tibble
+tab_mod_raw <- tibble(
+  feature = c("lin_logit", "emax_logit", "linear", "emax"),
+  backend = c("`rstanarm`", "`rstanemax`", "`rstanarm`", "`rstanemax`"),
+  reference =
+    c(
+      "https://mc-stan.org/rstanarm/reference/stan_glm.html",
+      "https://yoshidk6.github.io/rstanemax/reference/stan_emax.html",
+      "https://mc-stan.org/rstanarm/reference/stan_glm.html",
+      "https://yoshidk6.github.io/rstanemax/reference/stan_emax_binary.html"
+    ),
+  `develop model` = c("✅", "✅", "✅", "✅"),
+  `simulate & plot ER` = c("✅", "✅", "✅", "✅"),
+  `exposure metrics selection` = c("✅", "✅", "✅", "✅"),
+  `covariate selection` = c("✅", "❌", "✅", "❌"),
+  `covariate forest plot` = c("✅", "❌", "🟡", "❌")
+)
+
+# Transpose the table for display
+tab_mod <- tab_mod_raw %>%
+  pivot_longer(
+    cols = -feature,
+    names_to = "feature_name", values_to = "value"
+  ) %>%
+  pivot_wider(names_from = feature, values_from = value) |>
+  mutate(.row_id = row_number())
+
+readr::write_csv(tab_mod, "vignettes/data/supported_models.csv")
+
+tab_mod |>
+  select(-.row_id) |>
+  gt() |>
+  fmt_markdown() |>
+  fmt_url(
+    columns = !1,
+    rows = 2,
+    label = "🔗",
+    show_underline = FALSE
+  ) |>
+  tab_spanner(
+    label = "Binary endpoint",
+    columns = c(lin_logit, emax_logit)
+  ) |>
+  tab_spanner(
+    label = "Continuous endpoint",
+    columns = c(linear, emax)
+  ) |>
+  cols_label(
+    feature_name = "",
+    lin_logit = "Linear (logit)",
+    emax_logit = md("E<sub/>max</sub> (logit)"),
+    linear = "Linear",
+    emax = md("E<sub/>max</sub>"),
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "top", align = "center"),
+    locations = cells_column_labels()
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "middle", align = "center"),
+    locations = cells_body()
+  ) |>
+  tab_style(
+    style = cell_text(v_align = "middle", align = "right"),
+    locations = cells_body(columns = feature_name)
+  ) |>
+  tab_footnote(
+    footnote = paste(
+      "✅ Available",
+      "🟡 In plan/under development",
+      "❌ Not in a current plan",
+      sep = ", "
+    )
+  ) |>
+  as_raw_html(inline_css = FALSE) |>
+  remove_css()
+```
+
+
+## Quick guide
+
+Here is a quick demo on how to use this package for E-R analysis. 
+See `vignette("basic_workflow_bin")` for more thorough walk through of a
+basic workflow.
+
+```{r, warning=FALSE, message=FALSE}
+# Load package and data
+library(dplyr)
+library(BayesERtools)
+ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
+
+data(d_sim_binom_cov)
+
+# Hyperglycemia Grade 2+ (hgly2) data
+df_er_ae_hgly2 <-
+  d_sim_binom_cov |>
+  filter(AETYPE == "hgly2") |>
+  # Re-scale AUCss, baseline age
+  mutate(
+    AUCss_1000 = AUCss / 1000, BAGE_10 = BAGE / 10,
+    Dose = paste(Dose_mg, "mg")
+  )
+
+var_resp <- "AEFLAG"
+```
+
+### Simple univariable model for binary endpoint
+
+```{r ermod_bin, fig.width = 6, fig.height = 4.5, dpi = 150}
+set.seed(1234)
+ermod_bin <- dev_ermod_bin(
+  data = df_er_ae_hgly2,
+  var_resp = var_resp,
+  var_exposure = "AUCss_1000"
+)
+ermod_bin
+
+# Using `*` instead of `+` so that scale can be
+# applied for both panels (main plot and boxplot)
+plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
+  xgxr::xgx_scale_x_log10()
+```
+
+### Covariate selection
+
+BGLUC (baseline glucose) is selected while other two covariates are not.
+
+```{r ermod_bin_cov_sel, fig.width = 6, fig.height = 4, dpi = 150}
+set.seed(1234)
+ermod_bin_cov_sel <-
+  dev_ermod_bin_cov_sel(
+    data = df_er_ae_hgly2,
+    var_resp = var_resp,
+    var_exposure = "AUCss_1000",
+    var_cov_candidate = c("BAGE_10", "RACE", "BGLUC")
+  )
+ermod_bin_cov_sel
+plot_submod_performance(ermod_bin_cov_sel)
+```
+
+```{r plot_coveff, fig.width = 5, fig.height = 3, dpi = 150}
+coveffsim <- sim_coveff(ermod_bin_cov_sel)
+plot_coveff(coveffsim)
+```

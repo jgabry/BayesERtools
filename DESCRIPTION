@@ -1,0 +1,57 @@
+Package: BayesERtools
+Type: Package
+Title: Bayesian Exposure-Response Analysis Tools
+Version: 0.2.0
+Authors@R: 
+    c(person("Kenta", "Yoshida", , "yoshida.kenta.6@gmail.com", role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0003-4967-3831")),
+      person("François", "Mercier", , "francois.mercier@roche.com", role = c("aut"),
+             comment = c(ORCID = "0000-0002-5685-1408")),
+      person("Genentech, Inc.", role = "cph")
+      )
+Maintainer: Kenta Yoshida <yoshida.kenta.6@gmail.com>
+Description: Suite of tools that facilitate
+    exposure-response analysis using Bayesian methods. 
+License: Apache License 2.0 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 4.1)
+URL: 
+    https://code.roche.com/gred_mns/packages/BayesERtools, 
+    https://docs.roche.com/BayesERtools
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    tidyr,
+    purrr,
+    ggplot2,
+    gt,
+    cli,
+    rlang,
+    rstanarm,
+    loo,
+    tidybayes,
+    bayestestR,
+    posterior,
+    withr
+Suggests: 
+    testthat (>= 3.0.0),
+    covr,
+    knitr,
+    rmarkdown,
+    rstan,
+    rstanemax (>= 0.1.7),
+    htmltools,
+    digest,
+    ggforce,
+    xgxr,
+    scales,
+    readr,
+    patchwork,
+    projpred,
+    rsample,
+    yardstick
+VignetteBuilder: knitr

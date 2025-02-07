@@ -1,0 +1,14 @@
+exclusions: list(
+    "README.Rmd" = list(
+      1, # global exclusions are unnamed
+      line_length_linter = 1:200
+    ),
+    "README.md" = list(
+      1, # global exclusions are unnamed
+      line_length_linter = 1:100
+    ),
+    "vignettes/basic_workflow_bin.Rmd" = list(
+      1, # global exclusions are unnamed
+      line_length_linter = 100:200
+    )
+  )
