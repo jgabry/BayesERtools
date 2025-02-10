@@ -340,3 +340,31 @@ test_that("Convert factor as response variable into number", {
     expect_error("The breaks for the binned probability ")
   plot_er_gof(mod_mtcars, n_bins = 2) |> expect_silent()
 })
+
+test_that("print.ermod_exp_sel prints correct information", {
+  out <- cli::cli_fmt({
+    print(ermod_bin_exp_sel)
+  })
+  expect_true(any(grepl("Binary ER model", out)))
+  expect_true(any(grepl("& exposure metric selection", out)))
+  expect_true(any(grepl("Use \\`plot_er_exp_sel\\(\\)\\` for ER curve", out)))
+})
+
+test_that("print.ermod_cov_sel prints correct information", {
+  out <- cli::cli_fmt({
+    print(ermod_lin_cov_sel)
+  })
+  expect_true(any(grepl("Linear ER model", out)))
+  expect_true(any(grepl("& covariate selection", out)))
+  expect_true(any(grepl("Use \\`plot_submod_performance\\(\\)\\`", out)))
+})
+
+# plot.ermod_exp_sel
+test_that("plot.ermod_exp_sel calls plot_er_exp_sel", {
+  expect_silent(plot.ermod_exp_sel(ermod_bin_exp_sel))
+})
+
+# plot.ermod_cov_sel
+test_that("plot.ermod_cov_sel calls plot_submod_performance", {
+  expect_silent(plot.ermod_cov_sel(ermod_lin_cov_sel))
+})

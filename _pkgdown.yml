@@ -11,10 +11,6 @@ navbar:
       icon: fa fa-github fa-lg
       href: "https://github.com/genentech/BayesERtools"
       aria-label: Github project page
-    coverage:
-      icon: fa fa-layer-group
-      href: "coverage.html"
-      aria-label: Coverage
 
 articles:
   - title: Articles
