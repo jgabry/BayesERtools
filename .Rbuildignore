@@ -44,3 +44,4 @@
 ^CRAN-SUBMISSION$
 
 ^LICENSE$
+^codecov\.yml$
