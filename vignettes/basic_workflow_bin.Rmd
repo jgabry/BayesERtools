@@ -83,7 +83,7 @@ ermod_bin
 You can compare the observed data with the model fit using `plot_er()` 
 function.
 
-```{r}
+```{r, fig.width = 6, fig.height = 4}
 # Using `*` instead of `+` so that scale can be
 # applied for both panels (main plot and boxplot)
 plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
@@ -147,7 +147,7 @@ ermod_bin_exp_sel
 The ER curve for all the evaluated exposure metrics can be generated with 
 `plot_er_exp_sel()` function.
 
-```{r}
+```{r, fig.width = 6, fig.height = 4}
 plot_er_exp_sel(ermod_bin_exp_sel) +
   xgxr::xgx_scale_x_log10()
 ```
