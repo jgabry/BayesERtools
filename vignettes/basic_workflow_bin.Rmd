@@ -20,7 +20,6 @@ binary endpoints and subsequent simulation from the developed ER model.
 ```{r setup, warning=FALSE, message=FALSE}
 library(dplyr)
 library(BayesERtools)
-rlang::check_installed("xgxr")
 
 ggplot2::theme_set(ggplot2::theme_bw(base_size = 12))
 ```
