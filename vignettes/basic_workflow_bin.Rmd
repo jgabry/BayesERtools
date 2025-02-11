@@ -85,6 +85,7 @@ function.
 
 <!-- Need to avoid execution to deal with noSuggest CMD check -->
 <!-- (packages in Suggests need to be used conditionally) -->
+<!-- xgxr needed -->
 
 ```r
 # Using `*` instead of `+` so that scale can be
@@ -152,8 +153,7 @@ The ER curve for all the evaluated exposure metrics can be generated with
 `plot_er_exp_sel()` function.
 
 ```{r, fig.width = 6, fig.height = 4}
-plot_er_exp_sel(ermod_bin_exp_sel) +
-  xgxr::xgx_scale_x_log10()
+plot_er_exp_sel(ermod_bin_exp_sel)
 ```
 
 
@@ -275,9 +275,17 @@ You can visualize the effect of the covariates with `sim_coveff()` and
 `plot_coveff()` functions. You can see that all three predictors have 
 fairly strong effects on the odds ratio of hypoglycemia.
 
-```{r, fig.width = 5, fig.height = 4.5}
+```{r}
 coveffsim <- sim_coveff(ermod_bin_cov_sel)
 plot_coveff(coveffsim)
+```
+
+<!-- Need to avoid execution to deal with noSuggest CMD check -->
+<!-- (packages in Suggests need to be used conditionally) -->
+<!-- ggforce needed -->
+
+```r
 print_coveff(coveffsim)
 ```
+![](img/fig_basic_workflow_coveff.png){width=70%}
 
