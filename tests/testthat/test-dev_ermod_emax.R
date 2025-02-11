@@ -142,15 +142,17 @@ test_that("sim_ermod", {
 })
 
 test_that("plot_ermod", {
-  plot(plot_er(ersim_med_qi)) |> expect_silent()
-  plot(plot_er(ersim_med_qi, show_orig_data = TRUE)) |> expect_silent()
-  plot_er(ermod_emax_w_cov) |>
-    expect_error("Model has covariate\\(s\\), and you cannot use this")
-  plot_er_exp_sel(ermod_emax_exp_sel) |> expect_silent()
-  plot_er(ermod_emax,
-    show_orig_data = TRUE,
-    options_orig_data = list(var_group = "dose")
-  ) |> expect_silent()
+  if (.if_run_ex_plot_er()) {
+    plot(plot_er(ersim_med_qi)) |> expect_silent()
+    plot(plot_er(ersim_med_qi, show_orig_data = TRUE)) |> expect_silent()
+    plot_er(ermod_emax_w_cov) |>
+      expect_error("Model has covariate\\(s\\), and you cannot use this")
+    plot_er_exp_sel(ermod_emax_exp_sel) |> expect_silent()
+    plot_er(ermod_emax,
+      show_orig_data = TRUE,
+      options_orig_data = list(var_group = "dose")
+    ) |> expect_silent()
+  }
 })
 
 
@@ -184,11 +186,13 @@ test_that("sim_ermod_bin_emax", {
 })
 
 test_that("plot_ermod_bin_emax", {
-  plot(plot_er(ersim_bin_med_qi)) |> expect_silent()
-  plot(plot_er(ersim_bin_med_qi, show_orig_data = TRUE)) |> expect_silent()
-  plot_er(ermod_bin_emax_w_cov) |>
-    expect_error("Model has covariate\\(s\\), and you cannot use this")
-  plot(plot_er_exp_sel(ermod_bin_emax_exp_sel)) |> expect_silent()
+  if (.if_run_ex_plot_er()) {
+    plot(plot_er(ersim_bin_med_qi)) |> expect_silent()
+    plot(plot_er(ersim_bin_med_qi, show_orig_data = TRUE)) |> expect_silent()
+    plot_er(ermod_bin_emax_w_cov) |>
+      expect_error("Model has covariate\\(s\\), and you cannot use this")
+    plot(plot_er_exp_sel(ermod_bin_emax_exp_sel)) |> expect_silent()
+  }
 })
 
 test_that("Convert factor as response variable into number", {

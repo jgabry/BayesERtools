@@ -126,7 +126,9 @@ test_that("print.ermod prints correct information", {
 
 # plot.ermod_bin
 test_that("plot.ermod_bin calls plot_er", {
-  expect_silent(plot.ermod_bin(ermod_bin_wo_cov))
+  if (.if_run_ex_plot_er()) {
+    expect_silent(plot.ermod_bin(ermod_bin_wo_cov))
+  }
 })
 
 # Additional extract function tests

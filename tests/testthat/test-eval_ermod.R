@@ -1,8 +1,5 @@
-# Linear logistic regression --------------------------------------------------
-
-if_test <- requireNamespace("rsample") && requireNamespace("yardstick")
-
-if (if_test) {
+if (.if_run_ex_eval_mod()) {
+  # Linear logistic regression ------------------------------------------------
   set.seed(1234)
   data(d_sim_binom_cov_hgly2)
   d_split <- rsample::initial_split(d_sim_binom_cov_hgly2)

@@ -347,3 +347,9 @@ replace_value_for_sim <- function(df_one_row) {
 
   return(df_one_row)
 }
+
+.if_run_ex_coveff <- function() {
+  requireNamespace("ggforce", quietly = TRUE) &&
+    requireNamespace("xgxr", quietly = TRUE) &&
+    requireNamespace("gt", quietly = TRUE)
+}

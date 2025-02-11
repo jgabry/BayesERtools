@@ -412,9 +412,3 @@ replace_spec_coveff <- function(
 
   return(spec_updated)
 }
-
-.if_run_ex_coveff <- function() {
-  requireNamespace("ggforce", quietly = TRUE) &&
-    requireNamespace("xgxr", quietly = TRUE) &&
-    requireNamespace("gt", quietly = TRUE)
-}

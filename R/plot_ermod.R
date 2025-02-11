@@ -59,7 +59,7 @@
 #' suitable, you can always perform the simulation manually and use
 #' `plot_er()` on the simulated data.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_plot_er()
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -591,7 +591,7 @@ plot_er.ermod <- function(
 #' }
 #'
 #' @return A ggplot object
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_plot_er()
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -718,4 +718,8 @@ set_pos_ci_annot <- function(x, pos_x, pos_y, var_exposure, var_resp) {
     }
   }
   return(c(pos_x, pos_y))
+}
+
+.if_run_ex_plot_er <- function() {
+  requireNamespace("xgxr", quietly = TRUE)
 }

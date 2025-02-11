@@ -201,17 +201,19 @@ test_that("Exposure metrics selection", {
     c(AUCss_1000 = 0.000000, Cmaxss = -1.1955989, Cminss = -1.8564733)
   )
 
-  g1 <- plot_er_exp_sel(ermod_bin_exp_sel, n_draws_sim = 10)
-  g2 <- plot_er_exp_sel(ermod_bin_exp_sel_other_rank, n_draws_sim = 10)
+  if (.if_run_ex_plot_er()) {
+    g1 <- plot_er_exp_sel(ermod_bin_exp_sel, n_draws_sim = 10)
+    g2 <- plot_er_exp_sel(ermod_bin_exp_sel_other_rank, n_draws_sim = 10)
 
-  expect_silent(plot(g1))
+    expect_silent(plot(g1))
 
-  expect_equal(
-    levels(g1$data$.exp_met_fct), c("AUCss_1000", "Cmaxss", "Cminss")
-  )
-  expect_equal(
-    levels(g2$data$.exp_met_fct), c("Cminss", "AUCss_1000", "Cmaxss")
-  )
+    expect_equal(
+      levels(g1$data$.exp_met_fct), c("AUCss_1000", "Cmaxss", "Cminss")
+    )
+    expect_equal(
+      levels(g2$data$.exp_met_fct), c("Cminss", "AUCss_1000", "Cmaxss")
+    )
+  }
 })
 
 test_that("Full model dev", {
@@ -332,8 +334,10 @@ test_that("lm", {
 })
 
 test_that("plot_er_gof for lin", {
-  plot_er_gof(ermod_lin_exp_sel, show_coef_exp = TRUE) |>
-    expect_silent()
+  if (.if_run_ex_plot_er()) {
+    plot_er_gof(ermod_lin_exp_sel, show_coef_exp = TRUE) |>
+      expect_silent()
+  }
 })
 
 test_that("Convert factor as response variable into number", {
@@ -351,9 +355,11 @@ test_that("Convert factor as response variable into number", {
   ) |>
     expect_error("Response variable must be a numeric of 0 and 1")
 
-  plot_er_gof(mod_mtcars, n_bins = 4) |>
-    expect_error("The breaks for the binned probability ")
-  plot_er_gof(mod_mtcars, n_bins = 2) |> expect_silent()
+  if (.if_run_ex_plot_er()) {
+    plot_er_gof(mod_mtcars, n_bins = 4) |>
+      expect_error("The breaks for the binned probability ")
+    plot_er_gof(mod_mtcars, n_bins = 2) |> expect_silent()
+  }
 })
 
 test_that("print.ermod_exp_sel prints correct information", {
@@ -376,7 +382,9 @@ test_that("print.ermod_cov_sel prints correct information", {
 
 # plot.ermod_exp_sel
 test_that("plot.ermod_exp_sel calls plot_er_exp_sel", {
-  expect_silent(plot.ermod_exp_sel(ermod_bin_exp_sel))
+  if (.if_run_ex_plot_er()) {
+    expect_silent(plot.ermod_exp_sel(ermod_bin_exp_sel))
+  }
 })
 
 # plot.ermod_cov_sel

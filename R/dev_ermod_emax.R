@@ -26,7 +26,7 @@
 #'
 #' @return An object of class `ermod_emax`.or `ermod_bin_emax`.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_plot_er()
 #' \donttest{
 #' data_er_cont <- rstanemax::exposure.response.sample
 #'
@@ -178,7 +178,7 @@ dev_ermod_emax_exp_sel <- function(
 
 #' @export
 #' @rdname dev_ermod_emax
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_plot_er()
 #' \donttest{
 #' data_er_bin <- rstanemax::exposure.response.sample.binary
 #'
