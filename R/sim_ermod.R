@@ -486,7 +486,8 @@ chech_ndraws <- function(mod, n_draws_sim) {
 }
 
 .sim_emax_017 <- function(mod, newdata, seed_sample_draws, n_draws_sim) {
-  sim_raw <- rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
+  sim_raw <-
+    rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
     dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
     dplyr::select(
       .draw = mcmcid, .row,
@@ -512,7 +513,8 @@ chech_ndraws <- function(mod, n_draws_sim) {
 }
 
 .sim_binemax_017 <- function(mod, newdata, seed_sample_draws, n_draws_sim) {
-  sim_raw <- rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
+  sim_raw <-
+    rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
     dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
     dplyr::select(.draw = mcmcid, .row, .epred, .linpred)
 
