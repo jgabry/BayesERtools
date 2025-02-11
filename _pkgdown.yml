@@ -4,9 +4,12 @@ template:
 
 navbar:
   structure:
-    left: [home, intro, reference, articles, tutorials, news]
+    left: [home, intro, reference, bayeserbook, articles, tutorials, news]
     right: [github, coverage]
   components:
+    bayeserbook:
+      text: "BayesERbook"
+      href: "https://genentech.github.io/BayesERbook/"
     github:
       icon: fa fa-github fa-lg
       href: "https://github.com/genentech/BayesERtools"
@@ -17,7 +20,6 @@ articles:
     navbar: ~
     contents:
     - overview_of_the_package
-    - basic_workflow_bin
 
 reference:
 - title: 'Step 1: Develop ER models'
