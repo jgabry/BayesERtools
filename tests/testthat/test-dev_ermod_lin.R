@@ -124,7 +124,8 @@ ermod_bin_cov_sel_kfold_dummy <- list(
   cvvs = attr(var_selected_kfold, "cvvs"),
   rk = attr(var_selected_kfold, "rk")
 )
-class(ermod_bin_cov_sel_kfold_dummy) <- "ermod_bin_cov_sel"
+class(ermod_bin_cov_sel_kfold_dummy) <-
+  c("ermod_bin_cov_sel", "ermod_cov_sel", "ermod_bin", "ermod")
 
 # dev_ermod_bin_cov_sel ------------------------------------------------
 set.seed(1234)
@@ -352,9 +353,9 @@ test_that("print.ermod_exp_sel prints correct information", {
 
 test_that("print.ermod_cov_sel prints correct information", {
   out <- cli::cli_fmt({
-    print(ermod_lin_cov_sel)
+    print(ermod_bin_cov_sel_kfold_dummy)
   })
-  expect_true(any(grepl("Linear ER model", out)))
+  expect_true(any(grepl("Binary ER model", out)))
   expect_true(any(grepl("& covariate selection", out)))
   expect_true(any(grepl("Use \\`plot_submod_performance\\(\\)\\`", out)))
 })

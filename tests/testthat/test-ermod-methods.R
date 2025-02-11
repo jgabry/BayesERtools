@@ -111,6 +111,7 @@ test_that("extract_coef_exp_ci", {
       c(.lower = 0.1717, .upper = 1.01064),
       tolerance = 0.001
     )
+  expect_error(extract_coef_exp_ci(ermod_emax_w_cov), "extract_coef_exp_ci")
 })
 
 
@@ -151,4 +152,11 @@ test_that("extract functions", {
     extract_var_selected.ermod_cov_sel(ermod_bin_emax),
     ermod_bin_emax$var_selected
   )
+})
+
+# get_mod_type_name
+test_that("get_mod_type_name", {
+  expect_equal(get_mod_type_name(ermod_emax_w_cov), "Emax model")
+  expect_equal(get_mod_type_name(ermod_bin_emax), "Binary Emax model")
+  expect_error(get_mod_type_name("1"), "Unknown model type")
 })
