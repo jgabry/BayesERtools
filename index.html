@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">BayesERtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.1001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,9 +81,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'BayesERtools'</span><span class="op">)</span></span>
 <span><span class="co"># devtools::install_github("genentech/BayesERtools") # development version</span></span></code></pre></div>
-<p>You also need latest version of <code>rstanemax</code> (&gt;= 0.1.7) to use E<sub>max</sub> model.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'rstanemax'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ppm <span class="op">=</span> <span class="st">'https://packagemanager.posit.co/cran/latest'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="supported-model-types">Supported model types<a class="anchor" aria-label="anchor" href="#supported-model-types"></a>
@@ -255,7 +252,7 @@ Linear
 <h2 id="quick-guide">Quick guide<a class="anchor" aria-label="anchor" href="#quick-guide"></a>
 </h2>
 <p>Here is a quick demo on how to use this package for E-R analysis. See <code><a href="articles/basic_workflow_bin.html">vignette("basic_workflow_bin")</a></code> for more thorough walk through of a basic workflow.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load package and data</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://genentech.github.io/BayesERtools/">BayesERtools</a></span><span class="op">)</span></span>
@@ -277,7 +274,7 @@ Linear
 <div class="section level3">
 <h3 id="simple-univariable-model-for-binary-endpoint">Simple univariable model for binary endpoint<a class="anchor" aria-label="anchor" href="#simple-univariable-model-for-binary-endpoint"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">ermod_bin</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dev_ermod_bin.html">dev_ermod_bin</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_er_ae_hgly2</span>,</span>
@@ -314,7 +311,7 @@ Linear
 <h3 id="covariate-selection">Covariate selection<a class="anchor" aria-label="anchor" href="#covariate-selection"></a>
 </h3>
 <p>BGLUC (baseline glucose) is selected while other two covariates are not.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
 <span><span class="va">ermod_bin_cov_sel</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="reference/dev_ermod_bin_cov_sel.html">dev_ermod_bin_cov_sel</a></span><span class="op">(</span></span>
@@ -356,7 +353,7 @@ Linear
 <span><span class="co">#&gt; * For info on the priors used see ?prior_summary.stanreg</span></span>
 <span><span class="fu"><a href="reference/plot_cov_sel.html">plot_submod_performance</a></span><span class="op">(</span><span class="va">ermod_bin_cov_sel</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ermod_bin_cov_sel-1.png" width="75%"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">coveffsim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sim_coveff.html">sim_coveff</a></span><span class="op">(</span><span class="va">ermod_bin_cov_sel</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/plot_coveff.html">plot_coveff</a></span><span class="op">(</span><span class="va">coveffsim</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot_coveff-1.png" width="75%"></p>
