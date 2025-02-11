@@ -37,11 +37,6 @@ sim_coveff <- function(
   stopifnot(inherits(ermod, "ermod"))
   output_type <- match.arg(output_type)
 
-  # Need the followings for printing and plotting
-  rlang::check_installed("ggforce")
-  rlang::check_installed("gt")
-  rlang::check_installed("xgxr")
-
   if (is.null(data)) {
     data <- ermod$data
   }
@@ -151,6 +146,10 @@ plot_coveff.ermod <- function(
 #' @export
 #' @rdname plot_coveff
 plot_coveff.coveffsim <- function(x, ...) {
+  # Need the followings for plotting
+  rlang::check_installed("ggforce")
+  rlang::check_installed("xgxr")
+
   coveffsim <- x
 
   coveffsim_for_plot <-
@@ -235,6 +234,8 @@ plot_coveff.coveffsim <- function(x, ...) {
 #'
 print_coveff <- function(
     coveffsim, n_sigfig = 3, use_seps = TRUE, drop_trailing_dec_mark = TRUE) {
+  rlang::check_installed("gt")
+
   coveffsim_non_ref <-
     coveffsim |>
     dplyr::filter(!is_ref_value)

@@ -321,6 +321,8 @@ plot_er.ersim_med_qi <- function(
     ggplot2::labs(x = var_exposure, y = "Probability of event")
 
   if (show_orig_data) {
+    rlang::check_installed("xgxr")
+
     var_group <- options_orig_data$var_group
     n_bins <- options_orig_data$n_bins
     qi_width <- options_orig_data$qi_width
