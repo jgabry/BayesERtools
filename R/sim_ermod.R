@@ -91,53 +91,9 @@ sim_er <- function(
   is_rstanemax_ge_0_1_8 <- rlang::is_installed("rstanemax", version = "0.1.8")
 
   if (inherits(ermod, "ermod_emax") && !is_rstanemax_ge_0_1_8) {
-    sim_raw <-
-      rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
-      dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
-      dplyr::select(
-        .draw = mcmcid, .row,
-        .epred = respHat, .prediction = response
-      )
-
-    .draws_seq <- unique(sim_raw$.draw)
-
-    withr::with_seed(seed_sample_draws, {
-      .draw_to_keep <-
-        sample(.draws_seq, n_draws_sim)
-    })
-
-    sim_raw <- sim_raw |>
-      dplyr::filter(.draw %in% .draw_to_keep) |>
-      dplyr::mutate(.linpred = .epred)
-
-    simdata <-
-      newdata |>
-      dplyr::mutate(.row = dplyr::row_number()) |>
-      # Group by all columns
-      dplyr::group_by(dplyr::across(dplyr::everything())) |>
-      dplyr::full_join(sim_raw, by = c(".row"))
+    simdata <- .sim_emax_017(mod, newdata, seed_sample_draws, n_draws_sim)
   } else if (inherits(ermod, "ermod_bin_emax") && !is_rstanemax_ge_0_1_8) {
-    sim_raw <-
-      rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
-      dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
-      dplyr::select(.draw = mcmcid, .row, .epred, .linpred)
-
-    .draws_seq <- unique(sim_raw$.draw)
-
-    withr::with_seed(seed_sample_draws, {
-      .draw_to_keep <-
-        sample(.draws_seq, n_draws_sim)
-    })
-
-    sim_raw <- sim_raw |>
-      dplyr::filter(.draw %in% .draw_to_keep)
-
-    simdata <-
-      newdata |>
-      dplyr::mutate(.row = dplyr::row_number()) |>
-      # Group by all columns
-      dplyr::group_by(dplyr::across(dplyr::everything())) |>
-      dplyr::full_join(sim_raw, by = c(".row"))
+    simdata <- .sim_binemax_017(mod, newdata, seed_sample_draws, n_draws_sim)
   } else {
     simdata_epred <-
       tidybayes::add_epred_draws(newdata, mod,
@@ -527,4 +483,52 @@ chech_ndraws <- function(mod, n_draws_sim) {
     }
   }
   return(n_draws_sim)
+}
+
+.sim_emax_017 <- function(mod, newdata, seed_sample_draws, n_draws_sim) {
+  sim_raw <- rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
+    dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
+    dplyr::select(
+      .draw = mcmcid, .row,
+      .epred = respHat, .prediction = response
+    )
+
+  .draws_seq <- unique(sim_raw$.draw)
+
+  withr::with_seed(seed_sample_draws, {
+    .draw_to_keep <- sample(.draws_seq, n_draws_sim)
+  })
+
+  sim_raw <- sim_raw |>
+    dplyr::filter(.draw %in% .draw_to_keep) |>
+    dplyr::mutate(.linpred = .epred)
+
+  simdata <- newdata |>
+    dplyr::mutate(.row = dplyr::row_number()) |>
+    dplyr::group_by(dplyr::across(dplyr::everything())) |>
+    dplyr::full_join(sim_raw, by = c(".row"))
+
+  return(simdata)
+}
+
+.sim_binemax_017 <- function(mod, newdata, seed_sample_draws, n_draws_sim) {
+  sim_raw <- rstanemax::posterior_predict(mod, newdata, returnType = "tibble") |>
+    dplyr::mutate(.row = dplyr::row_number(), .by = mcmcid) |>
+    dplyr::select(.draw = mcmcid, .row, .epred, .linpred)
+
+  .draws_seq <- unique(sim_raw$.draw)
+
+  withr::with_seed(seed_sample_draws, {
+    .draw_to_keep <- sample(.draws_seq, n_draws_sim)
+  })
+
+  sim_raw <- sim_raw |>
+    dplyr::filter(.draw %in% .draw_to_keep)
+
+  simdata <- newdata |>
+    dplyr::mutate(.row = dplyr::row_number()) |>
+    dplyr::group_by(dplyr::across(dplyr::everything())) |>
+    dplyr::full_join(sim_raw, by = c(".row"))
+
+  return(simdata)
 }

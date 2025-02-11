@@ -196,3 +196,23 @@ test_that("Convert factor as response variable into number", {
     expect_error("The breaks for the binned probability ")
   plot_er_gof(mod_mtcars_emax, n_bins = 2) |> expect_silent()
 })
+
+
+# Tests for .sim_emax_017 and .sim_binemax_017 ---------------------------
+test_that(".sim_emax_017 function works correctly", {
+  result <-
+    suppressWarnings(.sim_emax_017(ermod_emax$mod, data_er_cont, 1234, 10))
+
+  expect_equal(dim(result), c(600, 9))
+  colnames_expected <- c(".draw", ".row", ".epred", ".linpred", ".prediction")
+  expect_true(all(colnames_expected %in% names(result)))
+})
+
+test_that(".sim_binemax_017 function works correctly", {
+  result <- suppressWarnings(
+    .sim_binemax_017(ermod_bin_emax$mod, data_er_bin, 1234, 10)
+  )
+
+  expect_equal(dim(result), c(1010, 14))
+  expect_true(all(c(".draw", ".row", ".epred", ".linpred") %in% names(result)))
+})
