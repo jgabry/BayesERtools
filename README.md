@@ -8,6 +8,7 @@
 [![R-CMD-check](https://github.com/Genentech/BayesERtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Genentech/BayesERtools/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/BayesERtools)](https://CRAN.R-project.org/package=BayesERtools)
+[![downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayesERtools)](https://CRAN.R-project.org/package=BayesERtools)
 [![Codecov test
 coverage](https://codecov.io/gh/Genentech/BayesERtools/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Genentech/BayesERtools?branch=main)
 <!-- badges: end -->
