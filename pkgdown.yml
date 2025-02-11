@@ -2,9 +2,8 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  basic_workflow_bin: basic_workflow_bin.html
   overview_of_the_package: overview_of_the_package.html
-last_built: 2025-02-11T20:16Z
+last_built: 2025-02-11T20:50Z
 urls:
   reference: https://genentech.github.io/BayesERtools/reference
   article: https://genentech.github.io/BayesERtools/articles
