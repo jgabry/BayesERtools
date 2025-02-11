@@ -30,13 +30,6 @@ install.packages('BayesERtools')
 # devtools::install_github("genentech/BayesERtools") # development version
 ```
 
-You also need latest version of `rstanemax` (\>= 0.1.7) to use
-E<sub>max</sub> model.
-
-``` r
-install.packages('rstanemax', repos = c(ppm = 'https://packagemanager.posit.co/cran/latest'))
-```
-
 ## Supported model types
 
 <div id="pzveloiefp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">

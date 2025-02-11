@@ -35,18 +35,17 @@ Imports:
     cli,
     rlang,
     rstanarm,
+    rstanemax (>= 0.1.8),
     loo,
     tidybayes,
     bayestestR,
-    posterior,
-    withr
+    posterior
 Suggests: 
     testthat (>= 3.0.0),
     covr,
     knitr,
     rmarkdown,
     rstan,
-    rstanemax (>= 0.1.7),
     htmltools,
     digest,
     ggforce,

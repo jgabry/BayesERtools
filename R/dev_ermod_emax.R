@@ -63,8 +63,6 @@ dev_ermod_emax <- function(
     chains = 4,
     iter = 2000,
     seed = sample.int(.Machine$integer.max, 1)) {
-  rlang::check_installed("rstanemax", version = "0.1.7")
-
   input_args <- capture_selected_args(
     c(
       "gamma_fix", "e0_fix", "emax_fix",
@@ -215,8 +213,6 @@ dev_ermod_bin_emax <- function(
     chains = 4,
     iter = 2000,
     seed = sample.int(.Machine$integer.max, 1)) {
-  rlang::check_installed("rstanemax", version = "0.1.7")
-
   input_args <- capture_selected_args(
     c(
       "gamma_fix", "e0_fix", "emax_fix",

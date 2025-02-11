@@ -1,5 +1,6 @@
-# BayesERtools 0.2.1 (In progress)
+# BayesERtools 0.2.1
 
+* Update package dependency
 
 # BayesERtools 0.2.0
 

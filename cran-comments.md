@@ -9,20 +9,11 @@
 
 0 errors | 0 warnings | 1 note
 
-Maintainer: 'Kenta Yoshida <yoshida.kenta.6@gmail.com>'
-
-New submission
-
 Possibly misspelled words in DESCRIPTION:
   Emax (16:62, 17:45)
 
 ## Note
 
-Thank you for the review. CRAN cookbook was very helpful.
+Fixed the error in the previous version:
 
-Fixed the issues raised by the CRAN team in the previous submission:
-
-- Expanded DESCRIPTION
-- Removed LICENSE file
-- Added return value to the function documentation
-- Removed or replaced \dontrun{}
+- Update package dependency that caused error in unit tests
