@@ -196,7 +196,9 @@ test_that("plot_ermod_bin_emax", {
 })
 
 test_that("Convert factor as response variable into number", {
-  plot_er_gof(mod_mtcars_emax, n_bins = 4) |>
-    expect_error("The breaks for the binned probability ")
-  plot_er_gof(mod_mtcars_emax, n_bins = 2) |> expect_silent()
+  if (.if_run_ex_plot_er()) {
+    plot_er_gof(mod_mtcars_emax, n_bins = 4) |>
+      expect_error("The breaks for the binned probability ")
+    plot_er_gof(mod_mtcars_emax, n_bins = 2) |> expect_silent()
+  }
 })

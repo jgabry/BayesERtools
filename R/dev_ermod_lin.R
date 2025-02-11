@@ -749,4 +749,3 @@ capture_selected_args <- function(arg_names, env) {
 .if_run_ex_covsel <- function() {
   requireNamespace("projpred", quietly = TRUE)
 }
-

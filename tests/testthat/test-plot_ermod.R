@@ -134,8 +134,10 @@ test_that("plot_er.ersim", {
 
   expect_silent(plot(g1))
 
-  plot_er(ersim_curve_2_med_qi, show_orig_data = TRUE) |>
-    expect_warning("Model has covariate\\(s\\), and only one covariate data")
+  if (requireNamespace("xgxr")) {
+    plot_er(ersim_curve_2_med_qi, show_orig_data = TRUE) |>
+      expect_warning("Model has covariate\\(s\\), and only one covariate data")
+  }
   plot_er(ersim_curve_3_med_qi) |>
     expect_error("Model has covariate\\(s\\) and multiple covariate data rows")
 })

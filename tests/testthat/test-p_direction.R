@@ -1,4 +1,4 @@
-if (.if_run_ex_covsel()){
+if (.if_run_ex_covsel()) {
   d_sim_binom_cov <- d_sim_binom_cov
 
   id_to_sample <- seq(1, max(d_sim_binom_cov$ID), by = 5)
@@ -15,7 +15,7 @@ if (.if_run_ex_covsel()){
     )
 
 
-  # Create  ermod_bin objects for testing ---------------------------------------
+  # Create  ermod_bin objects for testing -------------------------------------
   set.seed(1234)
   ermod_bin <- dev_ermod_bin(
     data = df_er_ae_covsel_test,

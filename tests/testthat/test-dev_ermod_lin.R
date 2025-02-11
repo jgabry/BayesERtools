@@ -372,12 +372,14 @@ test_that("print.ermod_exp_sel prints correct information", {
 })
 
 test_that("print.ermod_cov_sel prints correct information", {
-  out <- cli::cli_fmt({
-    print(ermod_bin_cov_sel_kfold_dummy)
-  })
-  expect_true(any(grepl("Binary ER model", out)))
-  expect_true(any(grepl("& covariate selection", out)))
-  expect_true(any(grepl("Use \\`plot_submod_performance\\(\\)\\`", out)))
+  if (requireNamespace("projpred")) {
+    out <- cli::cli_fmt({
+      print(ermod_bin_cov_sel_kfold_dummy)
+    })
+    expect_true(any(grepl("Binary ER model", out)))
+    expect_true(any(grepl("& covariate selection", out)))
+    expect_true(any(grepl("Use \\`plot_submod_performance\\(\\)\\`", out)))
+  }
 })
 
 # plot.ermod_exp_sel

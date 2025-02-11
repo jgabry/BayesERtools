@@ -34,10 +34,11 @@ if (.if_run_ex_coveff()) {
 
   coveffsim1 <- sim_coveff(ermod_bin, spec_coveff = spec_coveff_new)
   coveffsim2 <- sim_coveff(ermod_bin, spec_coveff = spec_coveff_no_keep_ref)
-  coveffsim3 <- sim_coveff(ermod_bin, spec_coveff = spec_coveff_no_keep_ref_race)
+  coveffsim3 <-
+    sim_coveff(ermod_bin, spec_coveff = spec_coveff_no_keep_ref_race)
 
 
-  # Tests -----------------------------------------------------------------------
+  # Tests ---------------------------------------------------------------------
   test_that("input col & row error", {
     expect_error(replace_spec_coveff(
       spec_coveff, spec_new_bgluc |> dplyr::select(-value_cont)

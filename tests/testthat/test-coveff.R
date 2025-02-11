@@ -9,7 +9,7 @@ if (.if_run_ex_coveff()) {
 
   var_resp <- "AEFLAG"
 
-  # develop models --------------------------------------------------------------
+  # develop models ------------------------------------------------------------
   set.seed(1234)
   ermod_bin <- dev_ermod_bin(
     data = df_er_ae_hgly2,
@@ -25,7 +25,7 @@ if (.if_run_ex_coveff()) {
   coveffsim <- sim_coveff(ermod_bin)
   coveffsim_2 <- sim_coveff(ermod_bin, spec_coveff = spec_coveff)
 
-  # Tests -----------------------------------------------------------------------
+  # Tests ---------------------------------------------------------------------
   test_that("sim_coveff", {
     expect_equal(coveffsim, coveffsim_2)
     expect_equal(dim(coveffsim), c(14, 12))
@@ -73,8 +73,8 @@ if (.if_run_ex_coveff()) {
     expect_equal(
       spec_coveff$value_label,
       c(
-        "0.824", "2.31", "4.80", "6.01", "8.19", "10.3", "4.42", "6.09", "7.28",
-        "White", "Asian", "Black", "No", "Yes"
+        "0.824", "2.31", "4.80", "6.01", "8.19", "10.3", "4.42", "6.09",
+        "7.28", "White", "Asian", "Black", "No", "Yes"
       )
     )
   })
