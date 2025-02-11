@@ -84,12 +84,16 @@ ermod_bin
 You can compare the observed data with the model fit using `plot_er()` 
 function.
 
-```{r, fig.width = 6, fig.height = 4}
+<!-- Need to avoid execution to deal with noSuggest CMD check -->
+<!-- (packages in Suggests need to be used conditionally) -->
+
+```r
 # Using `*` instead of `+` so that scale can be
 # applied for both panels (main plot and boxplot)
 plot_er_gof(ermod_bin, var_group = "Dose", show_coef_exp = TRUE) *
   xgxr::xgx_scale_x_log10()
 ```
+![](img/fig_basic_workflow_gof.png){width=70%}
 
 MCMC samples can be obtained with `as_draws()` family of functions, such as
 `as_draws_df()`.
@@ -190,7 +194,7 @@ The plot below shows that AUCss_1000, BHBA1C_5, and BGLUC contributes to
 improving the model performance, and after then the inclusion of no other
 covariates improves the model performance.
 
-```{r}
+```{r, fig.width = 6, fig.height = 4}
 plot_submod_performance(ermod_bin_cov_sel)
 ```
 
@@ -241,7 +245,7 @@ interchangeably selected in the second and third positions.
 Note that the function enforces the exposure metric to be included 
 first in the model.
 
-```{r}
+```{r, fig.width = 6, fig.height = 4}
 ermod_bin_cov_sel_kfold
 plot_submod_performance(ermod_bin_cov_sel_kfold)
 plot_var_ranking(ermod_bin_cov_sel_kfold)
@@ -255,7 +259,7 @@ using `sim_er_new_exp_marg()` function.
 By default, the covariate distribution is from the original data, but you can
 also supply other distribution with `data_cov` argument.
 
-```{r}
+```{r, fig.width = 6, fig.height = 4}
 ersim_new_exp_marg_med_qi <- sim_er_new_exp_marg(
   ermod_bin_cov_sel,
   exposure_to_sim_vec = c(2:6),

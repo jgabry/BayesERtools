@@ -149,6 +149,8 @@ calc_summary_col <- function(
 calc_summary_col_cont <- function(
     x, qi_width_cov = 0.9, n_sigfig = 3,
     use_seps = TRUE, drop_trailing_dec_mark = TRUE) {
+  rlang::check_installed("gt")
+
   summary_col_cont <-
     dplyr::tibble(
       value_cont = c(
@@ -256,7 +258,10 @@ add_ordinal_suffix <- function(x) {
 #'   qi_width_cov = 0.8, show_ref_value = FALSE
 #' )
 #' spec_coveff_new <- replace_spec_coveff(spec_coveff, spec_new_bgluc)
+#'
+#' \donttest{
 #' plot_coveff(ermod_bin, spec_coveff = spec_coveff_new)
+#' }
 #'
 build_spec_coveff_one_variable <- function(
     var_name, values_vec,
