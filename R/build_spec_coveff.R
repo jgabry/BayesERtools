@@ -10,7 +10,7 @@
 #' (".") in value_label of continuous variables. See [gt::vec_fmt_number()]
 #' for details.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -240,7 +240,8 @@ add_ordinal_suffix <- function(x) {
 #' [build_spec_coveff_one_variable()] returns a data frame corresponding to
 #' the specification for a single variable, which can be used as an input to
 #' [replace_spec_coveff()].
-#' @examples
+#'
+#' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' set.seed(1234)
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -258,10 +259,7 @@ add_ordinal_suffix <- function(x) {
 #'   qi_width_cov = 0.8, show_ref_value = FALSE
 #' )
 #' spec_coveff_new <- replace_spec_coveff(spec_coveff, spec_new_bgluc)
-#'
-#' \donttest{
 #' plot_coveff(ermod_bin, spec_coveff = spec_coveff_new)
-#' }
 #'
 build_spec_coveff_one_variable <- function(
     var_name, values_vec,
@@ -413,4 +411,10 @@ replace_spec_coveff <- function(
   }
 
   return(spec_updated)
+}
+
+.if_run_ex_coveff <- function() {
+  requireNamespace("ggforce", quietly = TRUE) &&
+    requireNamespace("xgxr", quietly = TRUE) &&
+    requireNamespace("gt", quietly = TRUE)
 }

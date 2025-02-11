@@ -10,17 +10,19 @@ ermod_bin <- dev_ermod_bin(
   iter = 1000
 )
 
-cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
+if (requireNamespace("rsample")) {
+  cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
 
-# Test for other models are covered in test-eval_ermod.R with kfold-cv eval
-test_that("binary model", {
-  expect_equal(
-    names(cv_results$d_truth),
-    c(".row", "truth", "fold_id")
-  )
-  expect_equal(
-    names(cv_results$d_sim),
-    c(".row", ".draw", "pred", "fold_id")
-  )
-  expect_equal(dim(cv_results$d_sim), c(100 * 1000, 4))
-})
+  # Test for other models are covered in test-eval_ermod.R with kfold-cv eval
+  test_that("binary model", {
+    expect_equal(
+      names(cv_results$d_truth),
+      c(".row", "truth", "fold_id")
+    )
+    expect_equal(
+      names(cv_results$d_sim),
+      c(".row", ".draw", "pred", "fold_id")
+    )
+    expect_equal(dim(cv_results$d_sim), c(100 * 1000, 4))
+  })
+}

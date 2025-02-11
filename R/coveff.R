@@ -17,7 +17,7 @@
 #' @return A data frame with class `coveffsim` containing the median and
 #' quantile interval of the covariate effects.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -112,7 +112,8 @@ sim_coveff <- function(
 #' @param ... currently not used
 #'
 #' @return A ggplot object
-#' @examples
+#'
+#' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -220,7 +221,7 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' - `Odds ratio`: the odds ratio of the covariate effect
 #' - `95% CI`: the 95% credible interval of the covariate effect
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
