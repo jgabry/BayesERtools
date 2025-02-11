@@ -152,9 +152,15 @@ ermod_bin_exp_sel
 The ER curve for all the evaluated exposure metrics can be generated with 
 `plot_er_exp_sel()` function.
 
-```{r, fig.width = 6, fig.height = 4}
-plot_er_exp_sel(ermod_bin_exp_sel)
+<!-- Need to avoid execution to deal with noSuggest CMD check -->
+<!-- (packages in Suggests need to be used conditionally) -->
+<!-- xgxr needed -->
+
+```r
+plot_er_exp_sel(ermod_bin_exp_sel) +
+  xgxr::xgx_scale_x_log10()
 ```
+![](img/fig_basic_workflow_exp_sel.png){width=70%}
 
 
 ## 3. Selection of covariates
