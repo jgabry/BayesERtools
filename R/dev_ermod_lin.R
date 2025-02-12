@@ -292,6 +292,7 @@ dev_ermod_lin <- function(
 #' @export
 #' @rdname dev_ermod_bin_exp_sel
 #' @examples
+#' \donttest{
 #' data(d_sim_lin)
 #'
 #' ermod_lin_exp_sel <- dev_ermod_lin_exp_sel(
@@ -301,6 +302,7 @@ dev_ermod_lin <- function(
 #' )
 #'
 #' ermod_lin_exp_sel
+#' }
 #'
 dev_ermod_lin_exp_sel <- function(
     data,

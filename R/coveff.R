@@ -18,6 +18,7 @@
 #' quantile interval of the covariate effects.
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -28,6 +29,7 @@
 #' )
 #'
 #' sim_coveff(ermod_bin)
+#' }
 #'
 sim_coveff <- function(
     ermod, data = NULL, spec_coveff = NULL,
@@ -114,6 +116,7 @@ sim_coveff <- function(
 #' @return A ggplot object
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -124,6 +127,7 @@ sim_coveff <- function(
 #' )
 #'
 #' plot_coveff(ermod_bin)
+#' }
 #'
 plot_coveff <- function(x, ...) UseMethod("plot_coveff")
 
@@ -222,6 +226,7 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' - `95% CI`: the 95% credible interval of the covariate effect
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -232,6 +237,7 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' )
 #'
 #' print_coveff(sim_coveff(ermod_bin))
+#' }
 #'
 print_coveff <- function(
     coveffsim, n_sigfig = 3, use_seps = TRUE, drop_trailing_dec_mark = TRUE) {

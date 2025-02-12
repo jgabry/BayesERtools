@@ -60,6 +60,7 @@
 #' `plot_er()` on the simulated data.
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_plot_er()
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -75,6 +76,7 @@
 #'
 #' plot_er(ersim_med_qi, show_orig_data = TRUE) +
 #'   xgxr::xgx_scale_x_log10()
+#' }
 #'
 plot_er <- function(x, ...) {
   UseMethod("plot_er")
@@ -592,6 +594,7 @@ plot_er.ermod <- function(
 #'
 #' @return A ggplot object
 #' @examplesIf BayesERtools:::.if_run_ex_plot_er()
+#' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
 #' ermod_bin <- dev_ermod_bin(
@@ -601,6 +604,7 @@ plot_er.ermod <- function(
 #' )
 #'
 #' plot_er_gof(ermod_bin, var_group = "Dose_mg", show_coef_exp = TRUE)
+#' }
 #'
 plot_er_gof <- function(
     x, add_boxplot = !is.null(var_group), boxplot_height = 0.15,
