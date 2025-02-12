@@ -156,7 +156,7 @@ dev_ermod_bin_exp_sel <- function(
 #'
 #' @return An object of class `ermod_bin_cov_sel` or `ermod_lin_cov_sel`.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_covsel()
 #' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -322,7 +322,7 @@ dev_ermod_lin_exp_sel <- function(
 
 #' @export
 #' @rdname dev_ermod_bin_cov_sel
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_covsel()
 #' \donttest{
 #' data(d_sim_lin)
 #'
