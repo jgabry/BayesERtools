@@ -163,8 +163,8 @@ test_that("plot_er with groups", {
       expect_silent()
 
     plot_er(ermod_bin,
-            show_orig_data = TRUE,
-            options_orig_data = list(add_boxplot = TRUE)
+      show_orig_data = TRUE,
+      options_orig_data = list(add_boxplot = TRUE)
     ) |>
       expect_silent()
   }
