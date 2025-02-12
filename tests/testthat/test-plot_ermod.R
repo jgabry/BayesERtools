@@ -161,6 +161,12 @@ test_that("plot_er with groups", {
       options_orig_data = list(var_group = "Dose_mg", add_boxplot = TRUE)
     ) |>
       expect_silent()
+
+    plot_er(ermod_bin,
+            show_orig_data = TRUE,
+            options_orig_data = list(add_boxplot = TRUE)
+    ) |>
+      expect_silent()
   }
 })
 

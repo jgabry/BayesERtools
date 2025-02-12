@@ -25,6 +25,11 @@ if (.if_run_ex_eval_mod()) {
         c(".row", ".draw", "pred", "fold_id")
       )
       expect_equal(dim(cv_results$d_sim), c(100 * 1000, 4))
+
+      out <- cli::cli_fmt({
+        print(cv_results)
+      })
+      expect_true(any(grepl("k-fold Cross-Validation for ermod object", out)))
     })
   }
 }
