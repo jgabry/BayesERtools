@@ -116,7 +116,8 @@ the exposure variable.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df_er_dr2</span> <span class="op">&lt;-</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">df_er_dr2</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>  <span class="va">d_sim_binom_cov</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">AETYPE</span> <span class="op">==</span> <span class="st">"dr2"</span>,</span></span>
@@ -133,6 +134,7 @@ the exposure variable.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">p_direction</span><span class="op">(</span><span class="va">ermod_bin</span>, as_num <span class="op">=</span> <span class="cn">TRUE</span>, as_p <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.571</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
