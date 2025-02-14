@@ -9,6 +9,8 @@ dev_ermod_bin_exp_sel(
   data,
   var_resp,
   var_exp_candidates,
+  prior = rstanarm::default_prior_coef(stats::binomial()),
+  prior_intercept = rstanarm::default_prior_intercept(stats::binomial()),
   verbosity_level = 1,
   chains = 4,
   iter = 2000
@@ -18,6 +20,9 @@ dev_ermod_lin_exp_sel(
   data,
   var_resp,
   var_exp_candidates,
+  prior = rstanarm::default_prior_coef(stats::binomial()),
+  prior_intercept = rstanarm::default_prior_intercept(stats::binomial()),
+  prior_aux = rstanarm::exponential(autoscale = TRUE),
   verbosity_level = 1,
   chains = 4,
   iter = 2000

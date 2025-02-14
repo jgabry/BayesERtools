@@ -80,4 +80,3 @@ p_direction.ermod_bin <- function(
 .if_run_ex_p_dir <- function() {
   requireNamespace("bayestestR", quietly = TRUE)
 }
-

@@ -162,3 +162,10 @@ test_that("get_mod_type_name", {
   expect_equal(get_mod_type_name(ermod_bin_emax), "Binary Emax model")
   expect_error(get_mod_type_name("1"), "Unknown model type")
 })
+
+# Expect errors for nonlinear models
+test_that("only supported for linear models", {
+  expect_error(coef(ermod_emax_w_cov), "coef")
+  expect_error(summary(ermod_emax_w_cov), "summary")
+  expect_error(prior_summary(ermod_emax_w_cov), "prior_summary.ermod")
+})

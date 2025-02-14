@@ -15,6 +15,8 @@ dev_ermod_bin_cov_sel(
   validate_search = FALSE,
   nterms_max = NULL,
   .reduce_obj_size = TRUE,
+  prior = rstanarm::default_prior_coef(stats::binomial()),
+  prior_intercept = rstanarm::default_prior_intercept(stats::binomial()),
   verbosity_level = 1,
   chains = 4,
   iter = 2000
@@ -30,6 +32,9 @@ dev_ermod_lin_cov_sel(
   validate_search = FALSE,
   nterms_max = NULL,
   .reduce_obj_size = TRUE,
+  prior = rstanarm::default_prior_coef(stats::binomial()),
+  prior_intercept = rstanarm::default_prior_intercept(stats::binomial()),
+  prior_aux = rstanarm::exponential(autoscale = TRUE),
   verbosity_level = 1,
   chains = 4,
   iter = 2000

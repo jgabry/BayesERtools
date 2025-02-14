@@ -15,7 +15,10 @@ for binary endpoint}
   verbosity_level = 1,
   chains = 4,
   iter = 2000,
-  fun_family = quote(stats::binomial())
+  fun_family = quote(stats::binomial()),
+  prior = rstanarm::default_prior_coef(stats::binomial()),
+  prior_intercept = rstanarm::default_prior_intercept(stats::binomial()),
+  prior_aux = rstanarm::exponential(autoscale = TRUE)
 )
 
 .select_cov_projpred(

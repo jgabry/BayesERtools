@@ -55,8 +55,8 @@ plot.ermod_bin <- function(x, show_orig_data = FALSE, ...) {
 #' @export
 #' @rdname ermod_method
 coef.ermod <- function(object, ...) {
-  if (inherits(object, "ermod_emax")) {
-    stop("coef() not supported for ermod_emax object")
+  if (!inherits(object, c("ermod_bin", "ermod_lin"))) {
+    stop("coef() only supported for linear models")
   }
 
   stats::coef(object$mod, ...)
@@ -65,8 +65,8 @@ coef.ermod <- function(object, ...) {
 #' @export
 #' @rdname ermod_method
 summary.ermod <- function(object, ...) {
-  if (inherits(object, "ermod_emax")) {
-    stop("summary() not supported for ermod_emax object")
+  if (!inherits(object, c("ermod_bin", "ermod_lin"))) {
+    stop("summary() only supported for linear models")
   }
 
   summary(object$mod, ...)
@@ -223,7 +223,7 @@ extract_var_selected.ermod_cov_sel <- function(x) x$var_selected
 #'  credible interval (.lower, .upper)
 #'
 extract_coef_exp_ci <- function(x, ci_width = 0.95) {
-  # Check that input x is ermod object
+  # Check that input x is linear ermod object
   if (!inherits(x, c("ermod_bin", "ermod_lin"))) {
     stop("extract_coef_exp_ci() only supported for linear models")
   }
@@ -366,4 +366,23 @@ as_draws_matrix.ermod <- function(x, ...) {
 #' @export
 as_draws_rvars.ermod <- function(x, ...) {
   posterior::as_draws_rvars(x$mod, ...)
+}
+
+# prior_summary --------------------------------------------------------------
+#' Summarize the priors used for linear or linear logistic regression models
+#'
+#' See [rstanarm::prior_summary()] for details.
+#'
+#' @export
+#' @rdname prior_summary
+#' @importFrom rstanarm prior_summary
+#' @return An object of class `prior_summary.stanreg`
+#'
+prior_summary.ermod <- function(object, ...) {
+  # Check that input x is linear ermod object
+  if (!inherits(object, c("ermod_bin", "ermod_lin"))) {
+    stop("prior_summary.ermod() only supported for linear models")
+  }
+
+  rstanarm::prior_summary(object$mod, ...)
 }
