@@ -51,6 +51,8 @@ for binary endpoint}
 
 \item{fun_family}{Family function for the model. Default is binomial.}
 
+\item{prior, prior_intercept, prior_aux}{See \code{\link[rstanarm:stan_glm]{rstanarm::stan_glm()}}}
+
 \item{refm_obj}{Reference model object used for variable selection}
 
 \item{nterms_max}{Maximum number of terms to consider in the model.

@@ -36,6 +36,8 @@ dev_ermod_lin_exp_sel(
 \item{var_exp_candidates}{Candidate exposure variable names
 in character vector}
 
+\item{prior, prior_intercept, prior_aux}{See \code{\link[rstanarm:stan_glm]{rstanarm::stan_glm()}}}
+
 \item{verbosity_level}{Verbosity level. 0: No output, 1: Display steps,
 2: Display progress in each step, 3: Display MCMC sampling.}
 

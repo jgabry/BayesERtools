@@ -6,6 +6,11 @@
 \usage{
 \method{prior_summary}{ermod}(object, ...)
 }
+\arguments{
+\item{object}{An object of class \code{ermod}}
+
+\item{...}{Additional arguments passed to \code{rstanarm::prior_summary()}}
+}
 \value{
 An object of class \code{prior_summary.stanreg}
 }

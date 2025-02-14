@@ -11,6 +11,7 @@
 #' @param var_resp Response variable name in character
 #' @param var_exposure Exposure variable names in character
 #' @param var_cov Covariate variable names in character vector
+#' @param prior,prior_intercept,prior_aux See [rstanarm::stan_glm()]
 #' @param verbosity_level Verbosity level. 0: No output, 1: Display steps,
 #' 2: Display progress in each step, 3: Display MCMC sampling.
 #' @param chains Number of chains for Stan.

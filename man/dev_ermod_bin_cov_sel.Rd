@@ -66,6 +66,8 @@ Default is NULL (all terms are considered).}
 elements from projpred outputs that are not necessary for the functionality
 of this package.}
 
+\item{prior, prior_intercept, prior_aux}{See \code{\link[rstanarm:stan_glm]{rstanarm::stan_glm()}}}
+
 \item{verbosity_level}{Verbosity level. 0: No output, 1: Display steps,
 2: Display progress in each step, 3: Display MCMC sampling.}
 

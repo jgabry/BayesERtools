@@ -376,6 +376,8 @@ as_draws_rvars.ermod <- function(x, ...) {
 #' @export
 #' @rdname prior_summary
 #' @importFrom rstanarm prior_summary
+#' @param object An object of class `ermod`
+#' @param ... Additional arguments passed to `rstanarm::prior_summary()`
 #' @return An object of class `prior_summary.stanreg`
 #'
 prior_summary.ermod <- function(object, ...) {
