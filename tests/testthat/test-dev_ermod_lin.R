@@ -214,7 +214,7 @@ test_that("Exposure metrics selection", {
     c(AUCss_1000 = 0.000000, Cmaxss = -0.6490312, Cminss = -2.7563957)
   )
 
-  priors <- prior_summary(extract_mod(ermod_bin_exp_sel$l_mod_exposures[[2]]))
+  priors <- prior_summary(ermod_bin_exp_sel$l_mod_exposures[[2]])
   expect_equal(priors$prior$scale, 5)
   expect_equal(priors$prior_intercept$scale, 4)
 
