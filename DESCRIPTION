@@ -38,7 +38,6 @@ Imports:
     rstanemax (>= 0.1.8),
     loo,
     tidybayes,
-    bayestestR,
     posterior
 Suggests: 
     testthat (>= 3.0.0),
@@ -52,6 +51,7 @@ Suggests:
     xgxr,
     scales,
     readr,
+    bayestestR,
     patchwork,
     projpred,
     rsample,
