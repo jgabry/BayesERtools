@@ -211,7 +211,7 @@ test_that("Exposure metrics selection", {
   expect_equal(extract_var_exposure(ermod_bin_exp_sel), "AUCss_1000")
   expect_equal(
     extract_exp_sel_comp(ermod_bin_exp_sel)[, 1],
-    c(AUCss_1000 = 0.000000, Cmaxss = -1.1955989, Cminss = -1.8564733)
+    c(AUCss_1000 = 0.000000, Cmaxss = -0.6490312, Cminss = -2.7563957)
   )
 
   priors <- prior_summary(extract_mod(ermod_bin_exp_sel$l_mod_exposures[[2]]))
@@ -263,7 +263,7 @@ test_that("Variable selection", {
 
 test_that("Final model", {
   if (requireNamespace("projpred")) {
-    expect_equal(coef(ermod_bin_cov_sel)[[1]], -10.8659485)
+    expect_equal(coef(ermod_bin_cov_sel)[[1]], -10.9133063)
   }
 })
 

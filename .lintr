@@ -1,3 +1,6 @@
+linters: linters_with_defaults(
+    return_linter = NULL
+  )
 exclusions: list(
     "README.Rmd" = list(
       1, # global exclusions are unnamed

@@ -407,7 +407,6 @@ replace_spec_coveff <- function(
       dplyr::bind_rows(spec_ref_orig, spec_new_2) |>
       dplyr::mutate(value_order = dplyr::row_number(), .by = var_name) |>
       dplyr::left_join(add_to_spec_new, by = "var_name") |>
-      # (\(.x) dplyr::bind_rows(spec_keep, .x))() |>
       dplyr::bind_rows(spec_keep) |>
       dplyr::arrange(var_order, value_order)
   }
