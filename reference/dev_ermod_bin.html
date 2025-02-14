@@ -11,7 +11,7 @@ You can also specify covariates to be included in the model."><meta property="og
 
     <a class="navbar-brand me-2" href="../index.html">BayesERtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.1001</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,8 @@ You can also specify covariates to be included in the model.</p>
 <span>  <span class="va">var_resp</span>,</span>
 <span>  <span class="va">var_exposure</span>,</span>
 <span>  var_cov <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  prior <span class="op">=</span> <span class="fu">rstanarm</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">default_prior_coef</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  prior_intercept <span class="op">=</span> <span class="fu">rstanarm</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">default_prior_intercept</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  verbosity_level <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  chains <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  iter <span class="op">=</span> <span class="fl">2000</span></span>
@@ -62,6 +64,9 @@ You can also specify covariates to be included in the model.</p>
 <span>  <span class="va">var_resp</span>,</span>
 <span>  <span class="va">var_exposure</span>,</span>
 <span>  var_cov <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  prior <span class="op">=</span> <span class="fu">rstanarm</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">default_prior_coef</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  prior_intercept <span class="op">=</span> <span class="fu">rstanarm</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">default_prior_intercept</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  prior_aux <span class="op">=</span> <span class="fu">rstanarm</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">exponential</a></span><span class="op">(</span>autoscale <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  verbosity_level <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  chains <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  iter <span class="op">=</span> <span class="fl">2000</span></span>
