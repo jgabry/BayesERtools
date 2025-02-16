@@ -373,9 +373,9 @@ as_draws_rvars.ermod <- function(x, ...) {
 
 
 #' @name prior_summary
-#' @importFrom rstantools prior_summary
+#' @importFrom rstanarm prior_summary
 #' @export
-rstantools::prior_summary
+rstanarm::prior_summary
 
 #' Summarize the priors used for linear or linear logistic regression models
 #'
