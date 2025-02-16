@@ -252,8 +252,7 @@ extract_coef_exp_ci <- function(x, ci_width = 0.95) {
 #' @importFrom loo loo
 #'
 #' @return An object of class `loo`
-#' @export
-loo::loo
+NULL
 
 #' @rdname loo
 #' @export
@@ -291,41 +290,12 @@ loo.ermod_bin_emax <- function(x, ...) {
 
 # as_draws --------------------------------------------------------------------
 
-#' @rdname as_draws
-#' @importFrom posterior as_draws
-#' @export
-posterior::as_draws
-
-#' @rdname as_draws
-#' @importFrom posterior as_draws_list
-#' @export
-posterior::as_draws_list
-
-#' @rdname as_draws
-#' @importFrom posterior as_draws_array
-#' @export
-posterior::as_draws_array
-
-#' @rdname as_draws
-#' @importFrom posterior as_draws_df
-#' @export
-posterior::as_draws_df
-
-#' @rdname as_draws
-#' @importFrom posterior as_draws_matrix
-#' @export
-posterior::as_draws_matrix
-
-#' @rdname as_draws
-#' @importFrom posterior as_draws_rvars
-#' @export
-posterior::as_draws_rvars
-
-
 #' Transform to `draws` objects
 #'
 #' See [posterior::as_draws()] for details.
 #'
+#' @importFrom posterior as_draws as_draws_list as_draws_array as_draws_df
+#' as_draws_matrix as_draws_rvars
 #' @param x An object of class `ermod`
 #' @param ... Arguments passed to individual methods (if applicable).
 #' @return A draws object from the `posterior` package.

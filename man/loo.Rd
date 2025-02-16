@@ -7,8 +7,6 @@
 \alias{loo.ermod_bin_emax}
 \title{Efficient approximate leave-one-out cross-validation (LOO)}
 \usage{
-loo(x, ...)
-
 \method{loo}{ermod}(x, ...)
 
 \method{loo}{ermod_emax}(x, ...)
