@@ -252,7 +252,8 @@ extract_coef_exp_ci <- function(x, ci_width = 0.95) {
 #' @importFrom loo loo
 #'
 #' @return An object of class `loo`
-NULL
+#' @export
+loo::loo
 
 #' @rdname loo
 #' @export
@@ -303,6 +304,36 @@ loo.ermod_bin_emax <- function(x, ...) {
 NULL
 
 #' @rdname as_draws
+#' @importFrom posterior as_draws
+#' @export
+posterior::as_draws
+
+#' @rdname as_draws
+#' @importFrom posterior as_draws_list
+#' @export
+posterior::as_draws_list
+
+#' @rdname as_draws
+#' @importFrom posterior as_draws_array
+#' @export
+posterior::as_draws_array
+
+#' @rdname as_draws
+#' @importFrom posterior as_draws_df
+#' @export
+posterior::as_draws_df
+
+#' @rdname as_draws
+#' @importFrom posterior as_draws_matrix
+#' @export
+posterior::as_draws_matrix
+
+#' @rdname as_draws
+#' @importFrom posterior as_draws_rvars
+#' @export
+posterior::as_draws_rvars
+
+#' @rdname as_draws
 #' @export
 as_draws.ermod <- function(x, ...) {
   posterior::as_draws(x$mod, ...)
@@ -339,13 +370,19 @@ as_draws_rvars.ermod <- function(x, ...) {
 }
 
 # prior_summary --------------------------------------------------------------
+
+
+#' @name prior_summary
+#' @importFrom rstantools prior_summary
+#' @export
+rstantools::prior_summary
+
 #' Summarize the priors used for linear or linear logistic regression models
 #'
 #' See [rstanarm::prior_summary()] for details.
 #'
 #' @export
 #' @rdname prior_summary
-#' @importFrom rstanarm prior_summary
 #' @param object An object of class `ermod`
 #' @param ... Additional arguments passed to `rstanarm::prior_summary()`
 #' @return An object of class `prior_summary.stanreg`

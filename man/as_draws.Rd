@@ -2,6 +2,11 @@
 % Please edit documentation in R/ermod-methods.R
 \name{as_draws}
 \alias{as_draws}
+\alias{as_draws_list}
+\alias{as_draws_array}
+\alias{as_draws_df}
+\alias{as_draws_matrix}
+\alias{as_draws_rvars}
 \alias{as_draws.ermod}
 \alias{as_draws_list.ermod}
 \alias{as_draws_array.ermod}
@@ -10,6 +15,18 @@
 \alias{as_draws_rvars.ermod}
 \title{Transform to \code{draws} objects}
 \usage{
+as_draws(x, ...)
+
+as_draws_list(x, ...)
+
+as_draws_array(x, ...)
+
+as_draws_df(x, ...)
+
+as_draws_matrix(x, ...)
+
+as_draws_rvars(x, ...)
+
 \method{as_draws}{ermod}(x, ...)
 
 \method{as_draws_list}{ermod}(x, ...)
