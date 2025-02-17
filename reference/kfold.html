@@ -56,7 +56,9 @@ See <code><a href="https://mc-stan.org/loo/reference/kfold-generic.html" class="
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'ermod'</span></span>
 <span><span class="fu">kfold</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">5</span>, newdata <span class="op">=</span> <span class="cn">NULL</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kfold</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kfold</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">extract_kfold_loo</span><span class="op">(</span><span class="va">kfold_ermod</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -83,11 +85,17 @@ Default is NULL.</p></dd>
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently not used.</p></dd>
 
+
+<dt id="arg-kfold-ermod">kfold_ermod<a class="anchor" aria-label="anchor" href="#arg-kfold-ermod"></a></dt>
+<dd><p>An object of class <code>kfold_ermod</code></p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>kfold_ermod</code> class object containing the fitted models and
-holdout predictions for each fold.</p>
+    <p><code>kfold()</code> returns <code>kfold_ermod</code> class object containing the fitted
+models and holdout predictions for each fold.</p>
+<p><code>extract_kfold_loo()</code> returns  <code>c("kfold", "loo")</code> class object
+that works well with <code>loo</code> ecosystem</p>
     </div>
 
     <div class="section level2">
