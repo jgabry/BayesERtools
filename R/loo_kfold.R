@@ -1,4 +1,3 @@
-
 # LOO -------------------------------------------------------------------------
 
 #' Efficient approximate leave-one-out cross-validation (LOO)
@@ -159,8 +158,9 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
       dplyr::mutate(fold_id = fold_id)
 
     loglik_k <- NA
-    if(if_calc_log_lik)
+    if (if_calc_log_lik) {
       loglik_k <- rstanarm::log_lik(extract_mod(ermod_k), newdata = test_data)
+    }
 
     list(
       ermod = ermod_k,
@@ -195,7 +195,7 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
   results$k <- k
 
   # Calc and sort elpds
-  if(if_calc_log_lik) {
+  if (if_calc_log_lik) {
     elpds_unord <- unlist(lapply(results$loglik, function(x) {
       apply(x, 2, rstanarm:::log_mean_exp)
     }))
@@ -213,7 +213,7 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
     est <- colSums(pointwise)
     se_est <- sqrt(nrow(data) * apply(pointwise, 2, var))
 
-    estimates = cbind(Estimate = est, SE = se_est)
+    estimates <- cbind(Estimate = est, SE = se_est)
     rownames(estimates) <- colnames(pointwise)
 
     results$estimates <- estimates
