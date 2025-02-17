@@ -1,5 +1,10 @@
 # BayesERtools 0.2.2 (in development)
 
+## Major changes
+
+* Implemented `kfold()` function to allow the estimation of ELPD to work with
+  loo ecosystem
+  
 ## Minor changes
 
 * Enable setting the prior distribution for linear models
