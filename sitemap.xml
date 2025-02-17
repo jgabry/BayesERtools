@@ -29,6 +29,7 @@
 <url><loc>https://genentech.github.io/BayesERtools/reference/extract_ersim.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/extract_method.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/index.html</loc></url>
+<url><loc>https://genentech.github.io/BayesERtools/reference/kfold.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/loo.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/p_direction.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/plot_cov_sel.html</loc></url>
@@ -38,7 +39,6 @@
 <url><loc>https://genentech.github.io/BayesERtools/reference/plot_er_gof.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/print_coveff.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/prior_summary.html</loc></url>
-<url><loc>https://genentech.github.io/BayesERtools/reference/run_kfold_cv.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/sim_coveff.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/sim_er.html</loc></url>
 <url><loc>https://genentech.github.io/BayesERtools/reference/sim_er_new_exp.html</loc></url>
