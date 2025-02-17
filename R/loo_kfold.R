@@ -45,12 +45,6 @@ loo.ermod_bin_emax <- function(x, ...) {
   return(out)
 }
 
-
-#' @name kfold
-#' @importFrom loo kfold
-#' @export
-loo::kfold
-
 #' Run k-fold cross-validation
 #'
 #' This function performs k-fold cross-validation using the appropriate model
@@ -225,6 +219,11 @@ log_sum_exp <- function(x) {
 log_mean_exp <- function(x) {
   log_sum_exp(x) - log(length(x))
 }
+
+#' @name kfold
+#' @importFrom loo kfold
+#' @export
+loo::kfold
 
 #' @export
 print.kfold_ermod <- function(x, ...) {
