@@ -72,7 +72,7 @@ eval_ermod <- function(
   }
 
   if (eval_type == "kfold") {
-    cv_results <- run_kfold_cv(
+    cv_results <- kfold(
       ermod,
       newdata = data_to_use, k = k, seed = seed_kfold
     )

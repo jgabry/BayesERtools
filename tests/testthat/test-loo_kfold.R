@@ -61,22 +61,21 @@ ermod_bin_emax <-
     seed = 1
   ))
 
-if (.if_run_ex_eval_mod()) {
-  set.seed(1234)
-  kfold_ermod_bin_rstanarm <-
-    suppressMessages(rstanarm::kfold(extract_mod(ermod_bin), K = 3))
+set.seed(1234)
 
-  kfold_ermod_bin <- run_kfold_cv(ermod_bin, k = 3, seed = 1)
-  class(kfold_ermod_bin) <- c("kfold", "loo")
+kfold_ermod_bin <- kfold(ermod_bin, k = 3, seed = 1)
+kfold_ermod_bin_rstanarm <- suppressMessages(rstanarm::kfold(
+  extract_mod(ermod_bin),
+  K = 3,
+  folds = kfold_ermod_bin$d_truth$fold_id # Use the same fold
+))
 
-  loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
+comp <- loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
 
-  set.seed(1234)
-  cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
-  cv_results_emax <- suppressWarnings(
-    run_kfold_cv(ermod_emax_w_cov, k = 3, seed = 123)
-  )
-}
+set.seed(1234)
+kfold_ermod_emax <- suppressWarnings(
+  kfold(ermod_emax_w_cov, k = 3, seed = 123)
+)
 
 # Test ----------------------------------------------------------------------
 test_that("loo", {
@@ -102,23 +101,33 @@ test_that("loo", {
   expect_silent(loo::loo_compare(loo_ermod_bin, loo_ermod_bin_emax))
 })
 
-if (.if_run_ex_eval_mod()) {
+test_that("kfold", {
+  expect_gt(comp[[2,1]], -0.5)
+  expect_equal(
+    kfold_ermod_bin$estimates[, 1],
+    c(elpd_kfold = -38.242947, p_kfold = 3.040264, kfoldic = 76.485893)
+  )
+  expect_equal(
+    kfold_ermod_emax$estimates[, 1],
+    c(elpd_kfold = -218, p_kfold = 9, kfoldic = 435),
+    tolerance = 0.1
+  )
+})
 
-  # Test for other models are covered in test-eval_ermod.R with kfold-cv eval
-  test_that("binary model", {
-    expect_equal(
-      names(cv_results$d_truth),
-      c(".row", "truth", "fold_id")
-    )
-    expect_equal(
-      names(cv_results$d_sim),
-      c(".row", ".draw", "pred", "fold_id")
-    )
-    expect_equal(dim(cv_results$d_sim), c(100 * 1000, 4))
+# Test for other models are covered in test-eval_ermod.R with kfold-cv eval
+test_that("binary model", {
+  expect_equal(
+    names(kfold_ermod_bin$d_truth),
+    c(".row", "truth", "fold_id")
+  )
+  expect_equal(
+    names(kfold_ermod_bin$d_sim),
+    c(".row", ".draw", "pred", "fold_id")
+  )
+  expect_equal(dim(kfold_ermod_bin$d_sim), c(100 * 1000, 4))
 
-    out <- cli::cli_fmt({
-      print(cv_results)
-    })
-    expect_true(any(grepl("k-fold Cross-Validation for ermod object", out)))
+  out <- cli::cli_fmt({
+    print(kfold_ermod_bin)
   })
-}
+  expect_true(any(grepl("k-fold Cross-Validation for ermod object", out)))
+})

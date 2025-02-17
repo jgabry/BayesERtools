@@ -45,22 +45,31 @@ loo.ermod_bin_emax <- function(x, ...) {
   return(out)
 }
 
+
+#' @name kfold
+#' @importFrom loo kfold
+#' @export
+loo::kfold
+
 #' Run k-fold cross-validation
 #'
 #' This function performs k-fold cross-validation using the appropriate model
 #' development function based on the class of the `ermod` object.
-#' It is internally used by [eval_ermod()] and [kfold()].
+#' It is internally used by [eval_ermod()]. The output is compatible with
+#' `loo` ecosystem, e.g. it can be used for [loo::loo_compare()] function.
+#' See [loo::kfold()] for details.
 #'
-#' @param ermod An `ermod` object containing the model and data.
+#' @rdname kfold
+#' @param x An `ermod` object containing the model and data.
+#' @param k The number of folds for cross-validation. Default is 5.
 #' @param newdata Optional new dataset to use instead of the original data.
 #' Default is NULL.
-#' @param k The number of folds for cross-validation. Default is 5.
 #' @param seed Random seed for reproducibility. Default is NULL.
 #'
-#' @return A `kfold_cv_ermod` class object containing the fitted models and
+#' @return A `kfold_ermod` class object containing the fitted models and
 #' holdout predictions for each fold.
 #'
-#' @examplesIf BayesERtools:::.if_run_ex_eval_mod()
+#' @examples
 #' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -74,13 +83,15 @@ loo.ermod_bin_emax <- function(x, ...) {
 #'   iter = 1000
 #' )
 #'
-#' cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
+#' cv_results <- kfold(ermod_bin, k = 3, seed = 123)
 #'
 #' print(cv_results)
 #' }
 #'
 #' @export
-run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
+kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL) {
+  ermod <- x
+
   # Set seed for reproducibility
   if (!is.null(seed)) {
     rng_state_old <- .Random.seed
@@ -99,15 +110,10 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
     dplyr::mutate(.row_orig = dplyr::row_number())
 
   # Determine the model development function based on the class of the ermod
-  # Also, only calc log-likelihood for rstanemax models when
-  # rstanemax is > 0.1.8
-  if_calc_log_lik <- TRUE
   if (inherits(ermod, "ermod_emax")) {
     model_dev_fun <- dev_ermod_emax
-    if_calc_log_lik <- rlang::is_installed("rstanemax", version = "0.1.8.1")
   } else if (inherits(ermod, "ermod_bin_emax")) {
     model_dev_fun <- dev_ermod_bin_emax
-    if_calc_log_lik <- rlang::is_installed("rstanemax", version = "0.1.8.1")
   } else if (inherits(ermod, "ermod_lin")) {
     model_dev_fun <- dev_ermod_lin
   } else if (inherits(ermod, "ermod_bin")) {
@@ -149,10 +155,7 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
       dplyr::select(.row = .row_orig, .draw, pred = .epred) |>
       dplyr::mutate(fold_id = fold_id)
 
-    loglik_k <- NA
-    if (if_calc_log_lik) {
-      loglik_k <- rstanarm::log_lik(extract_mod(ermod_k), newdata = test_data)
-    }
+    loglik_k <- rstanarm::log_lik(extract_mod(ermod_k), newdata = test_data)
 
     list(
       ermod = ermod_k,
@@ -178,51 +181,52 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
   results$k <- k
 
   # Calc and sort elpds
-  if (if_calc_log_lik) {
-    elpds_unord <- unlist(lapply(results$loglik, function(x) {
-      apply(x, 2, rstanarm:::log_mean_exp)
-    }))
+  elpds_unord <- unlist(lapply(results$loglik, function(x) {
+    apply(x, 2, rstanarm:::log_mean_exp)
+  }))
 
-    order_test_id <- order(unlist(results$test_id))
-    elpds <- elpds_unord[order_test_id]
+  order_test_id <- order(unlist(results$test_id))
+  elpds <- elpds_unord[order_test_id]
 
-    # for computing effective number of parameters
-    ll_full <- rstanarm::log_lik(extract_mod(ermod))
-    lpds <- apply(ll_full, 2, rstanarm:::log_mean_exp)
-    ps <- lpds - elpds
+  # for computing effective number of parameters
+  ll_full <- rstanarm::log_lik(extract_mod(ermod))
+  lpds <- apply(ll_full, 2, rstanarm:::log_mean_exp)
+  ps <- lpds - elpds
 
-    pointwise <- cbind(elpd_kfold = elpds, p_kfold = ps, kfoldic = -2 * elpds)
-    est <- colSums(pointwise)
-    se_est <- sqrt(nrow(data) * apply(pointwise, 2, var))
+  pointwise <- cbind(elpd_kfold = elpds, p_kfold = ps, kfoldic = -2 * elpds)
+  est <- colSums(pointwise)
+  se_est <- sqrt(nrow(data) * apply(pointwise, 2, var))
 
-    estimates <- cbind(Estimate = est, SE = se_est)
-    rownames(estimates) <- colnames(pointwise)
+  estimates <- cbind(Estimate = est, SE = se_est)
+  rownames(estimates) <- colnames(pointwise)
 
-    results$estimates <- estimates
-    results$pointwise <- pointwise
+  results$estimates <- estimates
+  results$pointwise <- pointwise
 
-    y <- extract_data(ermod)[[extract_var_resp(ermod)]]
-    attributes(y) <- NULL
-    attr(results, "yhash") <- digest::sha1(y)
-  }
+  y <- extract_data(ermod)[[extract_var_resp(ermod)]]
+  attributes(y) <- NULL
+  attr(results, "yhash") <- digest::sha1(y)
 
-  results$if_calc_log_lik <- if_calc_log_lik
   results$loglik <- NULL
-  class(results) <- c("kfold_cv_ermod", "list")
+  class(results) <- c("kfold_ermod", "kfold", "loo")
   return(results)
 }
 
 
 #' @export
-print.kfold_cv_ermod <- function(x, ...) {
+print.kfold_ermod <- function(x, ...) {
   cli::cli({
     cli::cli_h1("k-fold Cross-Validation for ermod object")
     cli::cli_alert_info(paste(
       "Number of folds: ", x$k
     ))
-    cli::cli_h2("Structure of the object:")
+    cli::cli_h2("Structure of the object")
     cli::cli_li("$l_ermod: list of ermod objects")
     cli::cli_li("$d_truth: data frame with true response values")
     cli::cli_li("$d_sim: data frame with holdout predictions")
+    cli::cli_h2("elpd (used in `loo` package)")
+    loo:::print.loo(x) |>
+      utils::capture.output() |>
+      cli::cli_code()
   })
 }
