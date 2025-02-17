@@ -1,5 +1,3 @@
-# LOO -------------------------------------------------------------------------
-
 #' Efficient approximate leave-one-out cross-validation (LOO)
 #'
 #' See [loo::loo()] for details.

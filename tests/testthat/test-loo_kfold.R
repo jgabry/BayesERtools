@@ -61,20 +61,28 @@ ermod_bin_emax <-
     seed = 1
   ))
 
+if (.if_run_ex_eval_mod()) {
+  set.seed(1234)
+  kfold_ermod_bin_rstanarm <-
+    suppressMessages(rstanarm::kfold(extract_mod(ermod_bin), K = 3))
+
+  kfold_ermod_bin <- run_kfold_cv(ermod_bin, k = 3, seed = 1)
+  class(kfold_ermod_bin) <- c("kfold", "loo")
+
+  loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
+
+  set.seed(1234)
+  cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
+  cv_results_emax <- suppressWarnings(
+    run_kfold_cv(ermod_emax_w_cov, k = 3, seed = 123)
+  )
+}
+
 # Test ----------------------------------------------------------------------
 test_that("loo", {
   loo_ermod_bin <- loo(ermod_bin)
   loo_ermod_emax_w_cov <- suppressWarnings(loo(ermod_emax_w_cov))
   loo_ermod_bin_emax <- loo(ermod_bin_emax)
-
-  kfold_ermod_bin_rstanarm <-
-    suppressMessages(rstanarm::kfold(extract_mod(ermod_bin)))
-  kfold_ermod_bin <- run_kfold_cv(ermod_bin, k = 10)
-  class(kfold_ermod_bin) <- c("kfold", "loo")
-
-  kfold_ermod_bin_rstanarm
-  kfold_ermod_bin
-  loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
 
   expect_equal(
     loo_ermod_bin$estimates[, 1],
@@ -95,10 +103,6 @@ test_that("loo", {
 })
 
 if (.if_run_ex_eval_mod()) {
-  cv_results <- run_kfold_cv(ermod_bin, k = 3, seed = 123)
-  cv_results_emax <- suppressWarnings(
-    run_kfold_cv(ermod_emax_w_cov, k = 3, seed = 123)
-  )
 
   # Test for other models are covered in test-eval_ermod.R with kfold-cv eval
   test_that("binary model", {
