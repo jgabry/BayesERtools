@@ -3,11 +3,14 @@
 \name{kfold.ermod}
 \alias{kfold.ermod}
 \alias{kfold}
+\alias{extract_kfold_loo}
 \title{Run k-fold cross-validation}
 \usage{
 \method{kfold}{ermod}(x, k = 5, newdata = NULL, seed = NULL, ...)
 
 kfold(x, ...)
+
+extract_kfold_loo(kfold_ermod)
 }
 \arguments{
 \item{x}{An \code{ermod} object containing the model and data.}
@@ -20,10 +23,15 @@ Default is NULL.}
 \item{seed}{Random seed for reproducibility. Default is NULL.}
 
 \item{...}{Currently not used.}
+
+\item{kfold_ermod}{An object of class \code{kfold_ermod}}
 }
 \value{
-A \code{kfold_ermod} class object containing the fitted models and
-holdout predictions for each fold.
+\code{\link[=kfold]{kfold()}} returns \code{kfold_ermod} class object containing the fitted
+models and holdout predictions for each fold.
+
+\code{\link[=extract_kfold_loo]{extract_kfold_loo()}} returns  \code{c("kfold", "loo")} class object
+that works well with \code{loo} ecosystem
 }
 \description{
 This function performs k-fold cross-validation using the appropriate model

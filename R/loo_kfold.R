@@ -61,8 +61,8 @@ loo.ermod_bin_emax <- function(x, ...) {
 #' @param seed Random seed for reproducibility. Default is NULL.
 #' @param ... Currently not used.
 #'
-#' @return A `kfold_ermod` class object containing the fitted models and
-#' holdout predictions for each fold.
+#' @return [kfold()] returns `kfold_ermod` class object containing the fitted
+#' models and holdout predictions for each fold.
 #'
 #' @examples
 #' \donttest{
@@ -243,4 +243,15 @@ print.kfold_ermod <- function(x, ...) {
       utils::capture.output() |>
       cli::cli_code()
   })
+}
+
+
+#' @export
+#' @name kfold
+#' @param kfold_ermod An object of class `kfold_ermod` from [kfold()]
+#' @return [extract_kfold_loo()] returns  `c("kfold", "loo")` class object
+#' that works well with `loo` ecosystem
+extract_kfold_loo <- function(kfold_ermod) {
+  class(kfold_ermod) <- c("kfold", "loo")
+  return(kfold_ermod)
 }

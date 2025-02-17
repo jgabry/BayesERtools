@@ -109,6 +109,10 @@ test_that("kfold", {
     kfold_ermod_bin$estimates[, 1],
     c(elpd_kfold = -38.242947, p_kfold = 3.040264, kfoldic = 76.485893)
   )
+  expect_equal(
+    class(extract_kfold_loo(kfold_ermod_bin)),
+    c("kfold", "loo")
+  )
 
   if (.if_run_ex_eval_mod()) {
     expect_equal(
