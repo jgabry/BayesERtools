@@ -151,20 +151,26 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
 
     combined_test_id <- unlist(results$test_id)
     order_test_id <- order(combined_test_id)
-    elpds_sorted <- elpds_unord[order_test_id]
+    elpds <- elpds_unord[order_test_id]
 
-    estimates <- matrix(NA, 1, 2)
-    rownames(estimates) <- "elpd_kfold"
-    colnames(estimates) <- c("Estimate", "SE")
+    # for computing effective number of parameters
+    ll_full <- rstanarm::log_lik(extract_mod(ermod))
+    lpds <- apply(ll_full, 2, rstanarm:::log_mean_exp)
+    ps <- lpds - elpds
 
-    estimates[[1]] <- sum(elpds_sorted)
-    estimates[[2]] <- sqrt(var(elpds_sorted) * nrow(data))
+    pointwise <- cbind(elpd_kfold = elpds, p_kfold = ps, kfoldic = -2 * elpds)
+    est <- colSums(pointwise)
+    se_est <- sqrt(nrow(data) * apply(pointwise, 2, var))
 
-    pointwise <- matrix(elpds_sorted)
-    colnames(pointwise) <- "elpd_kfold"
+    estimates = cbind(Estimate = est, SE = se_est)
+    rownames(estimates) <- colnames(pointwise)
 
     results$estimates <- estimates
     results$pointwise <- pointwise
+
+    y <- extract_data(ermod)[[extract_var_resp(ermod)]]
+    attributes(y) <- NULL
+    attr(results, "yhash") <- digest::sha1(y)
   }
 
   results$if_calc_log_lik <- if_calc_log_lik

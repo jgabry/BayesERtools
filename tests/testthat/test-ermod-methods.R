@@ -66,8 +66,15 @@ test_that("loo", {
   loo_ermod_bin <- loo(ermod_bin)
   loo_ermod_emax_w_cov <- suppressWarnings(loo(ermod_emax_w_cov))
   loo_ermod_bin_emax <- loo(ermod_bin_emax)
-  kfold_ermod_bin <- run_kfold_cv(ermod_bin)
+
+  kfold_ermod_bin_rstanarm <-
+    suppressMessages(rstanarm::kfold(extract_mod(ermod_bin)))
+  kfold_ermod_bin <- run_kfold_cv(ermod_bin, k = 10)
   class(kfold_ermod_bin) <- c("kfold", "loo")
+
+  kfold_ermod_bin_rstanarm
+  kfold_ermod_bin
+  loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
 
   expect_equal(
     loo_ermod_bin$estimates[, 1],
