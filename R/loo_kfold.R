@@ -65,6 +65,7 @@ loo::kfold
 #' @param newdata Optional new dataset to use instead of the original data.
 #' Default is NULL.
 #' @param seed Random seed for reproducibility. Default is NULL.
+#' @param ... Currently not used.
 #'
 #' @return A `kfold_ermod` class object containing the fitted models and
 #' holdout predictions for each fold.
@@ -89,7 +90,7 @@ loo::kfold
 #' }
 #'
 #' @export
-kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL) {
+kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
   ermod <- x
 
   # Set seed for reproducibility
@@ -182,7 +183,7 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL) {
 
   # Calc and sort elpds
   elpds_unord <- unlist(lapply(results$loglik, function(x) {
-    apply(x, 2, rstanarm:::log_mean_exp)
+    apply(x, 2, log_mean_exp)
   }))
 
   order_test_id <- order(unlist(results$test_id))
@@ -190,12 +191,12 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL) {
 
   # for computing effective number of parameters
   ll_full <- rstanarm::log_lik(extract_mod(ermod))
-  lpds <- apply(ll_full, 2, rstanarm:::log_mean_exp)
+  lpds <- apply(ll_full, 2, log_mean_exp)
   ps <- lpds - elpds
 
   pointwise <- cbind(elpd_kfold = elpds, p_kfold = ps, kfoldic = -2 * elpds)
   est <- colSums(pointwise)
-  se_est <- sqrt(nrow(data) * apply(pointwise, 2, var))
+  se_est <- sqrt(nrow(data) * apply(pointwise, 2, stats::var))
 
   estimates <- cbind(Estimate = est, SE = se_est)
   rownames(estimates) <- colnames(pointwise)
@@ -212,9 +213,21 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL) {
   return(results)
 }
 
+# more stable than log(sum(exp(x)))
+log_sum_exp <- function(x) {
+  max_x <- max(x)
+  max_x + log(sum(exp(x - max_x)))
+}
+
+# more stable than log(mean(exp(x)))
+log_mean_exp <- function(x) {
+  log_sum_exp(x) - log(length(x))
+}
 
 #' @export
 print.kfold_ermod <- function(x, ...) {
+  class(x) <- c("kfold", "loo") # Needed for print to work
+
   cli::cli({
     cli::cli_h1("k-fold Cross-Validation for ermod object")
     cli::cli_alert_info(paste(
@@ -225,7 +238,7 @@ print.kfold_ermod <- function(x, ...) {
     cli::cli_li("$d_truth: data frame with true response values")
     cli::cli_li("$d_sim: data frame with holdout predictions")
     cli::cli_h2("elpd (used in `loo` package)")
-    loo:::print.loo(x) |>
+    print(x) |>
       utils::capture.output() |>
       cli::cli_code()
   })

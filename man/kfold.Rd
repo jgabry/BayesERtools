@@ -7,10 +7,12 @@
 \usage{
 kfold(x, ...)
 
-\method{kfold}{ermod}(x, k = 5, newdata = NULL, seed = NULL)
+\method{kfold}{ermod}(x, k = 5, newdata = NULL, seed = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{ermod} object containing the model and data.}
+
+\item{...}{Currently not used.}
 
 \item{k}{The number of folds for cross-validation. Default is 5.}
 

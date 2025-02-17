@@ -72,10 +72,12 @@ kfold_ermod_bin_rstanarm <- suppressMessages(rstanarm::kfold(
 
 comp <- loo::loo_compare(kfold_ermod_bin_rstanarm, kfold_ermod_bin)
 
-set.seed(1234)
-kfold_ermod_emax <- suppressWarnings(
-  kfold(ermod_emax_w_cov, k = 3, seed = 123)
-)
+if (.if_run_ex_eval_mod()) {
+  set.seed(1234)
+  kfold_ermod_emax <- suppressWarnings(
+    kfold(ermod_emax_w_cov, k = 3, seed = 123)
+  )
+}
 
 # Test ----------------------------------------------------------------------
 test_that("loo", {
@@ -102,16 +104,19 @@ test_that("loo", {
 })
 
 test_that("kfold", {
-  expect_gt(comp[[2,1]], -0.5)
+  expect_gt(comp[[2, 1]], -0.5)
   expect_equal(
     kfold_ermod_bin$estimates[, 1],
     c(elpd_kfold = -38.242947, p_kfold = 3.040264, kfoldic = 76.485893)
   )
-  expect_equal(
-    kfold_ermod_emax$estimates[, 1],
-    c(elpd_kfold = -218, p_kfold = 9, kfoldic = 435),
-    tolerance = 0.1
-  )
+
+  if (.if_run_ex_eval_mod()) {
+    expect_equal(
+      kfold_ermod_emax$estimates[, 1],
+      c(elpd_kfold = -218, p_kfold = 9, kfoldic = 435),
+      tolerance = 0.1
+    )
+  }
 })
 
 # Test for other models are covered in test-eval_ermod.R with kfold-cv eval
