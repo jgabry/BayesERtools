@@ -81,8 +81,6 @@ loo.ermod_bin_emax <- function(x, ...) {
 #'
 #' @export
 run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
-  rlang::check_installed("rsample")
-
   # Set seed for reproducibility
   if (!is.null(seed)) {
     rng_state_old <- .Random.seed
@@ -118,17 +116,13 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
     stop("Unsupported model class")
   }
 
-  # Create k-fold cross-validation splits
-  folds <- rsample::vfold_cv(data, v = k)
+  # Create k-fold cross-validation splits manually
+  fold_ids <- sample(rep(1:k, length.out = nrow(data)))
 
-  # Function to fit the model and make predictions
-  fit_and_sim <- function(split, fold_id) {
-    # Extract analysis and assessment data
-    train_data <- rsample::analysis(split)
-    test_data <- rsample::assessment(split)
-    test_id <- rsample::complement(split)
+  fit_and_sim <- function(fold_id) {
+    train_data <- data[fold_ids != fold_id, ]
+    test_data <- data[fold_ids == fold_id, ]
 
-    # Prepare arguments for the model development function
     dev_args <- c(
       list(
         data = train_data,
@@ -164,32 +158,23 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
       ermod = ermod_k,
       d_truth = d_truth_k,
       d_sim = d_sim_k,
-      test_id = test_id,
+      test_id = which(fold_ids == fold_id),
       loglik = loglik_k
     )
   }
 
-  # Apply the fit_and_sim function to each fold
-  results <- purrr::map2(folds$splits, seq_along(folds$splits), fit_and_sim)
-
-  # Reformat so that the results are easier to access
+  results <- purrr::map(1:k, fit_and_sim)
   results <- purrr::list_transpose(results)
-
-  # Rename ermod to l_ermod
   results$l_ermod <- results$ermod
   results$ermod <- NULL
 
-  # row_bind the results together for d_truth and d_sim
-  results$d_truth <-
-    dplyr::bind_rows(results$d_truth) |>
+  results$d_truth <- dplyr::bind_rows(results$d_truth) |>
     dplyr::arrange(.row) |>
     dplyr::group_by(fold_id)
-  results$d_sim <-
-    dplyr::bind_rows(results$d_sim) |>
+  results$d_sim <- dplyr::bind_rows(results$d_sim) |>
     dplyr::arrange(.row) |>
     dplyr::group_by(fold_id, .row)
 
-  # Store metadata
   results$k <- k
 
   # Calc and sort elpds
@@ -198,8 +183,7 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
       apply(x, 2, rstanarm:::log_mean_exp)
     }))
 
-    combined_test_id <- unlist(results$test_id)
-    order_test_id <- order(combined_test_id)
+    order_test_id <- order(unlist(results$test_id))
     elpds <- elpds_unord[order_test_id]
 
     # for computing effective number of parameters
@@ -224,12 +208,10 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
 
   results$if_calc_log_lik <- if_calc_log_lik
   results$loglik <- NULL
-
-  # Assign class
   class(results) <- c("kfold_cv_ermod", "list")
-
   return(results)
 }
+
 
 #' @export
 print.kfold_cv_ermod <- function(x, ...) {
