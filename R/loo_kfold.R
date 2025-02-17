@@ -113,8 +113,10 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
   # Determine the model development function based on the class of the ermod
   if (inherits(ermod, "ermod_emax")) {
     model_dev_fun <- dev_ermod_emax
+    rlang::check_installed("rstanemax", version = "0.1.9")
   } else if (inherits(ermod, "ermod_bin_emax")) {
     model_dev_fun <- dev_ermod_bin_emax
+    rlang::check_installed("rstanemax", version = "0.1.9")
   } else if (inherits(ermod, "ermod_lin")) {
     model_dev_fun <- dev_ermod_lin
   } else if (inherits(ermod, "ermod_bin")) {
