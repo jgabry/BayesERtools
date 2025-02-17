@@ -1,9 +1,3 @@
-# TODO: see if the model works when not all the factor levels
-# are present in the training dataset
-
-# TODO: Warn when newdata in sim_er has categorical covariate with
-# new levels not present in the training dataset
-
 #' Run k-fold cross-validation
 #'
 #' This function performs k-fold cross-validation using the appropriate model
@@ -43,6 +37,8 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
 
   # Set seed for reproducibility
   if (!is.null(seed)) {
+    rng_state_old <- .Random.seed
+    on.exit(assign(".Random.seed", rng_state_old, envir = .GlobalEnv))
     set.seed(seed)
   }
 
@@ -57,10 +53,15 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
     dplyr::mutate(.row_orig = dplyr::row_number())
 
   # Determine the model development function based on the class of the ermod
+  # Also, only calc log-likelihood for rstanemax models when
+  # rstanemax is > 0.1.8
+  if_calc_log_lik <- TRUE
   if (inherits(ermod, "ermod_emax")) {
     model_dev_fun <- dev_ermod_emax
+    if_calc_log_lik <- rlang::is_installed("rstanemax", version = "0.1.8.1")
   } else if (inherits(ermod, "ermod_bin_emax")) {
     model_dev_fun <- dev_ermod_bin_emax
+    if_calc_log_lik <- rlang::is_installed("rstanemax", version = "0.1.8.1")
   } else if (inherits(ermod, "ermod_lin")) {
     model_dev_fun <- dev_ermod_lin
   } else if (inherits(ermod, "ermod_bin")) {
@@ -77,6 +78,7 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
     # Extract analysis and assessment data
     train_data <- rsample::analysis(split)
     test_data <- rsample::assessment(split)
+    test_id <- rsample::complement(split)
 
     # Prepare arguments for the model development function
     dev_args <- c(
@@ -105,10 +107,16 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
       dplyr::select(.row = .row_orig, .draw, pred = .epred) |>
       dplyr::mutate(fold_id = fold_id)
 
+    loglik_k <- NA
+    if(if_calc_log_lik)
+      loglik_k <- rstanarm::log_lik(extract_mod(ermod_k), newdata = test_data)
+
     list(
       ermod = ermod_k,
       d_truth = d_truth_k,
-      d_sim = d_sim_k
+      d_sim = d_sim_k,
+      test_id = test_id,
+      loglik = loglik_k
     )
   }
 
@@ -134,6 +142,33 @@ run_kfold_cv <- function(ermod, newdata = NULL, k = 5, seed = NULL) {
 
   # Store metadata
   results$k <- k
+
+  # Calc and sort elpds
+  if(if_calc_log_lik) {
+    elpds_unord <- unlist(lapply(results$loglik, function(x) {
+      apply(x, 2, rstanarm:::log_mean_exp)
+    }))
+
+    combined_test_id <- unlist(results$test_id)
+    order_test_id <- order(combined_test_id)
+    elpds_sorted <- elpds_unord[order_test_id]
+
+    estimates <- matrix(NA, 1, 2)
+    rownames(estimates) <- "elpd_kfold"
+    colnames(estimates) <- c("Estimate", "SE")
+
+    estimates[[1]] <- sum(elpds_sorted)
+    estimates[[2]] <- sqrt(var(elpds_sorted) * nrow(data))
+
+    pointwise <- matrix(elpds_sorted)
+    colnames(pointwise) <- "elpd_kfold"
+
+    results$estimates <- estimates
+    results$pointwise <- pointwise
+  }
+
+  results$if_calc_log_lik <- if_calc_log_lik
+  results$loglik <- NULL
 
   # Assign class
   class(results) <- c("kfold_cv_ermod", "list")
