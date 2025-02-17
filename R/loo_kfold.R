@@ -1,7 +1,58 @@
+
+# LOO -------------------------------------------------------------------------
+
+#' Efficient approximate leave-one-out cross-validation (LOO)
+#'
+#' See [loo::loo()] for details.
+#'
+#' @name loo
+#' @param x An object of class `ermod`
+#' @param ... Additional arguments passed to `loo::loo()`
+#' @importFrom loo loo
+#'
+#' @return An object of class `loo`
+#' @export
+loo::loo
+
+#' @rdname loo
+#' @export
+loo.ermod <- function(x, ...) {
+  loo::loo(x$mod, ...)
+}
+
+#' @rdname loo
+#' @export
+loo.ermod_emax <- function(x, ...) {
+  rlang::check_installed("digest")
+
+  out <- loo::loo(x$mod$stanfit, ...)
+
+  y <- x$mod$standata$response
+  attributes(y) <- NULL
+  attr(out, "yhash") <- digest::sha1(y)
+
+  return(out)
+}
+
+#' @rdname loo
+#' @export
+loo.ermod_bin_emax <- function(x, ...) {
+  rlang::check_installed("digest")
+
+  out <- loo::loo(x$mod$stanfit, ...)
+
+  y <- x$mod$standata$response
+  attributes(y) <- NULL
+  attr(out, "yhash") <- digest::sha1(y)
+
+  return(out)
+}
+
 #' Run k-fold cross-validation
 #'
 #' This function performs k-fold cross-validation using the appropriate model
 #' development function based on the class of the `ermod` object.
+#' It is internally used by [eval_ermod()] and [kfold()].
 #'
 #' @param ermod An `ermod` object containing the model and data.
 #' @param newdata Optional new dataset to use instead of the original data.
