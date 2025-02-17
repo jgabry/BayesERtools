@@ -46,7 +46,8 @@ reference:
 - title: 'Step 4: Model evaluation'
 - contents:
   - eval_ermod
-  - run_kfold_cv
+  - loo
+  - kfold
 - title: 'Other post-processing functions'
 - subtitle: Covariate selection
   contents:
@@ -61,7 +62,6 @@ reference:
 - subtitle: Others
   contents:
   - as_draws
-  - loo
   - starts_with("prior_summary")
   - starts_with("p_direction")
 - title: 'Utility functions'

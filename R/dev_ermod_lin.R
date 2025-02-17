@@ -66,18 +66,19 @@ dev_ermod_bin <- function(
       paste(var_resp, "~", paste(var_full, collapse = " + "))
     )
 
-
-  mod <- rstanarm::stan_glm(
-    formula_final,
+  # Need to construct call and then evaluate. Directly calling
+  # rstanarm::stan_glm with formula_final does not work for the cross-validation
+  call_stan_glm <- rlang::call2(
+    rstanarm::stan_glm,
+    formula = formula_final,
     family = stats::binomial(),
-    data = data,
+    data = quote(data),
     prior = prior,
     prior_intercept = prior_intercept,
     QR = dplyr::if_else(length(var_full) > 1, TRUE, FALSE),
-    refresh = refresh,
-    chains = chains,
-    iter = iter
+    refresh = refresh, chains = chains, iter = iter
   )
+  mod <- eval(call_stan_glm)
 
   new_ermod_bin(
     mod = mod,

@@ -239,56 +239,6 @@ extract_coef_exp_ci <- function(x, ci_width = 0.95) {
   return(coef_exp_ci)
 }
 
-
-# LOO -------------------------------------------------------------------------
-
-#' Efficient approximate leave-one-out cross-validation (LOO)
-#'
-#' See [loo::loo()] for details.
-#'
-#' @name loo
-#' @param x An object of class `ermod`
-#' @param ... Additional arguments passed to `loo::loo()`
-#' @importFrom loo loo
-#'
-#' @return An object of class `loo`
-#' @export
-loo::loo
-
-#' @rdname loo
-#' @export
-loo.ermod <- function(x, ...) {
-  loo::loo(x$mod, ...)
-}
-
-#' @rdname loo
-#' @export
-loo.ermod_emax <- function(x, ...) {
-  rlang::check_installed("digest")
-
-  out <- loo::loo(x$mod$stanfit, ...)
-
-  y <- x$mod$standata$response
-  attributes(y) <- NULL
-  attr(out, "yhash") <- digest::sha1(y)
-
-  return(out)
-}
-
-#' @rdname loo
-#' @export
-loo.ermod_bin_emax <- function(x, ...) {
-  rlang::check_installed("digest")
-
-  out <- loo::loo(x$mod$stanfit, ...)
-
-  y <- x$mod$standata$response
-  attributes(y) <- NULL
-  attr(out, "yhash") <- digest::sha1(y)
-
-  return(out)
-}
-
 # as_draws --------------------------------------------------------------------
 
 #' Transform to `draws` objects

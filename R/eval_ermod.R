@@ -72,7 +72,7 @@ eval_ermod <- function(
   }
 
   if (eval_type == "kfold") {
-    cv_results <- run_kfold_cv(
+    cv_results <- kfold(
       ermod,
       newdata = data_to_use, k = k, seed = seed_kfold
     )
@@ -134,5 +134,6 @@ eval_ermod <- function(
 
 .if_run_ex_eval_mod <- function() {
   requireNamespace("rsample", quietly = TRUE) &&
-    requireNamespace("yardstick", quietly = TRUE)
+    requireNamespace("yardstick", quietly = TRUE) &&
+    rlang::is_installed("rstanemax", version = "0.1.9")
 }
