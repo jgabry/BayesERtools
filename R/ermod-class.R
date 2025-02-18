@@ -315,8 +315,52 @@ new_ermod_bin_emax_exp_sel <- function(l_ermod_exp_sel) {
   )
 }
 
+#' Class constructor for the linear mixed effect model
+#'
+#' @noRd
+#' @param mod The fitted model
+#' @param data The data used for fitting the model
+#' @param var_resp Name of the response variable
+#' @param var_exposure Name of the exposure variable
+#' @param var_cov Names of the covariate variables
+#' @param var_random Name of the random effect variable
+#' @param random_effect_type Type of random effect ("both", "intercept", "slope")
+#' @param input_args List of input arguments
+new_ermod_lme <- function(
+    mod,
+    data,
+    var_resp = character(),
+    var_exposure = character(),
+    var_cov = NULL,
+    var_random = character(),
+    random_effect_type = character(),
+    input_args = list()
+) {
+  check_input_new_ermod(
+    mod = mod, data = data, var_resp = var_resp,
+    var_exposure = var_exposure, var_cov = var_cov,
+    var_random = var_random, input_args = input_args,
+    basemodclass = "stanreg"
+  )
+
+  structure(
+      list(
+          mod = mod,
+          data = data,
+          var_resp = var_resp,
+          var_exposure = var_exposure,
+          var_cov = var_cov,
+          var_random = var_random,
+          random_effect_type = random_effect_type,
+          input_args = input_args
+      ),
+      class = c("ermod_lme", "ermod")
+  )
+}
+
 # utils -----------------------------------------------------------------------
 
+# Function to check the inputs for the new ermod linear mixed model
 check_input_new_ermod <- function(
     mod,
     data,
@@ -325,6 +369,7 @@ check_input_new_ermod <- function(
     var_exp_candidates = character(),
     var_cov_candidates = character(),
     var_cov = character(),
+    var_random = character(),
     l_var_cov = NULL,
     var_selected = character(),
     l_mod_exposures = NULL,
@@ -339,6 +384,7 @@ check_input_new_ermod <- function(
   stopifnot(is.character(var_exposure))
   stopifnot(is.null(var_exp_candidates) || is.character(var_exp_candidates))
   stopifnot(is.null(var_cov) || is.character(var_cov))
+  stopifnot(is.character(var_random))
   stopifnot(is.null(l_var_cov) || is.list(l_var_cov))
   stopifnot(is.character(var_cov_candidates))
   stopifnot(is.character(var_selected))
