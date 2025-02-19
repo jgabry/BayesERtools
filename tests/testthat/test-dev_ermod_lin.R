@@ -432,7 +432,8 @@ test_that("test for errors and warnings", {
   if (requireNamespace("projpred")) {
     .select_cov_projpred(
       var_exposure = c("AUC", "Cmax"),
-      validate_search = TRUE) |>
+      validate_search = TRUE
+    ) |>
       expect_error(
         "Only one exposure metric should be provided"
       )
@@ -440,7 +441,8 @@ test_that("test for errors and warnings", {
       var_exposure = "AUC",
       var_cov_candidates = "cov",
       cv_method = "LOO",
-      validate_search = TRUE) |>
+      validate_search = TRUE
+    ) |>
       expect_error(
         "validate_search should be set to FALSE for LOO,"
       )

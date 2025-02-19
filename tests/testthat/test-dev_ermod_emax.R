@@ -226,4 +226,3 @@ test_that("checking e0_fix and emax_fix in dev_ermod_bin_emax", {
     ) |>
     expect_error()
 })
-

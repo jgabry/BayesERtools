@@ -204,9 +204,9 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
   return(results)
 }
 
-logmeanexp <- function(x){
+logmeanexp <- function(x) {
   xmax <- which.max(x)
-  log1p(sum(exp(x[-xmax]-x[xmax]))) + x[xmax] - log(length(x))
+  log1p(sum(exp(x[-xmax] - x[xmax]))) + x[xmax] - log(length(x))
 }
 
 #' @name kfold
