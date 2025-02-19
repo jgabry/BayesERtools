@@ -177,7 +177,7 @@ ermod_lin_exp_sel <- suppressMessages(dev_ermod_lin_exp_sel(
 
 
 if (requireNamespace("projpred")) {
-  ermod_lin_cov_sel <- suppressWarnings(dev_ermod_lin_cov_sel(
+  ermod_lin_cov_sel <- suppressMessages(suppressWarnings(dev_ermod_lin_cov_sel(
     data = d_sim_lin,
     var_resp = "response",
     var_exposure = "AUCss",
@@ -185,10 +185,10 @@ if (requireNamespace("projpred")) {
     nterms_max = 2,
     prior = rstanarm::normal(location = 0, scale = 5, autoscale = TRUE),
     prior_aux = rstanarm::exponential(rate = 6, autoscale = TRUE),
-    verbosity_level = 0,
+    verbosity_level = 1,
     chains = 2,
     iter = 1000
-  ))
+  )))
 }
 
 # Convert factor as response variable into number
@@ -425,5 +425,24 @@ test_that("plot.ermod_exp_sel calls plot_er_exp_sel", {
 test_that("plot.ermod_cov_sel calls plot_submod_performance", {
   if (requireNamespace("projpred")) {
     expect_silent(plot.ermod_cov_sel(ermod_lin_cov_sel))
+  }
+})
+
+test_that("test for errors and warnings", {
+  if (requireNamespace("projpred")) {
+    .select_cov_projpred(
+      var_exposure = c("AUC", "Cmax"),
+      validate_search = TRUE) |>
+      expect_error(
+        "Only one exposure metric should be provided"
+      )
+    .select_cov_projpred(
+      var_exposure = "AUC",
+      var_cov_candidates = "cov",
+      cv_method = "LOO",
+      validate_search = TRUE) |>
+      expect_error(
+        "validate_search should be set to FALSE for LOO,"
+      )
   }
 })

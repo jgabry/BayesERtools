@@ -24,7 +24,7 @@ Default is NULL.}
 
 \item{...}{Currently not used.}
 
-\item{kfold_ermod}{An object of class \code{kfold_ermod}}
+\item{kfold_ermod}{An object of class \code{kfold_ermod} from \code{\link[=kfold]{kfold()}}}
 }
 \value{
 \code{\link[=kfold]{kfold()}} returns \code{kfold_ermod} class object containing the fitted

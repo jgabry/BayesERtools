@@ -175,17 +175,14 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
 
   results$k <- k
 
-  # Calc and sort elpds
-  elpds_unord <- unlist(lapply(results$loglik, function(x) {
-    apply(x, 2, log_mean_exp)
-  }))
-
+  loglik <- do.call(cbind, results$loglik)
+  elpds_unord <- apply(loglik, 2, logmeanexp)
   order_test_id <- order(unlist(results$test_id))
   elpds <- elpds_unord[order_test_id]
 
   # for computing effective number of parameters
-  ll_full <- rstanarm::log_lik(extract_mod(ermod))
-  lpds <- apply(ll_full, 2, log_mean_exp)
+  loglik_orig <- rstanarm::log_lik(extract_mod(ermod))
+  lpds <- apply(loglik_orig, 2, logmeanexp)
   ps <- lpds - elpds
 
   pointwise <- cbind(elpd_kfold = elpds, p_kfold = ps, kfoldic = -2 * elpds)
@@ -207,15 +204,9 @@ kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
   return(results)
 }
 
-# more stable than log(sum(exp(x)))
-log_sum_exp <- function(x) {
-  max_x <- max(x)
-  max_x + log(sum(exp(x - max_x)))
-}
-
-# more stable than log(mean(exp(x)))
-log_mean_exp <- function(x) {
-  log_sum_exp(x) - log(length(x))
+logmeanexp <- function(x){
+  xmax <- which.max(x)
+  log1p(sum(exp(x[-xmax]-x[xmax]))) + x[xmax] - log(length(x))
 }
 
 #' @name kfold
