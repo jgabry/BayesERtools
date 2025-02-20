@@ -64,7 +64,7 @@ loo.ermod_bin_emax <- function(x, ...) {
 #' @return [kfold()] returns `kfold_ermod` class object containing the fitted
 #' models and holdout predictions for each fold.
 #'
-#' @examples
+#' @examplesIf BayesERtools:::.if_run_ex_eval_mod()
 #' \donttest{
 #' data(d_sim_binom_cov_hgly2)
 #'
@@ -85,6 +85,8 @@ loo.ermod_bin_emax <- function(x, ...) {
 #'
 #' @export
 kfold.ermod <- function(x, k = 5, newdata = NULL, seed = NULL, ...) {
+  rlang::check_installed("digest")
+
   ermod <- x
 
   # Set seed for reproducibility
