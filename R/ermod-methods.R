@@ -249,7 +249,7 @@ extract_coef_exp_ci <- function(
           mod$coef_exp_draws,
           c(0.5 - ci_width / 2, 0.5 + ci_width / 2)
         ) |>
-          setNames(c(".lower", ".upper"))
+          stats::setNames(c(".lower", ".upper"))
       }
     )
 
