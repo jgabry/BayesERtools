@@ -219,22 +219,50 @@ extract_var_selected.ermod_cov_sel <- function(x) x$var_selected
 #' @export
 #' @param x An object of class `ermod_bin` or `ermod_lin`
 #' @param ci_width Width of the credible interval
+#' @param exp_candidates Logical, whether to extract the credible interval for
+#' all exposure candidates. Default is `FALSE`. Only supported for models with
+#' exposure selection, created with [dev_ermod_bin_exp_sel()] or
+#' [dev_ermod_lin_exp_sel()] functions.
 #' @return A named vector of length 2 with the lower and upper bounds of the
-#'  credible interval (.lower, .upper)
+#'  credible interval (.lower, .upper). If `exp_candidates = TRUE`, a matrix
+#'  with the same structure is returned, with each row corresponding to an
+#'  exposure candidate.
 #'
-extract_coef_exp_ci <- function(x, ci_width = 0.95) {
+extract_coef_exp_ci <- function(
+    x, ci_width = 0.95, exp_candidates = FALSE) {
   # Check that input x is linear ermod object
   if (!inherits(x, c("ermod_bin", "ermod_lin"))) {
     stop("extract_coef_exp_ci() only supported for linear models")
   }
+  if (exp_candidates && !inherits(x, "ermod_exp_sel")) {
+    stop(
+      "exp_candidates = TRUE only supported for",
+      " models with exposure selection"
+    )
+  }
 
-  coef_exp_ci <-
-    stats::quantile(
-      x$coef_exp_draws,
-      c(0.5 - ci_width / 2, 0.5 + ci_width / 2)
+  if (exp_candidates) {
+    coef_exp_ci <- lapply(
+      x$l_mod_exposures,
+      function(mod) {
+        stats::quantile(
+          mod$coef_exp_draws,
+          c(0.5 - ci_width / 2, 0.5 + ci_width / 2)
+        ) |>
+          setNames(c(".lower", ".upper"))
+      }
     )
 
-  names(coef_exp_ci) <- c(".lower", ".upper")
+    coef_exp_ci <- do.call(rbind, coef_exp_ci)
+  } else {
+    coef_exp_ci <-
+      stats::quantile(
+        x$coef_exp_draws,
+        c(0.5 - ci_width / 2, 0.5 + ci_width / 2)
+      )
+
+    names(coef_exp_ci) <- c(".lower", ".upper")
+  }
 
   return(coef_exp_ci)
 }

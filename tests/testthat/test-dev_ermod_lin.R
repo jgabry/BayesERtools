@@ -448,3 +448,11 @@ test_that("test for errors and warnings", {
       )
   }
 })
+
+test_that("extract_coef_exp_ci for exp_candidates", {
+  extract_coef_exp_ci(ermod_bin_exp_sel, exp_candidates = TRUE) |>
+    dim() |>
+    expect_equal(c(3, 2))
+  extract_coef_exp_ci(ermod_lin, exp_candidates = TRUE) |>
+    expect_error("exp_candidates = TRUE only supported")
+})

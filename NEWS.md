@@ -8,6 +8,8 @@
 ## Minor changes
 
 * Enable setting the prior distribution for linear models
+* Added `exp_candidates` argument to `extract_coef_exp_ci()` function to allow
+  for the extraction of coefficients from all candidate models
 * Update package dependencies
 
 # BayesERtools 0.2.1
