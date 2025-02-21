@@ -41,7 +41,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_coef_exp_ci</span><span class="op">(</span><span class="va">x</span>, ci_width <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_coef_exp_ci</span><span class="op">(</span><span class="va">x</span>, ci_width <span class="op">=</span> <span class="fl">0.95</span>, exp_candidates <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -55,11 +55,20 @@
 <dt id="arg-ci-width">ci_width<a class="anchor" aria-label="anchor" href="#arg-ci-width"></a></dt>
 <dd><p>Width of the credible interval</p></dd>
 
+
+<dt id="arg-exp-candidates">exp_candidates<a class="anchor" aria-label="anchor" href="#arg-exp-candidates"></a></dt>
+<dd><p>Logical, whether to extract the credible interval for
+all exposure candidates. Default is <code>FALSE</code>. Only supported for models with
+exposure selection, created with <code><a href="dev_ermod_bin_exp_sel.html">dev_ermod_bin_exp_sel()</a></code> or
+<code><a href="dev_ermod_bin_exp_sel.html">dev_ermod_lin_exp_sel()</a></code> functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A named vector of length 2 with the lower and upper bounds of the
-credible interval (.lower, .upper)</p>
+credible interval (.lower, .upper). If <code>exp_candidates = TRUE</code>, a matrix
+with the same structure is returned, with each row corresponding to an
+exposure candidate.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
