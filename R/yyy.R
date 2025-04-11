@@ -107,3 +107,32 @@ if (getRversion() >= "2.15.1") {
 #' @examples
 #' d_sim_lin
 "d_sim_lin"
+
+
+
+#' Sample simulated data for Emax exposure-response models with covariates.
+#'
+#' @name d_sim_emax_3cov
+#' @format A data frame with columns:
+#' \describe{
+#' \item{dose}{Nominal dose, units specified}
+#' \item{exposure}{Exposure value, units and metric not specified}
+#' \item{cov_a}{Continuous valued covariate}
+#' \item{cov_b}{Continuous valued covariate}
+#' \item{cov_c}{Continuous valued covariate}
+#' \item{response}{Response value (continuous for `d_sim_emax_3cov`, binary for `d_sim_emax_bin_3cov`)}
+#' }
+#' @details
+#'
+#' This simulated dataset is...
+#'
+#' You can find the data generating code in the package source code,
+#' under `data-raw/d_sim_emax_3cov.R`.
+#'
+#' @examples
+#' d_sim_emax_3cov
+#' d_sim_emax_bin_3cov
+"d_sim_emax_3cov"
+
+#' @rdname d_sim_emax_3cov
+"d_sim_emax_bin_3cov"
