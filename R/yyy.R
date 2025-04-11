@@ -136,3 +136,48 @@ if (getRversion() >= "2.15.1") {
 
 #' @rdname d_sim_emax_3cov
 "d_sim_emax_bin_3cov"
+
+
+#' Sample simulated data for Emax exposure-response models with no covariates.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#' \item{Conc}{Concentration}
+#' \item{Y}{Response}
+#' }
+#' @details
+#'
+#' This simulated dataset is...
+#'
+#' You can find the data generating code in the package source code,
+#' under `data-raw/d_sim_emax.R`.
+#'
+#' @examples
+#' d_sim_emax_nocov
+"d_sim_emax_nocov"
+
+
+#' Sample simulated data for Emax exposure-response models with one covariate.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#' \item{GP}{Group}
+#' \item{c.is}{Concentration}
+#' \item{eps}{Residual error}
+#' \item{Emax.i}{Emax value}
+#' \item{y.is}{Response value}
+#' \item{Conc}{Concentration}
+#' \item{Y}{Responbse}
+#' }
+#' @details
+#'
+#' This simulated dataset is...
+#'
+#' You can find the data generating code in the package source code,
+#' under `data-raw/d_sim_emax.R`.
+#'
+#' @examples
+#' d_sim_emax_cov
+"d_sim_emax_cov"
+
+
