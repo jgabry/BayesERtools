@@ -112,72 +112,29 @@ if (getRversion() >= "2.15.1") {
 
 #' Sample simulated data for Emax exposure-response models with covariates.
 #'
-#' @name d_sim_emax_3cov
+#' @name d_sim_emax
 #' @format A data frame with columns:
 #' \describe{
-#' \item{dose}{Nominal dose, units specified}
+#' \item{dose}{Nominal dose, units not specified}
 #' \item{exposure}{Exposure value, units and metric not specified}
-#' \item{cov_a}{Continuous valued covariate}
-#' \item{cov_b}{Continuous valued covariate}
-#' \item{cov_c}{Continuous valued covariate}
-#' \item{response}{Response value (continuous for `d_sim_emax_3cov`, binary for `d_sim_emax_bin_3cov`)}
+#' \item{response_1}{Continuous response value (units not specified)}
+#' \item{response_2}{Binary response value (group labels not specified)}
+#' \item{cnt_a}{Continuous valued covariate}
+#' \item{cnt_b}{Continuous valued covariate}
+#' \item{cnt_c}{Continuous valued covariate}
+#' \item{bin_d}{Binary valued covariate}
+#' \item{bin_e}{Binary valued covariate}
 #' }
 #' @details
 #'
-#' This simulated dataset is...
-#'
-#' You can find the data generating code in the package source code,
-#' under `data-raw/d_sim_emax_3cov.R`.
-#'
-#' @examples
-#' d_sim_emax_3cov
-#' d_sim_emax_bin_3cov
-"d_sim_emax_3cov"
-
-#' @rdname d_sim_emax_3cov
-"d_sim_emax_bin_3cov"
-
-
-#' Sample simulated data for Emax exposure-response models with no covariates.
-#'
-#' @format A data frame with columns:
-#' \describe{
-#' \item{Conc}{Concentration}
-#' \item{Y}{Response}
-#' }
-#' @details
-#'
-#' This simulated dataset is...
+#' This simulated dataset is entirely synthetic. It is a generic data set that can be used
+#' to illustrate Emax modeling. It contains variables corresponding to dose and exposure,
+#' and includes both a continuous response variable and a binary response variable. Three
+#' continuous valued covariates are included, along with two binary covariates. 
 #'
 #' You can find the data generating code in the package source code,
 #' under `data-raw/d_sim_emax.R`.
 #'
 #' @examples
-#' d_sim_emax_nocov
-"d_sim_emax_nocov"
-
-
-#' Sample simulated data for Emax exposure-response models with one covariate.
-#'
-#' @format A data frame with columns:
-#' \describe{
-#' \item{GP}{Group}
-#' \item{c.is}{Concentration}
-#' \item{eps}{Residual error}
-#' \item{Emax.i}{Emax value}
-#' \item{y.is}{Response value}
-#' \item{Conc}{Concentration}
-#' \item{Y}{Responbse}
-#' }
-#' @details
-#'
-#' This simulated dataset is...
-#'
-#' You can find the data generating code in the package source code,
-#' under `data-raw/d_sim_emax.R`.
-#'
-#' @examples
-#' d_sim_emax_cov
-"d_sim_emax_cov"
-
-
+#' d_sim_emax
+"d_sim_emax"
