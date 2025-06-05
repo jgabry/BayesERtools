@@ -38,7 +38,7 @@ This function performs k-fold cross-validation using the appropriate model
 development function based on the class of the \code{ermod} object.
 It is internally used by \code{\link[=eval_ermod]{eval_ermod()}}. The output is compatible with
 \code{loo} ecosystem, e.g. it can be used for \code{\link[loo:loo_compare]{loo::loo_compare()}} function.
-See \code{\link[loo:kfold-generic]{loo::kfold()}} for details.
+See \code{\link[loo:kfold]{loo::kfold()}} for details.
 }
 \examples{
 \dontshow{if (BayesERtools:::.if_run_ex_eval_mod()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

@@ -18,5 +18,5 @@ prior_summary(object, ...)
 An object of class \code{prior_summary.stanreg}
 }
 \description{
-See \code{\link[rstanarm:prior_summary.stanreg]{rstanarm::prior_summary()}} for details.
+See \code{\link[rstanarm:prior_summary]{rstanarm::prior_summary()}} for details.
 }
