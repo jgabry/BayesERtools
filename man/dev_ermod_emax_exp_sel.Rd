@@ -61,7 +61,7 @@ See details in \code{\link[rstanemax:stan_emax]{rstanemax::stan_emax()}} or \cod
 \code{\link[rstanemax:stan_emax_binary]{rstanemax::stan_emax_binary()}}}
 
 \item{seed}{Random seed for Stan model execution, see details in
-\code{\link[rstan:sampling]{rstan::sampling()}} which is used in \code{\link[rstanemax:stan_emax]{rstanemax::stan_emax()}} or
+\code{\link[rstan:stanmodel-method-sampling]{rstan::sampling()}} which is used in \code{\link[rstanemax:stan_emax]{rstanemax::stan_emax()}} or
 \code{\link[rstanemax:stan_emax_binary]{rstanemax::stan_emax_binary()}}}
 }
 \value{

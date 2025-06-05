@@ -48,5 +48,5 @@ as_draws_rvars(x, ...)
 A draws object from the \code{posterior} package.
 }
 \description{
-See \code{\link[posterior:as_draws]{posterior::as_draws()}} for details.
+See \code{\link[posterior:draws]{posterior::as_draws()}} for details.
 }
