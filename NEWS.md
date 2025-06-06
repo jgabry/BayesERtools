@@ -4,6 +4,8 @@
 
 * Implemented `kfold()` function to allow the estimation of ELPD to work with
   loo ecosystem
+* Added simulated dataset for Emax model
+  https://github.com/Genentech/BayesERtools/pull/7 (@djnavarro)
   
 ## Minor changes
 

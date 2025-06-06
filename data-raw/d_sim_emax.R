@@ -121,4 +121,3 @@ d_sim_emax <- simulate_data()
 d_sim_emax <- dplyr::relocate(d_sim_emax, response_1, response_2, .after = exposure)
 readr::write_csv(d_sim_emax, "data-raw/d_sim_emax.csv")
 usethis::use_data(d_sim_emax, overwrite = TRUE)
-
