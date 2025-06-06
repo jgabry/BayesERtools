@@ -35,6 +35,11 @@ if (getRversion() >= "2.15.1") {
   utils::globalVariables(c(
     "truth", "pred", "fold_id", ".row_orig"
   ))
+
+  # sim data gen
+  utils::globalVariables(c(
+    "exposure", "cnt_a", "cnt_b", "cnt_c", "bin_d", "bin_pred", "bin_prob"
+  ))
 }
 
 
@@ -130,7 +135,7 @@ if (getRversion() >= "2.15.1") {
 #' This simulated dataset is entirely synthetic. It is a generic data set that can be used
 #' to illustrate Emax modeling. It contains variables corresponding to dose and exposure,
 #' and includes both a continuous response variable and a binary response variable. Three
-#' continuous valued covariates are included, along with two binary covariates. 
+#' continuous valued covariates are included, along with two binary covariates.
 #'
 #' You can find the data generating code in the package source code,
 #' under `data-raw/d_sim_emax.R`.

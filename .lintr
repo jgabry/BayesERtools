@@ -1,5 +1,6 @@
 linters: linters_with_defaults(
-    return_linter = NULL
+    return_linter = NULL,
+    line_length_linter(100)
   )
 exclusions: list(
     "README.Rmd" = list(
