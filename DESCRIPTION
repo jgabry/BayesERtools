@@ -7,6 +7,8 @@ Authors@R:
              comment = c(ORCID = "0000-0003-4967-3831")),
       person("François", "Mercier", , "francois.mercier@roche.com", role = c("aut"),
              comment = c(ORCID = "0000-0002-5685-1408")),
+      person("Danielle", "Navarro", , "djnavarro@protonmail.com", c("aut"),
+             comment = c(ORCID = "0000-0001-7648-6578")),
       person("Genentech, Inc.", role = "cph")
       )
 Maintainer: Kenta Yoshida <yoshida.kenta.6@gmail.com>
