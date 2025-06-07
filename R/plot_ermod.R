@@ -75,7 +75,8 @@
 #' )
 #'
 #' plot_er(ersim_med_qi, show_orig_data = TRUE) +
-#'   xgxr::xgx_scale_x_log10()
+#'   # Use log10 scale for exposure
+#'   xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 #' }
 #'
 plot_er <- function(x, ...) {
@@ -603,7 +604,9 @@ plot_er.ermod <- function(
 #'   var_exposure = "AUCss_1000"
 #' )
 #'
-#' plot_er_gof(ermod_bin, var_group = "Dose_mg", show_coef_exp = TRUE)
+#' plot_er_gof(ermod_bin, var_group = "Dose_mg", show_coef_exp = TRUE) *
+#'   # Use log10 scale for exposure, need to use `*` instead of `+`
+#'   xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE))
 #' }
 #'
 plot_er_gof <- function(

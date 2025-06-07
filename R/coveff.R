@@ -184,7 +184,7 @@ plot_coveff.coveffsim <- function(x, ...) {
       height = 0.3
     ) +
     ggplot2::geom_vline(xintercept = 1, linetype = "dashed") +
-    xgxr::xgx_scale_x_log10() +
+    xgxr::xgx_scale_x_log10(guide = ggplot2::guide_axis(minor.ticks = TRUE)) +
     ggforce::facet_col(~var_label, scales = "free_y", space = "free") +
     ggplot2::labs(x = "Odds ratio") +
     ggplot2::scale_y_continuous(
