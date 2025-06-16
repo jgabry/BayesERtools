@@ -170,7 +170,7 @@ plot_er.ersim_med_qi <- function(
           coef_exp_str[1], "-", coef_exp_str[2],
           " (", options_coef_exp$qi_width * 100, "% CI)"
         ),
-        label.size = 0.1, label.padding = grid::unit(0.4, "lines"),
+        label.padding = grid::unit(0.4, "lines"),
         alpha = 0.7,
         hjust = 0, vjust = 1, size = options_coef_exp$size
       )
