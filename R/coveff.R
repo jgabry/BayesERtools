@@ -30,20 +30,27 @@
 #' )
 #'
 #' sim_coveff(ermod_bin)
-#' 
+#'
 #' # Linear regression model example
 #' data(d_sim_lin)
-#' 
+#'
 #' ermod_lin <- dev_ermod_lin(
 #'   data = d_sim_lin,
 #'   var_resp = "response",
 #'   var_exposure = "AUCss",
 #'   var_cov = c("SEX", "BAGE"),
 #' )
-#' 
+#'
 #' sim_coveff(ermod_lin)
 #' }
 #'
+# Global variables for tidyverse NSE
+utils::globalVariables(c(
+  ".effect_size", ".odds_ratio", ".lower", ".upper",
+  "is_ref_value", "show_ref_value", "var_order", "value_order",
+  "var_label", "value_label", "value_annot"
+))
+
 sim_coveff <- function(
     ermod, data = NULL, spec_coveff = NULL,
     output_type = "median_qi",
@@ -90,7 +97,8 @@ sim_coveff <- function(
       dplyr::mutate(.effect_size = .delta_linpred) |>
       dplyr::select(-.linpred, -.linpred_ref, -.delta_linpred)
   } else {
-    stop("Only binary E-R model (`ermod_bin`) and linear E-R model (`ermod_lin`) are supported for now")
+    stop("Only binary E-R model (`ermod_bin`) and linear E-R model ",
+         "(`ermod_lin`) are supported for now")
   }
 
   if (output_type == "draws") {
@@ -156,17 +164,17 @@ sim_coveff <- function(
 #' )
 #'
 #' plot_coveff(ermod_bin)
-#' 
+#'
 #' # Linear regression model example
 #' data(d_sim_lin)
-#' 
+#'
 #' ermod_lin <- dev_ermod_lin(
 #'   data = d_sim_lin,
 #'   var_resp = "response",
 #'   var_exposure = "AUCss",
 #'   var_cov = c("SEX", "BAGE"),
 #' )
-#' 
+#'
 #' plot_coveff(ermod_lin)
 #' }
 #'
@@ -197,7 +205,7 @@ plot_coveff.coveffsim <- function(x, ...) {
   rlang::check_installed("xgxr")
 
   coveffsim <- x
-  
+
   # Determine if this is a binary or linear model based on column names
   is_binary_model <- ".odds_ratio" %in% colnames(coveffsim)
 
@@ -280,7 +288,8 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' - `var_label`: the label of the covariate
 #' - `value_label`: the label of the covariate value
 #' - `value_annot`: the annotation of the covariate value
-#' - `Odds ratio` or `Effect size`: the odds ratio (for binary models) or effect size (for linear models) of the covariate effect
+#' - `Odds ratio` or `Effect size`: the odds ratio (for binary models) or
+#'   effect size (for linear models) of the covariate effect
 #' - `95% CI`: the 95% credible interval of the covariate effect
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
@@ -295,17 +304,17 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' )
 #'
 #' print_coveff(sim_coveff(ermod_bin))
-#' 
+#'
 #' # Linear regression model example
 #' data(d_sim_lin)
-#' 
+#'
 #' ermod_lin <- dev_ermod_lin(
 #'   data = d_sim_lin,
 #'   var_resp = "response",
 #'   var_exposure = "AUCss",
 #'   var_cov = c("SEX", "BAGE"),
 #' )
-#' 
+#'
 #' print_coveff(sim_coveff(ermod_lin))
 #' }
 #'
@@ -315,7 +324,7 @@ print_coveff <- function(
 
   # Determine if this is a binary or linear model
   is_binary_model <- ".odds_ratio" %in% colnames(coveffsim)
-  
+
   coveffsim_non_ref <-
     coveffsim |>
     dplyr::filter(!is_ref_value)
@@ -323,11 +332,9 @@ print_coveff <- function(
   # Format values for printing in non-reference rows
   if (is_binary_model) {
     cols_to_format <- c(".odds_ratio", ".lower", ".upper")
-    ref_value <- 1
     effect_col_name <- "Odds ratio"
   } else {
     cols_to_format <- c(".effect_size", ".lower", ".upper")
-    ref_value <- 0
     effect_col_name <- "Effect size"
   }
 
