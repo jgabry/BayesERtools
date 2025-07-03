@@ -42,7 +42,7 @@ covariate effect at their 5th and 95th percentile values).}
 \value{
 A ggplot object. For binary models (\code{ermod_bin}), plots odds ratios
 on a log scale with reference line at 1. For linear models (\code{ermod_lin}),
-plots effect sizes on a linear scale with reference line at 0.
+plots response differences on a linear scale with reference line at 0.
 }
 \description{
 Visualize the covariate effects for ER model

@@ -44,9 +44,6 @@
 #' sim_coveff(ermod_lin)
 #' }
 #'
-
-
-
 sim_coveff <- function(
     ermod, data = NULL, spec_coveff = NULL,
     output_type = "median_qi",
@@ -93,8 +90,10 @@ sim_coveff <- function(
       dplyr::mutate(.response_diff = .delta_linpred) |>
       dplyr::select(-.linpred, -.linpred_ref, -.delta_linpred)
   } else {
-    stop("Only binary E-R model (`ermod_bin`) and linear E-R model ",
-         "(`ermod_lin`) are supported for now")
+    stop(
+      "Only binary E-R model (`ermod_bin`) and linear E-R model ",
+      "(`ermod_lin`) are supported for now"
+    )
   }
 
   if (output_type == "draws") {
@@ -129,8 +128,9 @@ sim_coveff <- function(
       !!effect_col := ifelse(is_ref_value, ref_value, !!rlang::sym(effect_col))
     )
 
-  # Add coveffsim class
+  # Add coveffsim class and model attribute
   class(coveffsim) <- c("coveffsim", class(coveffsim))
+  attr(coveffsim, "model_type") <- if (inherits(ermod, "ermod_bin")) "binary" else "linear"
 
   return(coveffsim)
 }
@@ -202,8 +202,8 @@ plot_coveff.coveffsim <- function(x, ...) {
 
   coveffsim <- x
 
-  # Determine if this is a binary or linear model based on column names
-  is_binary_model <- ".odds_ratio" %in% colnames(coveffsim)
+  # Get model information from attributes
+  is_binary_model <- attr(coveffsim, "model_type") == "binary"
 
   coveffsim_for_plot <-
     coveffsim |>
@@ -318,14 +318,15 @@ print_coveff <- function(
     coveffsim, n_sigfig = 3, use_seps = TRUE, drop_trailing_dec_mark = TRUE) {
   rlang::check_installed("gt")
 
-  # Determine if this is a binary or linear model
-  is_binary_model <- ".odds_ratio" %in% colnames(coveffsim)
+  # Get model information from attributes
+  is_binary_model <- attr(coveffsim, "model_type") == "binary"
 
   coveffsim_non_ref <-
     coveffsim |>
     dplyr::filter(!is_ref_value)
 
   # Format values for printing in non-reference rows
+  effect_col <- if (is_binary_model) ".odds_ratio" else ".response_diff"
   if (is_binary_model) {
     cols_to_format <- c(".odds_ratio", ".lower", ".upper")
     effect_col_name <- "Odds ratio"
@@ -371,7 +372,7 @@ print_coveff <- function(
 
   coveffsim_2 |>
     dplyr::mutate(
-      !!effect_col_name := if (is_binary_model) .odds_ratio else .response_diff,
+      !!effect_col_name := !!rlang::sym(effect_col),
       `95% CI` =
         dplyr::if_else(is_ref_value, " ",
           paste0("[", .lower, ", ", .upper, "]")

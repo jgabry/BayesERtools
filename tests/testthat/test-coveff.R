@@ -55,6 +55,9 @@ if (.if_run_ex_coveff()) {
         3.93067614853305, 1, 2.77732164370792, 2.05372376449102, 1, 0.46514853
       )
     )
+
+    # Test model type attribute
+    expect_equal(attr(coveffsim, "model_type"), "binary")
   })
 
   test_that("sim_coveff linear model", {
@@ -63,6 +66,9 @@ if (.if_run_ex_coveff()) {
     expect_true(".response_diff" %in% colnames(coveffsim_lin))
     expect_true(all(!is.na(coveffsim_lin$.response_diff)))
     expect_true(all(coveffsim_lin$.response_diff[coveffsim_lin$is_ref_value] == 0))
+
+    # Test model type attribute
+    expect_equal(attr(coveffsim_lin, "model_type"), "linear")
   })
 
   test_that("plot_coveff binary model", {

@@ -1,8 +1,7 @@
-
 # core functions ----------------------------------------------------------
 
 emax_fn <- function(exposure, emax, ec50, e0, gamma = 1) {
-  e0 + emax * (exposure ^ gamma) / (ec50 ^ gamma + exposure ^ gamma)
+  e0 + emax * (exposure^gamma) / (ec50^gamma + exposure^gamma)
 }
 
 # simulation model for the exposures includes a dosing model, but is very
@@ -31,7 +30,6 @@ binary_covariate <- function(n, p) {
 # simulation functions ----------------------------------------------------
 
 simulate_data <- function(seed = 123) {
-
   set.seed(seed)
 
   par <- list(
@@ -102,7 +100,6 @@ simulate_data <- function(seed = 123) {
       response_2 = as.numeric(stats::runif(n) < bin_prob)
     ) |>
       dplyr::select(-bin_pred, -bin_prob) # remove intermediate variables
-
   }
 
   # create data set assuming three dosing groups

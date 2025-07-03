@@ -36,7 +36,7 @@ covariate effect at their 5th and 95th percentile values).}
 \value{
 A data frame with class \code{coveffsim} containing the median and
 quantile interval of the covariate effects. For binary models (\code{ermod_bin}),
-returns odds ratios. For linear models (\code{ermod_lin}), returns effect sizes.
+returns odds ratios. For linear models (\code{ermod_lin}), returns response differences.
 }
 \description{
 Perform simulation of covariate effects for ER model
