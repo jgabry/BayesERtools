@@ -26,3 +26,5 @@ vignettes/*.R
 .DS_Store
 /doc/
 /Meta/
+
+RPlots.pdf

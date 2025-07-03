@@ -69,7 +69,7 @@ tab_mod_raw <- tibble(
   `simulate & plot ER` = c("✅", "✅", "✅", "✅"),
   `exposure metrics selection` = c("✅", "✅", "✅", "✅"),
   `covariate selection` = c("✅", "❌", "✅", "❌"),
-  `covariate forest plot` = c("✅", "❌", "🟡", "❌")
+  `covariate forest plot` = c("✅", "❌", "✅", "❌")
 )
 
 # Transpose the table for display

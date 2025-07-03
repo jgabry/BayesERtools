@@ -1,3 +1,9 @@
+# BayesERtools 0.2.4 (in development)
+
+## Major changes
+
+* Extended covariate effects functionality to support linear regression models (`ermod_lin`) in addition to binary logistic regression models (`ermod_bin`)
+
 # BayesERtools 0.2.3
 
 ## Major changes
