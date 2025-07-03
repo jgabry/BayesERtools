@@ -16,7 +16,7 @@
 #' covariate effect at their 5th and 95th percentile values).
 #' @return A data frame with class `coveffsim` containing the median and
 #' quantile interval of the covariate effects. For binary models (`ermod_bin`),
-#' returns odds ratios. For linear models (`ermod_lin`), returns effect sizes.
+#' returns odds ratios. For linear models (`ermod_lin`), returns response differences.
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' \donttest{
@@ -44,12 +44,8 @@
 #' sim_coveff(ermod_lin)
 #' }
 #'
-# Global variables for tidyverse NSE
-utils::globalVariables(c(
-  ".effect_size", ".odds_ratio", ".lower", ".upper",
-  "is_ref_value", "show_ref_value", "var_order", "value_order",
-  "var_label", "value_label", "value_annot"
-))
+
+
 
 sim_coveff <- function(
     ermod, data = NULL, spec_coveff = NULL,
@@ -94,7 +90,7 @@ sim_coveff <- function(
   } else if (inherits(ermod, "ermod_lin")) {
     linpred_draws_3 <-
       linpred_draws_2 |>
-      dplyr::mutate(.effect_size = .delta_linpred) |>
+      dplyr::mutate(.response_diff = .delta_linpred) |>
       dplyr::select(-.linpred, -.linpred_ref, -.delta_linpred)
   } else {
     stop("Only binary E-R model (`ermod_bin`) and linear E-R model ",
@@ -115,7 +111,7 @@ sim_coveff <- function(
     effect_col <- ".odds_ratio"
     ref_value <- 1
   } else {
-    effect_col <- ".effect_size"
+    effect_col <- ".response_diff"
     ref_value <- 0
   }
 
@@ -150,7 +146,7 @@ sim_coveff <- function(
 #'
 #' @return A ggplot object. For binary models (`ermod_bin`), plots odds ratios
 #' on a log scale with reference line at 1. For linear models (`ermod_lin`),
-#' plots effect sizes on a linear scale with reference line at 0.
+#' plots response differences on a linear scale with reference line at 0.
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
 #' \donttest{
@@ -234,9 +230,9 @@ plot_coveff.coveffsim <- function(x, ...) {
     x_lab <- "Odds ratio"
     x_intercept <- 1
   } else {
-    x_aes <- ggplot2::aes(x = .effect_size, y = var_value_index_num)
+    x_aes <- ggplot2::aes(x = .response_diff, y = var_value_index_num)
     x_scale <- ggplot2::scale_x_continuous()
-    x_lab <- "Effect size"
+    x_lab <- "Response difference"
     x_intercept <- 0
   }
 
@@ -280,7 +276,7 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' @param coveffsim an object of class `coveffsim`
 #' @details
 #' Note that `n_sigfig`, `use_seps`, and `drop_trailing_dec_mark` are only
-#' applied to the effect size/odds ratio and 95% CI columns; value_label column was
+#' applied to the response difference/odds ratio and 95% CI columns; value_label column was
 #' already generated in an earlier step in [build_spec_coveff()] or
 #' [sim_coveff()].
 #' @return A data frame with the formatted covariate effect simulation results
@@ -288,8 +284,8 @@ plot_coveff.coveffsim <- function(x, ...) {
 #' - `var_label`: the label of the covariate
 #' - `value_label`: the label of the covariate value
 #' - `value_annot`: the annotation of the covariate value
-#' - `Odds ratio` or `Effect size`: the odds ratio (for binary models) or
-#'   effect size (for linear models) of the covariate effect
+#' - `Odds ratio` or `Response difference`: the odds ratio (for binary models) or
+#'   response difference (for linear models) of the covariate effect
 #' - `95% CI`: the 95% credible interval of the covariate effect
 #'
 #' @examplesIf BayesERtools:::.if_run_ex_coveff()
@@ -334,8 +330,8 @@ print_coveff <- function(
     cols_to_format <- c(".odds_ratio", ".lower", ".upper")
     effect_col_name <- "Odds ratio"
   } else {
-    cols_to_format <- c(".effect_size", ".lower", ".upper")
-    effect_col_name <- "Effect size"
+    cols_to_format <- c(".response_diff", ".lower", ".upper")
+    effect_col_name <- "Response difference"
   }
 
   coveffsim_non_ref <-
@@ -375,7 +371,7 @@ print_coveff <- function(
 
   coveffsim_2 |>
     dplyr::mutate(
-      !!effect_col_name := if (is_binary_model) .odds_ratio else .effect_size,
+      !!effect_col_name := if (is_binary_model) .odds_ratio else .response_diff,
       `95% CI` =
         dplyr::if_else(is_ref_value, " ",
           paste0("[", .lower, ", ", .upper, "]")

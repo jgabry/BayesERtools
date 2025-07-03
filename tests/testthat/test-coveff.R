@@ -27,7 +27,7 @@ if (.if_run_ex_coveff()) {
 
   # Linear regression model tests ---------------------------------------------
   data(d_sim_lin)
-  
+
   set.seed(1234)
   ermod_lin <- dev_ermod_lin(
     data = d_sim_lin,
@@ -60,9 +60,9 @@ if (.if_run_ex_coveff()) {
   test_that("sim_coveff linear model", {
     expect_equal(coveffsim_lin, coveffsim_lin_2)
     expect_equal(dim(coveffsim_lin), c(8, 12))
-    expect_true(".effect_size" %in% colnames(coveffsim_lin))
-    expect_true(all(!is.na(coveffsim_lin$.effect_size)))
-    expect_true(all(coveffsim_lin$.effect_size[coveffsim_lin$is_ref_value] == 0))
+    expect_true(".response_diff" %in% colnames(coveffsim_lin))
+    expect_true(all(!is.na(coveffsim_lin$.response_diff)))
+    expect_true(all(coveffsim_lin$.response_diff[coveffsim_lin$is_ref_value] == 0))
   })
 
   test_that("plot_coveff binary model", {
@@ -113,7 +113,7 @@ if (.if_run_ex_coveff()) {
     table_coveff_lin <- print_coveff(coveffsim_lin)
 
     expect_equal(
-      table_coveff_lin$`Effect size`,
+      table_coveff_lin$`Response difference`,
       c(
         "−20.5", "0", "20.5", "0", "−4.04", "−8.50", "0", "8.34"
       )
