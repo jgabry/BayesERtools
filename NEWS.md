@@ -1,3 +1,9 @@
+# BayesERtools 0.2.5 (in development)
+
+## Major changes
+  
+## Minor changes
+
 # BayesERtools 0.2.4
 
 ## Major changes

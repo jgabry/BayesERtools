@@ -45,3 +45,5 @@
 
 ^LICENSE$
 ^codecov\.yml$
+
+RPlots.pdf
