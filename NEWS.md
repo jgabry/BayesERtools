@@ -3,8 +3,8 @@
 ## Major changes
 
 * Extended covariate effects functionality to support linear regression models 
-(`ermod_lin`) in addition to binary logistic regression models (`ermod_bin`)
-(@djnavarro)
+  (`ermod_lin`) in addition to binary logistic regression models (`ermod_bin`)
+  (@djnavarro)
   
 ## Minor changes
 
