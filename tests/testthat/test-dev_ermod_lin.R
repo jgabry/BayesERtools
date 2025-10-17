@@ -210,8 +210,9 @@ mod_mtcars <- dev_ermod_bin(
 test_that("Exposure metrics selection", {
   expect_equal(extract_var_exposure(ermod_bin_exp_sel), "AUCss_1000")
   expect_equal(
-    extract_exp_sel_comp(ermod_bin_exp_sel)[, 1],
-    c(AUCss_1000 = 0.000000, Cmaxss = -0.6490312, Cminss = -2.7563957)
+    extract_exp_sel_comp(ermod_bin_exp_sel)[, 1, drop = FALSE],
+    data.frame(elpd_diff = c(AUCss_1000 = 0.000000, Cmaxss = -0.6490312, Cminss = -2.7563957)),
+    ignore_attr = TRUE
   )
 
   priors <- prior_summary(ermod_bin_exp_sel$l_mod_exposures[[2]])
