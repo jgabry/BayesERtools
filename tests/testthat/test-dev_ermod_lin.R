@@ -212,7 +212,7 @@ test_that("Exposure metrics selection", {
   comp <- extract_exp_sel_comp(ermod_bin_exp_sel)
   if (is.data.frame(comp)) {
     expect_equal(
-      comp[, 1, drop = FALSE],
+      comp[, "elpd_diff", drop = FALSE],
       data.frame(elpd_diff = c(AUCss_1000 = 0.000000, Cmaxss = -0.6490312, Cminss = -2.7563957)),
       ignore_attr = TRUE
     )

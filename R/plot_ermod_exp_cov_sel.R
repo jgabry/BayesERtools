@@ -81,10 +81,12 @@ plot_var_ranking <- function(x) {
 plot_er_exp_sel <- function(x, n_draws_sim = NULL) {
   stopifnot(inherits(x, "ermod_exp_sel"))
   is_binary_mod <- inherits(x, c("ermod_bin", "ermod_bin_emax"))
-
   var_resp <- extract_var_resp(x)
-  var_exp_order <-
-    rownames(x$loo_comp_exposures)
+  if (is.data.frame(x$loo_comp_exposures)) {
+    var_exp_order <- x$loo_comp_exposures$model
+  } else {
+    var_exp_order <- rownames(x$loo_comp_exposures)
+  }
 
   df_map_var_exp <-
     dplyr::tibble(.exp_metric = var_exp_order) |>
