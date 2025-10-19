@@ -62,8 +62,12 @@ ermod_bin_exp_sel <-
   ))
 
 ermod_bin_exp_sel_other_rank <- ermod_bin_exp_sel
-rownames(ermod_bin_exp_sel_other_rank$loo_comp_exposures) <-
-  c("Cminss", "AUCss_1000", "Cmaxss")
+if (is.data.frame(ermod_bin_exp_sel_other_rank$loo_comp_exposures)) {
+  ermod_bin_exp_sel_other_rank$loo_comp_exposures$model <- c("Cminss", "AUCss_1000", "Cmaxss")
+} else {
+  rownames(ermod_bin_exp_sel_other_rank$loo_comp_exposures) <-
+    c("Cminss", "AUCss_1000", "Cmaxss")
+}
 
 ermod_bin_exp_sel_one_metric <-
   suppressWarnings(dev_ermod_bin_exp_sel(
